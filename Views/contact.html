@@ -1,0 +1,103 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Ciné Monceau - Nous contacter</title>
+    <link href="./styles/index.css" rel="stylesheet">
+</head>
+<body>
+    <!--HEADER-->
+    <header class="header">
+        <!--logo-->
+        <div class='image-container'>
+            <a href="/index.html"><img class="header_logo" src="./assets/CG/logo.png" alt="Logo Mon Ciné Monceau"></a>
+        </div>
+
+        <!--HAMBURGER ICON-->
+        <input class="side-menu" type="checkbox" id="side-menu"/>
+        <label class="hamb" for="side-menu"><span class="hamb-line"></span></label>
+
+        <!--NAV-->
+        <nav class="nav">
+            <ul class="menu">
+                <li><a href="/programmation.html">Programmation</a></li>
+                <li><a href="/news.html">Actualité</a></li>
+                <li><a href="/about.html">Le festival</a></li>
+                <li><a href="/contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <!-- Main content -->
+    <main>
+        <section>
+            <h2 class="dark_title section_title">
+                Nous contacter
+            </h2>
+        </section>
+        <section class="dark-bg">
+            <div class="section_container">
+                <div class="section_content_container contact">
+                    
+                    <div class="form">
+                        <form method="post" action="/booking.html" id="booking-form">
+                            <label for="name">Nom et prénom</label><br>
+                            <input type="text" id="name" name="name" placeholder="Nom"><br>
+                            <label for="email">Email</label><br>
+                            <input type="email" id="email" name="email" placeholder="Email "><br>
+                            <label for="subject">Sujet de la demande</label><br>
+                            <input type="text" name="subject" id="" placeholder="Objet">
+                            <br>
+                            <label for="message">Votre message</label><br>
+                            <textarea name="message" id="" cols="30" rows="10"></textarea>
+                            <br>
+                            <button class="button-form white-btn" type="submit">Envoyer</button>
+                        </form>
+                    </div>
+                    <p class="light_text text-centered">Envoyez-nous votre demande via le formulaire ou à l’adresse suivante :<br><br>
+                        Association Festival des Films de Plein Air<br>
+                        37 Boulevard de Courcelles<br>
+                        75008 Paris</p> 
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+
+
+    <!--FOOTER-->
+    <footer class="footer light-bg">
+        <div class="footer_column">
+            <h3 class="footer-column_title dark_text">Qui sommes-nous ?</h3>
+            <p class="footer-column_text dark_text">L'Association Les Films de Plein Air souhaite faire découvrir les films d'auteurs au grand public.
+                Cinéphiles ou curieux trouveront leur bonheur lors de nos projections dans le cadre idyllique du Parc Monceau.
+
+            <div class="footer-column_RS">
+                <a href="#" class="dark-filter social-icon fb" alt="Facebook"><img src="./assets/CG/facebook-brands.svg" alt="Facebook"></a>
+                <a href="#" class="dark-filter social-icon ig" alt="Instagram"><img src="./assets/CG/instagram-brands.svg" alt="Instagram"></a>
+                <a href="#" class="dark-filter social-icon tt" alt="Twitter"><img src="./assets/CG/twitter-brands.svg" alt="Twitter"></a>
+
+            </div>
+        </div>
+        <div id="acces" class="footer_column">
+            <h3 class="footer-column_title dark_text">Comment venir ?</h3>
+            <div class="footer_column-infoAcces">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5247.771535092643!2d2.305489584351539!3d48.87945416729692!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66fbe98f714c3%3A0xe62425fddeddc402!2sParc%20Monceau!5e0!3m2!1sfr!2sfr!4v1647347187105!5m2!1sfr!2sfr" style="border:0;" allowfullscreen="" loading="lazy" width="250" height="300"></iframe>
+            </div>
+        </div>
+        <div class="footer_column">
+            <div class="footer_column_transport">
+                <div class="footer_column_transport-type-icon">
+                    <img class="icon-metro" src="./assets/CG/Paris_transit_icons_-_Metro.svg.png" alt="Metro"><img class="icon-metro" src="./assets/CG/Paris_transit_icons_-_Metro_2.svg.png" alt="L2">
+                </div>
+                <p class="dark_text"><b>Station Monceau</b></p>
+            </div>
+        </div>
+
+    </footer>
+    
+</body>
+</html>
