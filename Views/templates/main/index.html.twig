@@ -1,0 +1,76 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+{% endblock title %}
+
+{% block content %}
+
+    <div class="noise-background"></div>
+    <div class="main__content">
+
+        <!-- Hero -->
+        <div class="hero_image">
+            <div class="hero_text">
+            <h1 class="hero_text_title">JULIE PARIONA OSCO</h1>
+            <h3 class="hero_text_title">Développeuse web junior</h3>
+            <p class="hero_text_title">Paris, France</p>
+            <a href="/contact.php"><button>Me contacter</button></a>
+            </div>
+        </div> 
+
+        <!-- Main content -->
+        <main>
+            <section class="articles">
+                <h2 class="section_title">Blog</h2>
+                <div class="articles__wrapper">
+                    <div class="articles__wrapper--main">
+                        <article class="article article--main">
+                            <div class="article__image">
+                                <img src="https://picsum.photos/500/300" alt="Image aléatoire">
+                            </div>
+                            <div class="article__content">
+                                <div class="article__date">15 Juil 2022</div>
+                                <h3 class="article__title">Mon article</h3>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="articles__wrapper--secondary">
+                        <article class="article">
+                            <div class="article__image">
+                                <img src="https://picsum.photos/500/300" alt="Image aléatoire">
+                            </div>
+                            <div class="article__content">
+                                <div class="article__date">15 Juil 2022</div>
+                                <h3 class="article__title">Mon article</h3>
+                            </div>
+                        </article>
+                        
+                        <article class="article">
+                            <div class="article__image">
+                                <img src="https://picsum.photos/500/300" alt="Image aléatoire">
+                            </div>
+                            <div class="article__content">
+                                <div class="article__date">15 Juil 2022</div>
+                                <h3 class="article__title">Mon article</h3>
+                            </div>
+                        </article>
+                        
+                        <article class="article">
+                            <div class="article__image">
+                                <img src="https://picsum.photos/500/300" alt="Image aléatoire">
+                            </div>
+                            <div class="article__content">
+                                <div class="article__date">15 Juil 2022</div>
+                                <h3 class="article__title">Mon article</h3>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+                <button type="button">Voir tout</button>
+            </section>
+
+        </main>
+    </div>
+    
+
+{% endblock content %}

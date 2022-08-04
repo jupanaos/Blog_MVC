@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Julie Pariona Osco - Développeuse web{% endblock title %}</title>
+
+    {% block stylesheets %}{% endblock %}
+    <link href="/assets/style/style.css" rel="stylesheet">
+    {% block javascript %}{% endblock %}
+</head>
+<header class="header">
+    <!--LOGO-->
+    <div class='logo-container'>
+        <a href="https://github.com/jupanaos"><img class="header_logo" src="logo.png" alt="logo"></a>
+    </div>
+
+    <!--HAMBURGER ICON-->
+    <input class="side-menu" type="checkbox" id="side-menu"/>
+    <label class="hamb" for="side-menu"><span class="hamb-line"></span></label>
+
+    <!--MENU-->
+    <nav class="nav">
+        <ul class="menu">
+            <li><a href="#">Accueil</a></li>
+            <li><a href="#">Le blog</a></li>
+            <li><a href="#">A propos</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+{% block content %}
+{% endblock content %}
+
+<!--FOOTER-->
+<footer class="footer dark-bg">
+    <div class="footer_column">
+        <h3 class="footer-column_title light_text">Plan du site</h3>
+
+        <div class="footer-column_RS">
+            <a href="#" class="white-filter social-icon fb" alt="Facebook"><img src="" alt="Facebook"></a>
+            <a href="#" class="white-filter social-icon ig" alt="Instagram"><img src="" alt="Instagram"></a>
+            <a href="#" class="white-filter social-icon tt" alt="Twitter"><img src="" alt="Twitter"></a>
+        </div>
+    </div>
+</footer>
+</html>
