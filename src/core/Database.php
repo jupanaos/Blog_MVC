@@ -25,7 +25,7 @@ class Database extends PDO
             $this->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
             $this->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            echo "Connexion établie";
+            echo '<script>console.log("Connexion établie")</script>';
         }catch(PDOException $e){
             die("Erreur:".$e->getMessage());
         }

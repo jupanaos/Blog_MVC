@@ -1,8 +1,8 @@
 <?php
 
-namespace App\core;
+namespace App\Core;
 
-use App\core\Request;
+use App\Core\Request;
 
 class Router
 {
@@ -19,6 +19,11 @@ class Router
         $this->routes['get'][$path] = $callback;
     }
 
+    public function post($path, $callback)
+    {
+        $this->routes['post'][$path] = $callback;
+    }
+
     public function resolve()
     {
         $path = $this->request->getPath();
@@ -26,11 +31,19 @@ class Router
         $callback = $this->routes[$method][$path] ?? false;
         if ($callback === false)
         {
-            echo "Not found";
-            exit;
+            return "Not found";
         }
-        echo call_user_func($callback);
+        if (is_string($callback))
+        {
+            return $this->renderView($callback);
+        }
+        return call_user_func($callback);
     }
 
+    public function renderView($view)
+    {
+        // include_once ROOT."/Views/$view.html.twig";
+        return $this->get('/', [MainController::class, 'index']);
+    }
 
 }

@@ -1,23 +1,25 @@
 <?php
+use App\core\Application;
+use App\Controllers\MainController;
+use App\Models\ArticleModel;
 
 define('ROOT', dirname(__DIR__));
+define('VIEWS_DIR', realpath(dirname(__DIR__)) . '/Views');
 
 require_once ROOT.'/vendor/autoload.php'; //import autoload
-use App\core\Application;
+
 
 //app
 $app = new Application();
 
 //router
-$app->router->get('/', function()
-{
-    return 'Hello there';
-});
 
-$app->router->get('/contact', function()
-{
-    return 'contact us';
-});
+// $app->router->get('/', [MainController::class, 'index']);
+// $app->router->get('/contact', 'contact');
+// $app->router->post('/contact', [MainController::class, 'postContact'] );
+
+// $model = new ArticleModel;
+// var_dump($model->findAll());
 
 //handles all
 $app->run();

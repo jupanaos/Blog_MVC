@@ -8,8 +8,10 @@
 
     {% block stylesheets %}{% endblock %}
     <link href="/assets/style/style.css" rel="stylesheet">
-    {% block javascript %}{% endblock %}
+    {% block javascripts %}{% endblock %}
 </head>
+
+{% block header %}
 <header class="header">
     <!--LOGO-->
     <div class='logo-container'>
@@ -30,10 +32,13 @@
         </ul>
     </nav>
 </header>
+{% endblock %}
+
 
 {% block content %}
 {% endblock content %}
 
+{% block footer %}
 <!--FOOTER-->
 <footer class="footer dark-bg">
     <div class="footer_column">
@@ -46,4 +51,6 @@
         </div>
     </div>
 </footer>
+{% endblock %}
+
 </html>

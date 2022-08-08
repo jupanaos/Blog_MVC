@@ -1,13 +1,13 @@
 <?php
 
-namespace App\core;
+namespace App\Core;
 
-use App\core\Request;
-use App\core\Router;
+use App\Core\Request;
+use App\Core\Router;
 
 class Application
 {
-    public Router $router; //typed property
+    public Router $router;
     public Request $request;
     
     public function __construct()
