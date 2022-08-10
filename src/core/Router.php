@@ -3,6 +3,7 @@
 namespace App\Core;
 
 use App\Core\Request;
+use App\Controllers\MainController;
 
 class Router
 {
@@ -12,6 +13,7 @@ class Router
     public function __construct(Request $request)
     {
         $this->request = $request;
+        $this->get('/', [MainController::class, 'index']);
     }
 
     public function get($path, $callback) //when path value is something, callback is executed
@@ -31,19 +33,22 @@ class Router
         $callback = $this->routes[$method][$path] ?? false;
         if ($callback === false)
         {
+            echo 'Not Found';
             return "Not found";
         }
         if (is_string($callback))
         {
+            echo 'Callback is string';
             return $this->renderView($callback);
         }
+        echo 'Callback function';
         return call_user_func($callback);
     }
 
     public function renderView($view)
     {
         // include_once ROOT."/Views/$view.html.twig";
-        return $this->get('/', [MainController::class, 'index']);
+        return $this->get('/', []);
     }
 
 }

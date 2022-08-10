@@ -13,26 +13,21 @@ abstract class AbstractController
 
     public function __construct()
     {
-        // $this->loader = new FilesystemLoader(VIEWS_DIR . '/layouts', 'layouts');
-        // $this->twig = new Environment($this->loader);
-
-        $loader = new FilesystemLoader(VIEWS_DIR);
-        $loader->addPath(VIEWS_DIR . '/layouts', 'layouts');
-
+        $this->loader = new FilesystemLoader(VIEWS_DIR . '/layouts', 'layouts');
         $this->twig = new Environment($this->loader);
-
-        
+        // $loader = new FilesystemLoader(VIEWS_DIR);
+        // $loader->addPath(VIEWS_DIR . '/layouts', 'layouts');
    
     }
 
-    public function twigRender($layout, $array): ?string {
-        return $this->twig->render($layout, $array);
+    // public function twigRender($layout, $array): ?string {
+    //     return $this->twig->render($layout, $array);
         
-    }
+    // }
 
-    public function render($layout, $array) {
-        echo $this->twig->twigRender($layout, $array);
-    }
+    // public function render($layout, $array) {
+    //     echo $this->twig->twigRender($layout, $array);
+    // }
 
     /**
      * Renders a view.
