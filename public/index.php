@@ -1,25 +1,16 @@
 <?php
 use App\core\Application;
-use App\Controllers\MainController;
-use App\Models\ArticleModel;
 
 define('ROOT', dirname(__DIR__));
 define('VIEWS_DIR', realpath(dirname(__DIR__)) . '/Views');
+define('CONTROLLERS_DIR', realpath(dirname(__DIR__)) . '/src/Controllers');
 
-require_once ROOT.'/vendor/autoload.php'; //import autoload
+// Import autoload
+require_once ROOT.'/vendor/autoload.php';
 
 
-//app
+// New Application instance (router)
 $app = new Application();
 
-//router
-
-// $app->router->get('/', [MainController::class, 'index']);
-// $app->router->get('/contact', 'contact');
-// $app->router->post('/contact', [MainController::class, 'postContact'] );
-
-// $model = new ArticleModel;
-// var_dump($model->findAll());
-
-//handles all
+// Run application
 $app->run();

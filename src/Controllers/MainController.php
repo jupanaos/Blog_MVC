@@ -6,10 +6,6 @@ class MainController extends AbstractController
 {
     public function index()
     {
-        // $template = $this->twig->load('home.html');
-        echo 'hey';
-        //$this->render('home.html.twig');
-        //var_dump($this->twig);
-        //echo $this->twig->display('home.html.twig');
+        echo $this->twig->display('home.html.twig');
     }
 }

@@ -13,7 +13,7 @@ abstract class AbstractController
 
     public function __construct()
     {
-        $this->loader = new FilesystemLoader(VIEWS_DIR . '/layouts', 'layouts');
+        $this->loader = new FilesystemLoader(VIEWS_DIR);
         $this->twig = new Environment($this->loader);
         // $loader = new FilesystemLoader(VIEWS_DIR);
         // $loader->addPath(VIEWS_DIR . '/layouts', 'layouts');
