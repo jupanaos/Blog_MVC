@@ -27,14 +27,21 @@ class Database extends PDO
 
             echo '<script>console.log("Connexion établie")</script>';
         }catch(PDOException $e){
-            die("Erreur:".$e->getMessage());
+            $error_db = 'Erreur base de données : ';
+            $error_db .= $e->getMessage();
+            // echo $error_db;
+            echo '<script>console.log("erreur db")</script>';
+            exit();
         }
     }
 
-    //get unique instance
+    /**
+     * Check if instance exist and returns it
+     *
+     * @return Database
+     */
     public static function getInstance()
     {
-        //check if the instance exists, if yes it returns it, if not it creates a new database
         if(self::$instance === null){
             self::$instance = new Database();
         }
