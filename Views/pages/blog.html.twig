@@ -1,0 +1,29 @@
+{% extends "base.html.twig" %}
+
+{% block content %}
+
+<main>
+    <section class="main-blog">
+        <h2 class="dark_title section_title">
+            Le blog
+        </h2>
+        <div class="article__cards">
+        {% for article in articles %}
+            <div class="article__card">
+                <a href="{{ "/?p=blog/article/"~article.slug }}">
+                    <div class="card-blog_image"><img src="https://picsum.photos/640/360" alt="" /></div>
+                    <div class="article__content">
+                        <div class="article__date">{{ article.createdAt|date('d/m/Y à H:i') }}</div>
+                        <h3 class="article__title">{{ article.title }}</h3>
+                        <p>{{ article.content|length > 100 ? article.content|slice(0, 100) ~ '...' : article.content }}</p>
+                        <a href="#">Lire la suite</a>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+
+    </section>
+</main>
+
+{% endblock %}

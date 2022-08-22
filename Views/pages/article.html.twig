@@ -8,21 +8,16 @@
                 Blog
             </h2>
             <h3 class="text-centered blog">
-                <br>Titre
-            </h3>
-            <h3 class="chapo text-centered blog">
-                Chapo
+                <br>{{article.title}}
             </h3>
             <div class="section_container blog">
                 <div class="section_image_container blog">
                     <img class="section_image" src="https://picsum.photos/2500/1460" alt="Lorem ipsum">
                 </div>
                 <div class="section_content_container blog">
-                    <p class="text-centered blog"><i>08 juillet 2022</i>
+                    <p class="text-centered blog"><i>{{ article.createdAt|date('d/m/Y à H:i') }}</i>
                     </p>
-                    <p class="text-centered blog">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Aut, repellat vitae consequatur laboriosam eligendi blanditiis sit quam adipisci voluptas sed.
-                        Dolor explicabo in dignissimos nam libero porro aut dicta veniam!
+                    <p class="text-centered blog">{{ article.content }}
                     </p>
                 </div> 
             </div>
@@ -37,7 +32,7 @@
             </div>
             <div class="section_container">
                 <div class="form">
-                    <form method="post" action="/booking.html" id="booking-form">
+                    <form method="post" action="" id="comment-form">
                         <label for="message">Laisser un commentaire</label><br>
                         <textarea name="message" id="" cols="100" rows="10"></textarea>
                         <br>
@@ -47,7 +42,8 @@
             </div>
             <div class="section_container">
                 <div class="comments">
-                    
+                {% for comment in article.comments %}
+                {% endfor %}
                 </div>
             </div>
             <div class="section_container">

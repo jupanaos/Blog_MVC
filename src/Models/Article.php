@@ -2,38 +2,29 @@
 
 namespace App\Models;
 
-// class ArticleModel extends Model
-// {
-//     public function __construct()
-//     {
-//         $this->table = 'post';
-//     }
-
-// }
-
 class Article
 {
     private $id;
     private $title;
-    private $excerpt;
+    private $slug;
     private $content;
+    private $picture;
     private $createdAt;
-    private $editedAt;
-    private $user;
-    private $userFirstname;
-    private $userLastname;
+    private $updatedAt;
+    private $status;
+    private $userId;
 
-    public function __construct($id, $title, $excerpt, $content, $createdAt, $editedAt, $user, $userFirstname, $userLastname)
+    public function __construct($id, $title, $slug, $content, $picture, $createdAt, $updatedAt, $status, $userId)
     {
         $this->id = $id;
         $this->title = $title;
-        $this->excerpt = $excerpt;
+        $this->slug = $slug;
         $this->content = $content;
+        $this->picture = $picture;
         $this->createdAt = $createdAt;
-        $this->EditedAt = $editedAt;
-        $this->user = $user;
-        $this->userFirstname = $userFirstname;
-        $this->userLastname = $userLastname;
+        $this->updatedAt = $updatedAt;
+        $this->status = $status;
+        $this->userId = $userId;
     }
 
     public function getId()
@@ -56,14 +47,9 @@ class Article
         $this->title = $title;
     }
 
-    public function getExcerpt()
+    public function getSlug()
     {
-        return $this->excerpt;
-    }
-
-    public function setExcerpt($excerpt)
-    {
-        $this->excerpt = $excerpt;
+        return $this->slug;
     }
 
     public function getContent()
@@ -76,6 +62,16 @@ class Article
         $this->content = $content;
     }
 
+    public function getPicture()
+    {
+        return $this->picture;
+    }
+
+    public function setPicture($picture)
+    {
+        $this->picture = $picture;
+    }
+
     public function getCreatedAt()
     {
         return $this->createdAt;
@@ -86,53 +82,34 @@ class Article
         $this->createdAt = $createdAt;
     }
 
-    public function getEditedAt()
+    public function getUpdatedAt()
     {
-        return $this->editedAt;
+        return $this->updatedAt;
     }
 
-    public function setEditedAt($editedAt)
+    public function setUpdatedAt($updatedAt)
     {
-        $this->editedAt = $editedAt;
+        $this->updatedAt = $updatedAt;
     }
 
-    public function getUser()
+    public function getStatus()
     {
-        return $this->user;
+        return $this->status;
     }
 
-    public function setUser($user)
+    public function setStatus($status)
     {
-        $this->user = $user;
+        $this->status = $status;
     }
 
-    public function getUserFirstname()
+    public function getUserId()
     {
-        return $this->userFirstname;
+        return $this->userId;
     }
 
-    public function setUserFirstname($userFirstname)
+    public function setUserId($userId)
     {
-        $this->userFirstname = $userFirstname;
+        $this->userId = $userId;
     }
 
-    public function getUserLastname()
-    {
-        return $this->userLastname;
-    }
-
-    public function setUserLastname($userLastname)
-    {
-        $this->userLastname = $userLastname;
-    }
-
-    public function getUserImage()
-    {
-        return $this->userImage;
-    }
-
-    public function setUserImage($userImage)
-    {
-        $this->userImage = $userImage;
-    }
 }

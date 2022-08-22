@@ -3,51 +3,45 @@
 namespace App\Repositories;
 use App\Core\Database;
 use Exception;
+use PDO;
 
 abstract class AbstractRepository extends Database
 {
     protected $table;
-    private $db; //instance of Database
+    // protected $entity;
+
+    // public function __construct()  {
+    //     $this->entity = "\\App\\Models\\".ucfirst($this->table);
+    // }
 
     public function findAll()
     {   
-        $query = $this->prepare('SELECT * FROM '. $this->table);
+        $query = $this->prepare('SELECT * FROM '. $this->table .' ORDER BY created_at DESC');
         $query->execute();
-        return $query->fetchAll();
-        // var_dump($query);
-        // echo "le model";
+        $results = $query->fetchAll();
+        return $results;
     }
 
-    function select ($sql, $cond=null) {
-        $result = false;
-        $this->db = Database::getInstance();
-        try {
-            $this->stmt = $this->pdo->prepare($sql);
-            $this->stmt->execute($cond);
-            $result = $this->stmt->fetchAll();
-            return $result;
-        } catch (Exception $ex) { 
-            $this->error = $ex->getMessage(); 
-            return false;
-        }
-    }
-
-    
-
-    // public function query(string $sql, array $attributes = null)
+    // function select($sql, $cond=null)
     // {
-    //     //get instance of Database
+    //     $result = false;
     //     $this->db = Database::getInstance();
-
-    //     //check if there are attributes
-    //     if($attributes !== null){
-    //         //prepared request
-    //         $query = $this->db->prepare($sql);
-    //         $query->execute($attributes);
-    //         return $query;
-    //     }else{
-    //         //simple request
-    //         return $this->db->query($sql);
+    //     try {
+    //         $this->stmt = $this->pdo->prepare($sql);
+    //         $this->stmt->execute($cond);
+    //         $result = $this->stmt->fetchAll();
+    //         return $result;
+    //     } catch (Exception $ex) { 
+    //         $this->error = $ex->getMessage(); 
+    //         return false;
     //     }
+    // }
+
+    // public function getAsEntities(array $results) {
+    //     $entities = [];
+    //     foreach ($results as $result) {
+            
+    //     }
+    //     return $entities;
     // }
 }

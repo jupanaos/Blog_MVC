@@ -2,19 +2,50 @@
 
 {% block content %}
 
-        <!-- Hero -->
-        <div class="hero_image">
-            <div class="hero_text">
-            <h1 class="hero_text_title">JULIE PARIONA OSCO</h1>
-            <h3 class="hero_text_title">Développeuse web junior</h3>
-            <p class="hero_text_title">Paris, France</p>
-            <a href="/contact.php"><button>Me contacter</button></a>
-            </div>
-        </div> 
+    <!-- Hero -->
+    <div class="hero_image">
+        <div class="hero_text">
+        <h1 class="hero_text_title">JULIE PARIONA OSCO</h1>
+        <h3 class="hero_text_title">Développeuse web junior</h3>
+        <p class="hero_text_title">Paris, France</p>
+        <a href="/contact.php"><button>Me contacter</button></a>
+        </div>
+    </div> 
 
         <!-- Main content -->
-        <main>
-            <section class="articles">
+    <main>
+        <section class="articles">
+            <h2>Le blog</h2>
+            <div class="articles__wrapper">
+                {% for article in articles %}
+                    {% if loop.first or loop.index == 2 %}
+                    <a href="{{ "/blog"~post.slug }}">
+                        <div class="{{ loop.first ? ' articles__wrapper--main' : 'articles__wrapper--secondary' }}">
+                    {% endif %}
+
+                    {# {% include 'pages/article.html.twig' with {article: article, is_main: loop.first} %} #}
+
+                    <article class="article{{ loop.first ? ' article--main' : '' }}">
+                        <div class="article__image">
+                            <img src="https://picsum.photos/640/360" alt="Image aléatoire">
+                        </div>
+                        <div class="article__content">
+                            <div class="article__date">{{ article.createdAt|date('d/m/Y à H:i') }}</div>
+                            <h3 class="article__title">{{ article.title|length > 30 ? article.title|slice(0, 30) ~ '...' : article.title }}</h3>
+                        </div>
+                    </article>
+
+                    {% if loop.first or loop.last %}
+                        </div>
+                    </a>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <a href="/blog">
+            <button type="button">Tout le blog</button>
+            </a>
+        </section>
+            {# <section class="articles">
                 <h2 class="section_title">Blog</h2>
                 <div class="articles__wrapper">
                     <div class="articles__wrapper--main">
@@ -61,10 +92,9 @@
                     </div>
                 </div>
                 <button type="button">Voir tout</button>
-            </section>
+            </section> #}
 
-        </main>
-    </div>
+    </main>
     
 
 {% endblock content %}

@@ -8,7 +8,6 @@ class User
 {
     public const ROLE_ADMIN = 'admin';
     public const ROLE_USER = 'user';
-    public const ROLE_TOTO = 'toto';
 
     // $user->getRoles() === User::ROLE_ADMIN
 }

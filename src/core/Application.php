@@ -56,7 +56,7 @@ class Application
                     if(empty($params[1])){
                         $blogController->showBlog();
                     } elseif($params[1] === "article") {
-                        $blogController->showArticle();
+                        $blogController->showArticle($params[2]);
                     }
                     break;
                 case "account":
