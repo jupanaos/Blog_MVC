@@ -1,0 +1,109 @@
+{% extends "base.html.twig" %}
+
+{% block content %}
+
+<h2 class="dark_title section_title">
+    Tableau de bord
+</h2>
+
+<section class="crud-page">
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'articles')">Articles</button>
+        <button class="tablinks" onclick="openTab(event, 'users')">Utilisateurs</button>
+        <button class="tablinks" onclick="openTab(event, 'comments')">Commentaires</button>
+    </div>
+    
+    <!-- Tab content -->
+    <div id="articles" class="tabcontent">
+        <table class="table-crud--articles">
+            <tbody>
+                <tr class="table_headers">
+                    <th align="left">Article</th>
+                    <th align="left">Date</th>
+                    <th align="left">Statut</th>
+                    <th align="left"></th>
+                </tr>
+                {% for article in articles %}
+                <tr>
+                    <td>
+                        {{ article.title }}
+                    </td>
+                    <td>
+                        Publié le {{ article.createdAt|date('d/m/Y à H:i') }}
+                    </td>
+                    <td>
+                        <span>{{ article.status }}</span>
+                    </td>
+                    <td align="right">
+                        <button>Modifier</button>
+                        <button>Supprimer</button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+    <div id="users" class="tabcontent">
+        <table class="table-crud--users">
+            <tbody>
+                <tr class="table_headers">
+                    <th align="left">Nom</th>
+                    <th align="left">Prénom</th>
+                    <th align="left">Pseudo</th>
+                    <th align="left"></th>
+                </tr>
+                <tr>
+                    <td>
+                        {{ user.lastname }}
+                    </td>
+                    <td>
+                        {{ user.firstname }}
+                    </td>
+                    <td>
+                        <span>{{ user.username }}</span>
+                    </td>
+                    <td 
+                        align="right"
+                    >
+                        <button>Modifier</button>
+                        <button>Supprimer</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="comments" class="tabcontent">
+        <table class="table-crud--comments">
+            <tbody>
+                <tr class="table_headers">
+                    <th align="left">Contenu</th>
+                    <th align="left">Article</th>
+                    <th align="left">Statut</th>
+                    <th align="left">Date</th>
+                    <th align="left"></th>
+                </tr>
+                <tr>
+                    <td>
+                        {{ comment.content }}
+                    </td>
+                    <td>
+                        {{ comment.article.title }}
+                    </td>
+                    <td>
+                        <span>{{ comment.status }}</span>
+                    </td>
+                    <td>
+                        <span>{{ comment.createdAt|date('d/m/Y à H:i') }}</span>
+                    </td>
+                    <td align="right">
+                        <button>Publier</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+{% endblock %}

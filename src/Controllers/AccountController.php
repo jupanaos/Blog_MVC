@@ -6,11 +6,11 @@ class AccountController extends AbstractController
 {
     public function login()
     {
-        echo "Login";
+        echo $this->twig->display('pages/login.html.twig');
     }
 
     public function register(){
-        echo "register";
+        echo $this->twig->display('pages/login.html.twig');
     }
 
     public function logout(){

@@ -6,7 +6,7 @@ class ContactController extends AbstractController
 {
     public function contact()
     {
-        echo $this->twig->display('contact.html.twig');
+        echo $this->twig->display('pages/contact.html.twig');
     }
 
 }

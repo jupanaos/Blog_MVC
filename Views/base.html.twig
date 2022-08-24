@@ -9,6 +9,7 @@
     {% block stylesheets %}{% endblock %}
     <link href="/assets/style/style.css" rel="stylesheet">
     {% block javascripts %}{% endblock %}
+    <script src="/assets/js/main.js"></script>
 </head>
 
 {% block header %}
@@ -25,10 +26,10 @@
     <!--MENU-->
     <nav class="nav">
         <ul class="menu">
-            <li><a href="#">Accueil</a></li>
-            <li><a href="#">Le blog</a></li>
-            <li><a href="#">A propos</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a href="/">Accueil</a></li>
+            <li><a href="{{ "/?p=blog" }}">Le blog</a></li>
+            <li><a href="{{ "/?p=contact" }}">Contact</a></li>
+            <li><a href="{{ "/?p=account" }}">Connexion</a></li>
         </ul>
     </nav>
 </header>

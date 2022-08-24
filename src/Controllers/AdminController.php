@@ -1,12 +1,15 @@
 <?php
 
 namespace App\Controllers;
+use App\Repositories\ArticleRepository;
 
 class AdminController extends AbstractController
 {
     public function showAdmin()
     {
-        echo "Dashboard admin";
+        $articleRepository = new ArticleRepository;
+        $articles = $articleRepository->getArticles();
+        echo $this->twig->render('pages/admin.html.twig', ['articles' => $articles]);
     }
 
     public function showCommentList(){
