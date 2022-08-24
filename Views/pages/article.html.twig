@@ -2,54 +2,65 @@
 
 {% block content %}
 
-    <main>
-        <section class="light-bg">
-            <h2 class="light_title section_title blog">
-                Blog
-            </h2>
-            <h3 class="text-centered blog">
-                <br>{{article.title}}
-            </h3>
-            <div class="section_container blog">
-                <div class="section_image_container blog">
-                    <img class="section_image" src="https://picsum.photos/2500/1460" alt="Lorem ipsum">
-                </div>
-                <div class="section_content_container blog">
-                    <p class="text-centered blog"><i>{{ article.createdAt|date('d/m/Y à H:i') }}</i>
-                    </p>
-                    <p class="text-centered blog">{{ article.content }}
-                    </p>
-                </div> 
+<main>
+    <section class="light-bg">
+        <h2 class="light_title section_title blog">
+            Blog
+        </h2>
+        <h3 class="text-centered blog">
+            <br>{{ article.title }}
+        </h3>
+        <div class="section_container blog">
+            <div class="section_image_container blog">
+                <img class="section_image" src="https://picsum.photos/2500/1460" alt="Lorem ipsum">
             </div>
-            
-        </section>
-        <section>
-            <h2 class="dark_title section_title">
-                Commentaires
-            </h2>
-            <div class="section_container">
-                <p>Vous devez vous <a href="http://">connecter</a> ou <a href="http://">créer un compte</a> pour laisser un commentaire !</p>
+            <div class="section_content_container blog">
+                <p class="text-centered blog"><i>{{ article.createdAt|date('d/m/Y à H:i') }}</i>
+                </p>
+                <p class="text-centered blog">{{ article.content }}
+                </p>
+            </div> 
+        </div>
+        
+    </section>
+    <section>
+        <h2 class="dark_title section_title">
+            Commentaires
+        </h2>
+        <div class="section_container">
+            <p>Vous devez vous <a href="/?p=account/login">connecter</a> ou <a href="/?p=account/register">créer un compte</a> pour laisser un commentaire !</p>
+        </div>
+        <div class="section_container">
+            <div class="form">
+                <form method="post" action="" id="comment-form">
+                    <label for="message">Laisser un commentaire</label><br>
+                    <textarea name="message" id="" cols="100" rows="10"></textarea>
+                    <br>
+                    <button class="button-form" type="submit">Envoyer</button>
+                </form>
             </div>
-            <div class="section_container">
-                <div class="form">
-                    <form method="post" action="" id="comment-form">
-                        <label for="message">Laisser un commentaire</label><br>
-                        <textarea name="message" id="" cols="100" rows="10"></textarea>
-                        <br>
-                        <button class="button-form" type="submit">Envoyer</button>
-                    </form>
-                </div>
-            </div>
-            <div class="section_container">
-                <div class="comments">
-                {% for comment in article.comments %}
+        </div>
+        <div class="section_container">
+            <table class="table__comments">
+            <p>yo</p>
+                <tbody>
+                {% for comment in comments %}
+                    <tr>
+                        <td>
+                            Publié le {{ comment.createdAt|date('d/m/Y à H:i') }} par {{ comment.userId }}
+                        </td>
+                        <td>
+                            {{ comment.content }}
+                        </td>
+                        <td>
+                            <span>{{ comment.status }}</span>
+                        </td>
+                    </tr>
                 {% endfor %}
-                </div>
-            </div>
-            <div class="section_container">
-                
-            </div>
-        </section>
-    </main>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</main>
 
 {% endblock content %}
