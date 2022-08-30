@@ -12,28 +12,8 @@
     <script src="/assets/js/main.js"></script>
 </head>
 
-{% block header %}
-<header class="header">
-    <!--LOGO-->
-    <div class='logo-container'>
-        <a href="https://github.com/jupanaos"><img class="header_logo" src="logo.png" alt="logo"></a>
-    </div>
+{% include "parts/_header.html.twig" %}
 
-    <!--HAMBURGER ICON-->
-    <input class="side-menu" type="checkbox" id="side-menu"/>
-    <label class="hamb" for="side-menu"><span class="hamb-line"></span></label>
-
-    <!--MENU-->
-    <nav class="nav">
-        <ul class="menu">
-            <li><a href="/">Accueil</a></li>
-            <li><a href="{{ "/?p=blog" }}">Le blog</a></li>
-            <li><a href="{{ "/?p=contact" }}">Contact</a></li>
-            <li><a href="{{ "/?p=account" }}">Connexion</a></li>
-        </ul>
-    </nav>
-</header>
-{% endblock %}
 
 <div class="noise-background"></div>
 <div class="main__content">

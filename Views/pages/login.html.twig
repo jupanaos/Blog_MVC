@@ -1,6 +1,8 @@
 {% extends "base.html.twig" %}
+{% block title  %}Se connecter{% endblock %}
 
 {% block content %}
+
 
 <main>
     <section>
@@ -10,9 +12,9 @@
     
         <div class="section_container">
             <div class="form register">
-                <form method="post" action="" id="register-form">
+                <form method="post" id="register-form">
                     <label for="username">Pseudo</label><br>
-                    <input type="text" id="username" name="username" placeholder="Pseudo"><br>
+                    <input type="text" value="{{ _post.username }}" id="username" name="username" placeholder="Pseudo"><br>
                     <label for="password">Mot de passe</label><br>
                     <input type="password" name="password" id="" placeholder="Mot de passe">
                     <br>
@@ -21,29 +23,9 @@
             </div>
         </div>
 
+        <p><a href="/?p=account/register"><u>Créer un compte</u></a></p>
 
-        <h2 class="dark_title section_title">
-            Créer un compte
-        </h2>
-    
-        <div class="section_container">
-            <div class="form register">
-                <form method="post" action="" id="register-form">
-                    <label for="lastname">Nom</label><br>
-                    <input type="text" id="lastname" name="lastname" placeholder="Nom"><br>
-                    <label for="firstname">Prénom</label><br>
-                    <input type="text" id="firstname" name="firstname" placeholder="Prénom"><br>
-                    <label for="username">Pseudo</label><br>
-                    <input type="text" id="username" name="username" placeholder="Pseudo"><br>
-                    <label for="email">Email</label><br>
-                    <input type="email" id="email" name="email" placeholder="Email "><br>
-                    <label for="password">Mot de passe</label><br>
-                    <input type="password" name="password" id="" placeholder="Mot de passe">
-                    <br>
-                    <button class="button-form white-btn" type="submit">Créer un compte</button>
-                </form>
-            </div>
-        </div>
+
     </section>
 </main>
 

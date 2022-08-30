@@ -38,7 +38,7 @@ class ArticleRepository extends AbstractRepository
     {
         $articles = [];
 
-        $items = $this->findBy([], [], 4);
+        $items = $this->findBy([], ['created_at' => 'DESC'], 4);
 
         foreach($items as $item) {
             $articles[] = $this->transform($item);
