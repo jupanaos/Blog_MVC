@@ -4,59 +4,23 @@
 
 namespace App\Models;
 
-class User
+class User extends AbstractModel
 {
     public const ROLE_ADMIN = 'admin';
     public const ROLE_USER = 'user';
 
     // $user->getRoles() === User::ROLE_ADMIN
 
-    private $id;
     private $lastName;
     private $firstName;
     private $username;
     private $email;
     private $password;
-    private $role;
-    private $createdAt;
-    private $updatedAt;
+    private $role = self::ROLE_USER;
 
-    public function __construct(array $data = [])
+    public function isAdmin()
     {
-        // $this->id = self::setId($id);
-        // $this->lastName = self::setId($lastName);
-        // $this->firstName = $firstName;
-        // $this->username = $username;
-        // $this->email = $email;
-        // $this->password = $password;
-        // $this->role = $role;
-        // $this->createdAt = $createdAt;
-        // $this->updatedAt = $updatedAt;
-        if (!empty($data)) {
-            $this->hydrate($data);
-        }
-        $this->setDefaultRole();
-    }
-
-    public function hydrate(array $data)
-    {
-        foreach ($data as $key => $value) {
-            $method = "set".str_replace(' ', '',ucwords(str_replace('_', ' ', $key)));
-            if (is_callable(array($this, $method))) {
-                $this->$method($value);
-            }
-            // var_dump($method);
-        }
-    }
-
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    public function setId($id)
-    {
-        $this->id = $id;
+        return $this->role === self::ROLE_ADMIN;
     }
 
     public function getRole()
@@ -67,17 +31,6 @@ class User
     public function setRole($role)
     {
         $this->role = $role;
-    }
-
-
-    // public function isAdmin()
-    // {
-    //     return ($this->roles)=='ADMIN';
-    // }
-
-    public function setDefaultRole()
-    {
-        $this->setRole(self::ROLE_USER);
     }
 
     public function getLastname()
@@ -133,26 +86,9 @@ class User
     public function setPassword($password)
     {
         $this->password = $password;
+        $this->setPasswordHash($this->getPassword());
     }
 
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt($createdAt)
-    {
-        $this->createdAt = $createdAt;
-    }
-
-    public function getUpdatedAt()
-    {
-        return $this->updatedAt;
-    }
-
-    public function setUpdatedAt($updatedAt)
-    {
-        $this->updatedAt = $updatedAt;
-    }
+    
 
 }

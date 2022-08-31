@@ -29,7 +29,7 @@ class Database extends PDO
         }catch(PDOException $e){
             $error_db = 'Erreur base de données : ';
             $error_db .= $e->getMessage();
-            // echo $error_db;
+
             echo '<script>console.log("erreur db")</script>';
             exit();
         }

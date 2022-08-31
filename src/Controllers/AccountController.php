@@ -19,7 +19,6 @@ class AccountController extends AbstractController
         $this->userAuth = new Auth();
     }
 
-    
     public function login()
     {
         if (!empty($_POST['username'])){
@@ -30,8 +29,13 @@ class AccountController extends AbstractController
 
     public function register(){
         if (!empty($_POST['username'])){
-            $user = new User($_POST);
-            var_dump($user);
+            if($_POST['password'] === $_POST['password-confirm']){
+                $user = new User($_POST);
+                
+                $this->userRepository->add($user);
+            } else {
+                echo "Le mot de passe est différent";
+            }
         }
         echo $this->twig->display('pages/register.html.twig');
     }
