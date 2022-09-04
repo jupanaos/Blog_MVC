@@ -15,7 +15,8 @@
             <li><a href="{{ "/?p=blog" }}">Le blog</a></li>
             <li><a href="{{ "/?p=contact" }}">Contact</a></li>
             {% if user %}
-                    <li><a href="{{ "/?p=admin/dashboard" }}">Administration</a></li>
+            
+                    {# <li><a href="{{ "/?p=admin/dashboard" }}">Administration</a></li> #}
             {% else %}
                 <li><a href="{{ "/?p=account" }}">Connexion</a></li>
             {% endif %}

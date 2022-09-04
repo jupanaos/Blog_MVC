@@ -67,8 +67,8 @@ class Application
                     }
                     break;
                 case "admin":
-                    $accountController->logout();
-                    if($params[1] === "login") {
+                    // $accountController->logout();
+                    if((empty($params[1])) || $params[1] === "login") {
                         $accountController->login();
                     } elseif ($params[1] === "dashboard") {
                         $adminController->showAdmin();

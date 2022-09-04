@@ -2,30 +2,14 @@
 
 namespace App\Models;
 
-class Article
+class Article extends AbstractModel
 {
-    private $id;
     private $title;
     private $slug;
     private $content;
     private $picture;
-    private $createdAt;
-    private $updatedAt;
     private $status;
     private $userId;
-
-    public function __construct($id, $title, $slug, $content, $picture, $createdAt, $updatedAt, $status, $userId)
-    {
-        $this->id = $id;
-        $this->title = $title;
-        $this->slug = $slug;
-        $this->content = $content;
-        $this->picture = $picture;
-        $this->createdAt = $createdAt;
-        $this->updatedAt = $updatedAt;
-        $this->status = $status;
-        $this->userId = $userId;
-    }
 
     public function getId()
     {

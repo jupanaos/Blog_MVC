@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 use App\Models\Article;
+use PDO;
 
 class ArticleRepository extends AbstractRepository
 {
@@ -68,17 +69,38 @@ class ArticleRepository extends AbstractRepository
      * Array to Article Object
      */
     public function transform(array $articleArray) {
-        return new Article(
-            $articleArray['id'],
-            $articleArray['title'],
-            $articleArray['slug'],
-            $articleArray['content'],
-            $articleArray['picture'],
-            $articleArray['created_at'],
-            $articleArray['updated_at'],
-            $articleArray['status'],
-            $articleArray['user_id']
-        );
+        return new Article($articleArray);
+    }
+
+    public function add(Article $article)
+    {
+        $title = $article->getTitle();
+        $slug = $article->getSlug();
+        $content = $article->getContent();
+        $picture = $article->getPicture();
+        $status = $article->getStatus();
+        $userId = $article->getUserId();
+
+        $queryString = 'INSERT INTO article (title, slug, content, picture, status, userId)
+                        VALUES (:title, :slug, :content, :picture, :status, :userId)';
+
+        $stmt = $this->getInstance()->prepare($queryString);
+        $stmt->bindValue(":title", $title, PDO::PARAM_STR);
+        $stmt->bindValue(":slug", $slug, PDO::PARAM_STR);
+        $stmt->bindValue(":content", $content, PDO::PARAM_STR);
+        $stmt->bindValue(":picture", $picture, PDO::PARAM_STR);
+        $stmt->bindValue(":status", $status, PDO::PARAM_STR);
+        $stmt->bindValue(":userId", $userId, PDO::PARAM_INT);
+        $result = $stmt->execute();
+        $stmt->closeCursor();
+
+        if ($result > 0) {
+            // return true;
+            echo "article ajouté";
+        } else {
+            // return false;
+            echo "échec ajout";
+        }
     }
     
 }

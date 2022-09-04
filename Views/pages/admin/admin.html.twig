@@ -53,6 +53,7 @@
                     <th align="left">Pseudo</th>
                     <th align="left"></th>
                 </tr>
+                {% for user in users %}
                 <tr>
                     <td>
                         {{ user.lastname }}
@@ -63,13 +64,12 @@
                     <td>
                         <span>{{ user.username }}</span>
                     </td>
-                    <td 
-                        align="right"
-                    >
+                    <td align="right">
                         <button>Modifier</button>
                         <button>Supprimer</button>
                     </td>
                 </tr>
+                {% endfor %}
             </tbody>
         </table>
     </div>
@@ -84,6 +84,7 @@
                     <th align="left">Date</th>
                     <th align="left"></th>
                 </tr>
+                {% for comment in comments %}
                 <tr>
                     <td>
                         {{ comment.content }}
@@ -101,6 +102,7 @@
                         <button>Publier</button>
                     </td>
                 </tr>
+                {% endfor %}
             </tbody>
         </table>
     </div>

@@ -16,7 +16,7 @@ class User extends AbstractModel
     private $username;
     private $email;
     private $password;
-    private $role = self::ROLE_USER;
+    private $role;
 
     public function isAdmin()
     {
@@ -31,6 +31,11 @@ class User extends AbstractModel
     public function setRole($role)
     {
         $this->role = $role;
+    }
+
+    public function setDefaultRole()
+    {
+        $this->setRole(self::ROLE_USER);
     }
 
     public function getLastname()
@@ -86,7 +91,7 @@ class User extends AbstractModel
     public function setPassword($password)
     {
         $this->password = $password;
-        $this->setPasswordHash($this->getPassword());
+        // $this->setPasswordHash($this->getPassword());
     }
 
     

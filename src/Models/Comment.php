@@ -2,24 +2,13 @@
 
 namespace App\Models;
 
-class Comment
+class Comment extends AbstractModel
 {
-    private $id;
     private $userId;
     private $articleId;
     private $content;
     private $createdAt;
     private $status;
-
-    public function __construct($id, $userId, $articleId, $content, $createdAt, $status)
-    {
-        $this->id = $id;
-        $this->userId = $userId;
-        $this->articleId = $articleId;
-        $this->content = $content;
-        $this->createdAt = $createdAt;
-        $this->status = $status;
-    }
 
     public function getId()
     {

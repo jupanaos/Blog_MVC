@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 use App\Repositories\ArticleRepository;
+use App\Repositories\UserRepository;
 
 class AdminController extends AbstractController
 {
@@ -9,7 +10,13 @@ class AdminController extends AbstractController
     {
         $articleRepository = new ArticleRepository;
         $articles = $articleRepository->getArticles();
-        echo $this->twig->render('pages/admin.html.twig', ['articles' => $articles]);
+        $userRepository = new UserRepository;
+        $users = $userRepository->getUsers();
+        
+        echo $this->twig->render('pages/admin/admin.html.twig',
+                                ['articles' => $articles,
+                                'users' => $users]
+                                );
     }
 
     public function showCommentList(){
