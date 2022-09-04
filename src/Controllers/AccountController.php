@@ -68,6 +68,8 @@ class AccountController extends AbstractController
     }
 
     public function logout(){
-        echo "logout";
+        session_destroy();
+        $this->redirectToIndex();
     }
+
 }

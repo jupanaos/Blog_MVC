@@ -64,6 +64,8 @@ class Application
                         $accountController->login();
                     } elseif($params[1] === "register") {
                         $accountController->register();
+                    } elseif($params[1] === "logout") {
+                        $accountController->logout();
                     }
                     break;
                 case "admin":

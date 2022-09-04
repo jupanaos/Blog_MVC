@@ -20,6 +20,7 @@ abstract class AbstractController
     {
         $this->loader = new FilesystemLoader(VIEWS_DIR);
         $this->twig = new Environment($this->loader);
+        self::addTwigGlobals($this->twig);
 
         // $this->twig->addGlobal('session', $_SESSION);
 
@@ -29,7 +30,7 @@ abstract class AbstractController
 
     public function addTwigGlobals($twig) {
         $twigGlobals = new TwigGlobals();
-        $this->twig->addGlobal('session', $twigGlobals->getSession());
+        $twig->addGlobal('session', $twigGlobals->getSession());
         $twig->addGlobal('_post', $_POST);
         $twig->addGlobal('_get', $_GET);
     }

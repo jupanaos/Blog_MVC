@@ -14,14 +14,12 @@
             <li><a href="/">Accueil</a></li>
             <li><a href="{{ "/?p=blog" }}">Le blog</a></li>
             <li><a href="{{ "/?p=contact" }}">Contact</a></li>
-            {% if user %}
-            
+            {% if session.logged == false %}
+                <li><a href="{{ "/?p=account" }}">Connexion</a></li>
                     {# <li><a href="{{ "/?p=admin/dashboard" }}">Administration</a></li> #}
             {% else %}
-                <li><a href="{{ "/?p=account" }}">Connexion</a></li>
+            <li><a href="{{ "/?p=account/logout" }}">Déconnexion</a></li>
             {% endif %}
-            
-            
         </ul>
     </nav>
 </header>
