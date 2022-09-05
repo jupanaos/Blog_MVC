@@ -9,16 +9,6 @@ class ArticleRepository extends AbstractRepository
     protected $table = 'article';
 
     /**
-     * Undocumented function
-     *
-     * @param $article
-     */
-    /*public function addArticle($article)
-    {
-        $this->articles[] = $article;
-    }*/
-
-    /**
      * Get and return all articles in article table
      *
      * @return $articles
@@ -57,6 +47,21 @@ class ArticleRepository extends AbstractRepository
         $items = $query->fetchAll();
         
         //$items = $this->findBy(['slug' => $slug]);
+
+        foreach($items as $item) {
+            $articles[] = $this->transform($item);
+        }
+
+        return $articles;
+    }
+
+    public function getArticleById($id)
+    {
+        $articles = [];
+        $query = $this->prepare('SELECT * FROM article WHERE id =' . '"'.$id.'"');
+        $query->execute();
+
+        $items = $query->fetchAll();
 
         foreach($items as $item) {
             $articles[] = $this->transform($item);

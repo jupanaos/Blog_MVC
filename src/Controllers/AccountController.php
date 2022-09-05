@@ -28,7 +28,7 @@ class AccountController extends AbstractController
                 $this->redirectToIndex();
             }
         }
-        echo $this->twig->display('pages/login.html.twig');
+        echo $this->twig->display('pages/client/login.html.twig');
     }
 
     public function isLoggedIn()
@@ -64,12 +64,21 @@ class AccountController extends AbstractController
             echo "Pseudo invalide";
         }
 
-        echo $this->twig->display('pages/register.html.twig');
+        echo $this->twig->display('pages/client/register.html.twig');
     }
 
     public function logout(){
         session_destroy();
         $this->redirectToIndex();
+    }
+
+    public function showDashboard($id)
+    {
+        $userRepository = new userRepository;
+        $user = $userRepository->getUserById($id);
+
+        echo $this->twig->render('pages/client/dashboard.html.twig',
+                                ['user' => $user[0]]);
     }
 
 }

@@ -11,6 +11,6 @@ class MainController extends AbstractController
         $articles = $articleRepository->lastArticles();
         // var_dump($articles);
 
-        echo $this->twig->render('pages/home/home.html.twig', ['articles' => $articles]);
+        echo $this->twig->render('pages/client/home.html.twig', ['articles' => $articles]);
     }
 }

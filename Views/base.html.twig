@@ -14,25 +14,12 @@
 
 {% include "parts/_header.html.twig" %}
 
-
 <div class="noise-background"></div>
 <div class="main__content">
 {% block content %}
 {% endblock content %}
 </div>
 
-{% block footer %}
-<!--FOOTER-->
-<footer class="footer dark-bg">
-    <div class="footer_column">
-        <h3 class="footer-column_title light_text">Plan du site</h3>
-
-        <div class="footer-column_RS">
-            <a href="https://github.com/jupanaos" class="white-filter social-icon fb" alt="Github"><img src="" alt="Github"></a>
-            <a href="#" class="white-filter social-icon ig" alt="Instagram">Admin</a>
-        </div>
-    </div>
-</footer>
-{% endblock %}
+{% include "parts/_footer.html.twig" %}
 
 </html>

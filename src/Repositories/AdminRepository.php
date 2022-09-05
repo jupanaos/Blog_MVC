@@ -1,25 +1,39 @@
 <?php
 
 namespace App\Repositories;
+use App\Models\User;
 
 class AdminRepository extends AbstractRepository
 {
-    public function getAdmin()
+    public function findAdmin(string $admin)
     {
-        if(ISSET($_POST['login'])){
-            if($_POST['username'] != "" || $_POST['password'] != ""){
-                $username = $_POST['username'];
-                $password = $_POST['password'];
-                $query = $this->prepare('SELECT * FROM `user` WHERE `username`=? AND `password`=? AND `roles`= $ROLE_ADMIN');
-                $query->execute(array($username,$password));
-                $row = $query->rowCount();
-                $fetch = $query->fetch();
-                if($row > 0) {
-                    echo"<h5 class='text-success'>Login successfully</h5>";
-                } else{
-                    echo"<h5 class='text-danger'>Invalid username or password</h5>";
-                }
-            }
+        $admin = [];
+        $query = $this->prepare('SELECT * FROM user WHERE roles = "admin" ');
+        $query->execute();
+
+        $items = $query->fetchAll();
+
+        foreach($items as $item) {
+            $admin[] = $this->transform($item);
         }
+
+        return $admin[0];
+    }
+
+    /**
+     * Array to object
+     *
+     * @param array $userArray
+     * @return $user
+     */
+    public function transform(array $userArray) {
+        $user = new User($userArray);
+
+        if($userArray['roles'] === 'admin'){
+            $user->setRole("admin");
+        } else {
+            $user->setRole("user");
+        }
+        return $user;
     }
 }

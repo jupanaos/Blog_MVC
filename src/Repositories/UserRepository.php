@@ -11,7 +11,10 @@ class UserRepository extends AbstractRepository
 {
     protected $table = 'user';
 
-    // add, edit, delete
+    /**
+     * Get all users
+     * return $users
+     */
 
     public function getUsers()
     {
@@ -25,9 +28,24 @@ class UserRepository extends AbstractRepository
         return $users;
     }
 
-    public function findByUsername()
+    public function getUserById($id)
     {
-        
+        $users = [];
+        $query = $this->prepare('SELECT * FROM user WHERE id =' . '"'.$id.'"');
+        $query->execute();
+
+        $items = $query->fetchAll();
+
+        foreach($items as $item) {
+            $users[] = $this->transform($item);
+        }
+
+        return $users;
+    }
+
+    public function findByRole()
+    {
+        // TO DO
     }
 
     public function add(User $user)
@@ -98,6 +116,12 @@ class UserRepository extends AbstractRepository
         }
     }
 
+    /**
+     * Creates a user Session
+     *
+     * @param User $userInfos
+     * @return void
+     */
     public function userSession(User $userInfos)
     {
         $_SESSION['user'] = $userInfos;
@@ -141,18 +165,28 @@ class UserRepository extends AbstractRepository
         }
     }
 
-    public function delete(User $id)
+    public function delete(User $user)
     {
         $queryString = "DELETE FROM user WHERE id=?";
         $stmt = $this->getInstance()->prepare($queryString);
-        $stmt->execute(array($id));
+        $stmt->execute(array($user));
     }
 
     /**
-     * Array to Article Object
+     * Array to object
+     *
+     * @param array $userArray
+     * @return $user
      */
     public function transform(array $userArray) {
-        return new User($userArray);
+        $user = new User($userArray);
+
+        if($userArray['roles'] === 'admin'){
+            $user->setRole("admin");
+        } else {
+            $user->setRole("user");
+        }
+        return $user;
     }
 
 }

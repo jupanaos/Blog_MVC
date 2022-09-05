@@ -10,7 +10,7 @@
         <div class="article__cards">
         {% for article in articles %}
             <div class="article__card">
-                <a href="{{ "/?p=blog/article/"~article.slug }}">
+                <a href="{{ "/?p=blog/article/"~article.id }}">
                     <div class="card-blog_image"><img src="https://picsum.photos/640/360" alt="" /></div>
                     <div class="article__content">
                         <div class="article__date">{{ article.createdAt|date('d/m/Y à H:i') }}</div>

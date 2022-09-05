@@ -1,0 +1,28 @@
+{% extends "base.html.twig" %}
+
+{% block content %}
+
+<a href={{ "/?p=admin/dashboard" }}><p>&#8617; Retour</p></a>
+<section>
+    <h2 class="dark_title section_title">
+        Ajouter un article
+    </h2>
+
+    <div class="section_container">
+        <div class="form">
+            <form method="post" action="" id="booking-form">
+                <label for="title">Titre</label><br>
+                <input type="text" id="title" name="title" placeholder="Titre"><br>
+                <br>
+                <label for="content">Texte</label><br>
+                <textarea name="content" id="" cols="100" rows="10"></textarea>
+                <br>
+                <a href="{{ "/?p=admin/dashboard" }}"><button class="button-form white-btn" type="submit">Sauvegarder</button></a>
+                <a href="{{ "/?p=admin/dashboard" }}"><button class="button-form white-btn" type="submit">Ajouter</button></a>
+            </form>
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}

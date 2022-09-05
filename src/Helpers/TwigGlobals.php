@@ -1,12 +1,19 @@
 <?php
 
 namespace App\Helpers;
+use App\Repositories\AdminRepository;
 
 class TwigGlobals
 {
-    public function getAdminId()
+    public function getAdminRole()
     {
-        return 1;
+        return "admin";
+    }
+
+    public function getAdmin()
+    {
+        $adminRepository = new AdminRepository();
+        return $adminRepository->findAdmin($this->getAdminRole());
     }
 
     public function getSession()

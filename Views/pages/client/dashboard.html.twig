@@ -1,0 +1,46 @@
+{% extends "base.html.twig" %}
+
+{% block content %}
+
+<h2 class="dark_title section_title">
+    Tableau de bord
+</h2>
+
+<section class="crud-page">
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'articles')">Mes informations</button>
+        <button class="tablinks" onclick="openTab(event, 'users')">Mes derniers commentaires</button>
+    </div>
+    
+    <!-- Tab content -->
+    <div id="articles" class="tabcontent">
+        <div class="section_container">
+            <div class="form register">
+                <form method="post" id="register-form">
+                    <label for="last_name">Nom</label><br>
+                    <input type="text" value="{{ session.user.lastname }}" id="last_name" name="last_name" placeholder="Nom"><br>
+                    <label for="first_name">Prénom</label><br>
+                    <input type="text" value="{{ session.user.firstname }}" id="first_name" name="first_name" placeholder="Prénom"><br>
+                    <label for="username">Pseudo</label><br>
+                    <input type="text" value="{{ session.user.username }}" id="username" name="username" placeholder="Pseudo"><br>
+                    <label for="email">Email</label><br>
+                    <input type="email" value="{{ session.user.email }}" id="email" name="email" placeholder="Email "><br>
+                    <label for="password">Mot de passe</label><br>
+                    <input type="password" value="{{ session.user.password }}" name="password" id="" placeholder="Mot de passe">
+                    <label for="password-confirm">Confirmer le mot de passe</label><br>
+                    <input type="password" name="password-confirm" id="" placeholder="Confirmer le mot de passe">
+                    <br>
+                    <button class="button-form white-btn" type="submit">Modifier mes informations</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="users" class="tabcontent">
+        
+    </div>
+
+
+</section>
+
+{% endblock %}

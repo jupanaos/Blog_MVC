@@ -24,7 +24,7 @@
 
                     {# {% include 'pages/article.html.twig' with {article: article, is_main: loop.first} %} #}
 
-                    <a href="{{ "/?p=blog/article/"~article.slug }}">
+                    <a href="{{ "/?p=blog/article/"~article.id }}">
                         <article class="article{{ loop.first ? ' article--main' : '' }}">
                             <div class="article__image">
                                 <img src="https://picsum.photos/640/360" alt="Image aléatoire">

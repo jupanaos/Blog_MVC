@@ -3,7 +3,7 @@
 {% block content %}
 
 <h2 class="dark_title section_title">
-    Tableau de bord
+    Administration
 </h2>
 
 <section class="crud-page">
@@ -17,6 +17,7 @@
     <div id="articles" class="tabcontent">
         <table class="table-crud--articles">
             <tbody>
+            <a href="{{ "/?p=admin/articles/add" }}"><button>+ Ajouter</button></a>
                 <tr class="table_headers">
                     <th align="left">Article</th>
                     <th align="left">Date</th>
@@ -35,7 +36,7 @@
                         <span>{{ article.status }}</span>
                     </td>
                     <td align="right">
-                        <button>Modifier</button>
+                        <a href="{{ "/?p=admin/articles/edit/"~article.id }}"><button>Modifier</button></a>
                         <button>Supprimer</button>
                     </td>
                 </tr>
@@ -43,29 +44,29 @@
             </tbody>
         </table>
     </div>
-    
+
     <div id="users" class="tabcontent">
         <table class="table-crud--users">
             <tbody>
                 <tr class="table_headers">
-                    <th align="left">Nom</th>
-                    <th align="left">Prénom</th>
                     <th align="left">Pseudo</th>
+                    <th align="left">Email</th>
+                    <th align="left">Role</th>
                     <th align="left"></th>
                 </tr>
                 {% for user in users %}
                 <tr>
                     <td>
-                        {{ user.lastname }}
+                        {{ user.username }}
                     </td>
                     <td>
-                        {{ user.firstname }}
+                        {{ user.email }}
                     </td>
                     <td>
-                        <span>{{ user.username }}</span>
+                        <span>{{ user.role }}</span>
                     </td>
                     <td align="right">
-                        <button>Modifier</button>
+                        <a href="{{ "/?p=admin/users/edit" }}"><button>Modifier</button></a>
                         <button>Supprimer</button>
                     </td>
                 </tr>

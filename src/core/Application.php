@@ -66,6 +66,8 @@ class Application
                         $accountController->register();
                     } elseif($params[1] === "logout") {
                         $accountController->logout();
+                    } elseif ($params[1] === "dashboard") {
+                        $accountController->showDashboard($params[2]);
                     }
                     break;
                 case "admin":
@@ -74,13 +76,21 @@ class Application
                         $accountController->login();
                     } elseif ($params[1] === "dashboard") {
                         $adminController->showAdmin();
-                    } elseif ($params[1] === "comments") {
-                        $adminController->showCommentList();
                     } elseif ($params[1] === "articles") {
-                        if (empty($params[2])) {
-                            $adminController->manageArticles();
-                        } elseif ($params[2] === "add") {
+                        if ($params[2] === "add") {
                             $adminController->addArticle();
+                        } elseif ($params[2] === "edit") {
+                            $adminController->editArticle($params[3]);
+                        } elseif ($params[2] === "delete") {
+                            $adminController->deleteArticle();
+                        }
+                    } elseif ($params[1] === "users") {
+                        if ($params[2] === "manage") {
+                            $adminController->manageUser();
+                        }
+                    } elseif ($params[1] === "comments") {
+                        if ($params[2] === "manage") {
+                            $adminController->manageComment();
                         }
                     }
                     break;

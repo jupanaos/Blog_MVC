@@ -11,16 +11,16 @@ class BlogController extends AbstractController
         $articleRepository = new ArticleRepository;
         $articles = $articleRepository->getArticles();
 
-        echo $this->twig->render('pages/blog.html.twig', ['articles' => $articles]);
+        echo $this->twig->render('pages/client/blog.html.twig', ['articles' => $articles]);
     }
 
-    public function showArticle($slug){
+    public function showArticle($id){
         $articleRepository = new ArticleRepository;
-        $articles = $articleRepository->getArticleBySlug($slug);
+        $articles = $articleRepository->getArticleById($id);
         $commentRepository = new CommentRepository;
         $comments = $commentRepository->getComments();
 
-        echo $this->twig->render('pages/article.html.twig',
+        echo $this->twig->render('pages/client/article.html.twig',
             ['article' => $articles[0]],
             ['comments' => $comments]);
     }
