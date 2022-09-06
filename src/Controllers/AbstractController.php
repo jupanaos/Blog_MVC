@@ -31,7 +31,7 @@ abstract class AbstractController
     public function addTwigGlobals($twig) {
         $twigGlobals = new TwigGlobals();
         $twig->addGlobal('session', $twigGlobals->getSession());
-        $twig->addGlobal('admin', $twigGlobals->getAdmin());
+        // $twig->addGlobal('admin', $twigGlobals->getAdmin());
         $twig->addGlobal('_post', $_POST);
         $twig->addGlobal('_get', $_GET);
     }

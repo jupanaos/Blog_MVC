@@ -27,9 +27,11 @@
         <h2 class="dark_title section_title">
             Commentaires
         </h2>
+        {% if session.logged == false %}
         <div class="section_container">
             <p>Vous devez vous <a href="/?p=account/login">connecter</a> ou <a href="/?p=account/register">créer un compte</a> pour laisser un commentaire !</p>
         </div>
+        {% else %}
         <div class="section_container">
             <div class="form">
                 <form method="post" action="" id="comment-form">
@@ -40,6 +42,7 @@
                 </form>
             </div>
         </div>
+        {% endif %}
         <div class="section_container">
             <table class="table__comments">
             <p>yo</p>

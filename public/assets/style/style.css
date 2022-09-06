@@ -13,6 +13,9 @@
     --dark-orange: #AE6339;
     --violet: #7C86FF;
     --accent-orange:#632100;
+    --red-alert: #BE0A06;
+    --blue-edit: #3590D5;
+    --green-success:#35902D;
 }
 
 /* Reset */
@@ -306,13 +309,25 @@ button:hover {
     background-color: var(--violet); 
     color: white;
     cursor: pointer;
-  }
+}
 
-/* button.white-btn:hover{
-    background-color: var(--white);
-    color: var(--dark-orange);
+button.create:hover{
+    background-color: var(--green-success);
+    color: var(--white);
     cursor: pointer;
-} */
+}
+
+button.edit:hover{
+    background-color: var(--blue-edit);
+    color: var(--white);
+    cursor: pointer;
+}
+
+button.delete:hover{
+    background-color: var(--red-alert);
+    color: var(--white);
+    cursor: pointer;
+}
 
 html{
     scroll-behavior: smooth;

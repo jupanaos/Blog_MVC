@@ -48,7 +48,7 @@ class AccountController extends AbstractController
             if($_POST['password'] === $_POST['password-confirm']){
                 $user = new User($_POST);
                 $user->setPasswordHash($user->getPassword());
-                $user->setDefaultRole($user->getRole());
+                $user->setDefaultRole();
 
                 $this->userRepository->add($user);
             } else {

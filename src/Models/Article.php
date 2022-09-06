@@ -4,22 +4,15 @@ namespace App\Models;
 
 class Article extends AbstractModel
 {
+    public const STATUS_PUBLISHED = 'Published';
+    public const STATUS_UNPUBLISHED = 'Pending';
+
     private $title;
     private $slug;
     private $content;
-    private $picture;
+    // private $picture;
     private $status;
     private $userId;
-
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
 
     public function getTitle()
     {
@@ -36,6 +29,11 @@ class Article extends AbstractModel
         return $this->slug;
     }
 
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+    }
+
     public function getContent()
     {
         return $this->content;
@@ -46,35 +44,16 @@ class Article extends AbstractModel
         $this->content = $content;
     }
 
-    public function getPicture()
-    {
-        return $this->picture;
-    }
+    // public function getPicture()
+    // {
+    //     return $this->picture;
+    // }
 
-    public function setPicture($picture)
-    {
-        $this->picture = $picture;
-    }
+    // public function setPicture($picture)
+    // {
+    //     $this->picture = $picture;
+    // }
 
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt($createdAt)
-    {
-        $this->createdAt = $createdAt;
-    }
-
-    public function getUpdatedAt()
-    {
-        return $this->updatedAt;
-    }
-
-    public function setUpdatedAt($updatedAt)
-    {
-        $this->updatedAt = $updatedAt;
-    }
 
     public function getStatus()
     {
@@ -84,6 +63,11 @@ class Article extends AbstractModel
     public function setStatus($status)
     {
         $this->status = $status;
+    }
+
+    public function setDefaultStatus()
+    {
+        $this->setStatus(self::STATUS_UNPUBLISHED);
     }
 
     public function getUserId()

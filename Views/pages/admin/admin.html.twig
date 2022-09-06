@@ -17,7 +17,7 @@
     <div id="articles" class="tabcontent">
         <table class="table-crud--articles">
             <tbody>
-            <a href="{{ "/?p=admin/articles/add" }}"><button>+ Ajouter</button></a>
+            <a href="{{ "/?p=admin/articles/add" }}"><button class="create">+ Ajouter</button></a>
                 <tr class="table_headers">
                     <th align="left">Article</th>
                     <th align="left">Date</th>
@@ -36,8 +36,8 @@
                         <span>{{ article.status }}</span>
                     </td>
                     <td align="right">
-                        <a href="{{ "/?p=admin/articles/edit/"~article.id }}"><button>Modifier</button></a>
-                        <button>Supprimer</button>
+                        <button class="button-form delete">Supprimer</button>
+                        <a href="{{ "/?p=admin/articles/edit/"~article.id }}"><button class="button-form edit">Modifier</button></a>
                     </td>
                 </tr>
                 {% endfor %}
@@ -66,8 +66,8 @@
                         <span>{{ user.role }}</span>
                     </td>
                     <td align="right">
-                        <a href="{{ "/?p=admin/users/edit" }}"><button>Modifier</button></a>
-                        <button>Supprimer</button>
+                        <button class="button-form delete">Supprimer</button>
+                        <a href="{{ "/?p=admin/users/manage/"~user.id }}"><button class="button-form edit">Modifier</button></a>
                     </td>
                 </tr>
                 {% endfor %}
@@ -100,7 +100,7 @@
                         <span>{{ comment.createdAt|date('d/m/Y à H:i') }}</span>
                     </td>
                     <td align="right">
-                        <button>Publier</button>
+                        <button class="button-form create">Publier</button>
                     </td>
                 </tr>
                 {% endfor %}

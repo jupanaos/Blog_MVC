@@ -5,9 +5,17 @@ namespace App\Controllers;
 use App\Models\Article;
 use App\Repositories\ArticleRepository;
 use App\Repositories\UserRepository;
+use App\Repositories\AdminRepository;
 
 class AdminController extends AbstractController
 {
+    private $adminRepository;
+
+    function __construct() {
+        parent::__construct();
+        $this->adminRepository = new AdminRepository();
+    }
+
     public function showAdmin()
     {
         $articleRepository = new ArticleRepository;
@@ -21,28 +29,13 @@ class AdminController extends AbstractController
                                 );
     }
 
-    public function addArticle()
+    public function manageUser($id)
     {
-        echo $this->twig->render('pages/admin/blog/add.html.twig');
-    }
+        $userRepository = new UserRepository;
+        $user = $userRepository->getUserById($id);
 
-    public function editArticle($id)
-    {
-        $articleRepository = new ArticleRepository;
-        $article = $articleRepository->getArticleById($id);
-
-        echo $this->twig->render('pages/admin/blog/edit.html.twig',
-                                ['article' => $article[0]]);
-    }
-
-    public function deleteArticle()
-    {
-        // TO DO
-    }
-
-    public function manageUser()
-    {
-        //TO DO
+        echo $this->twig->render('pages/admin/user/manage.html.twig',
+                                ['user' => $user[0]]);
     }
 
     public function manageComment()

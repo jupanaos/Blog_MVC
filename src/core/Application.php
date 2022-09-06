@@ -2,10 +2,10 @@
 
 namespace App\Core;
 use App\Controllers\MainController;
-use App\Controllers\BlogController;
 use App\Controllers\AccountController;
 use App\Controllers\AdminController;
 use App\Controllers\ContactController;
+use App\Controllers\ArticleController;
 
 class Application
 {
@@ -43,7 +43,7 @@ class Application
             
         // }
 
-        $blogController = new BlogController;
+        $articleController = new ArticleController;
         $accountController = new AccountController;
         $adminController = new AdminController;
         $contactController = new ContactController;
@@ -54,9 +54,9 @@ class Application
             switch($params[0]){
                 case "blog":
                     if(empty($params[1])){
-                        $blogController->showBlog();
+                        $articleController->showBlog();
                     } elseif($params[1] === "article") {
-                        $blogController->showArticle($params[2]);
+                        $articleController->showArticle($params[2]);
                     }
                     break;
                 case "account":
@@ -78,15 +78,15 @@ class Application
                         $adminController->showAdmin();
                     } elseif ($params[1] === "articles") {
                         if ($params[2] === "add") {
-                            $adminController->addArticle();
+                            $articleController->addArticle();
                         } elseif ($params[2] === "edit") {
-                            $adminController->editArticle($params[3]);
+                            $articleController->editArticle($params[3]);
                         } elseif ($params[2] === "delete") {
-                            $adminController->deleteArticle();
+                            $articleController->deleteArticle();
                         }
                     } elseif ($params[1] === "users") {
                         if ($params[2] === "manage") {
-                            $adminController->manageUser();
+                            $adminController->manageUser($params[3]);
                         }
                     } elseif ($params[1] === "comments") {
                         if ($params[2] === "manage") {

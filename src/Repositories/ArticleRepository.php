@@ -82,22 +82,24 @@ class ArticleRepository extends AbstractRepository
         $title = $article->getTitle();
         $slug = $article->getSlug();
         $content = $article->getContent();
-        $picture = $article->getPicture();
+        // $picture = $article->getPicture();
         $status = $article->getStatus();
         $userId = $article->getUserId();
 
-        $queryString = 'INSERT INTO article (title, slug, content, picture, status, userId)
-                        VALUES (:title, :slug, :content, :picture, :status, :userId)';
+        $queryString = 'INSERT INTO article (title, slug, content, status, user_id)
+                        VALUES (:title, :slug, :content, :status, :userId)';
 
         $stmt = $this->getInstance()->prepare($queryString);
         $stmt->bindValue(":title", $title, PDO::PARAM_STR);
         $stmt->bindValue(":slug", $slug, PDO::PARAM_STR);
         $stmt->bindValue(":content", $content, PDO::PARAM_STR);
-        $stmt->bindValue(":picture", $picture, PDO::PARAM_STR);
+        // $stmt->bindValue(":picture", $picture, PDO::PARAM_STR);
         $stmt->bindValue(":status", $status, PDO::PARAM_STR);
         $stmt->bindValue(":userId", $userId, PDO::PARAM_INT);
         $result = $stmt->execute();
         $stmt->closeCursor();
+
+        var_dump($result);
 
         if ($result > 0) {
             // return true;
@@ -107,5 +109,38 @@ class ArticleRepository extends AbstractRepository
             echo "échec ajout";
         }
     }
+
+    // public function edit(Article $article)
+    // {
+    //     $title = $article->getTitle();
+    //     $content = $article->getContent();
+    //     // $picture = $article->getPicture();
+    //     $status = $article->getStatus();
+    //     $userId = $article->getUserId();
+
+    //     $queryString = 'UPDATE article SET title = :title,
+    //                                     content = :content,
+    //                                     status = :status,
+    //                                     user_id = :userId,
+    //                                     roles = :role
+    //                     WHERE id = :id';
+
+    //     $stmt = $this->getInstance()->prepare($queryString);
+    //     $stmt->bindValue(":title", $title, PDO::PARAM_STR);
+    //     $stmt->bindValue(":content", $content, PDO::PARAM_STR);
+    //     // $stmt->bindValue(":picture", $picture, PDO::PARAM_STR);
+    //     $stmt->bindValue(":status", $status, PDO::PARAM_STR);
+    //     $stmt->bindValue(":userId", $userId, PDO::PARAM_STR);
+    //     $result = $stmt->execute();
+    //     $stmt->closeCursor();
+
+    //     if ($result > 0) {
+    //         // return true;
+    //         echo "article modifié";
+    //     } else {
+    //         // return false;
+    //         echo "échec modification";
+    //     }
+    // }
     
 }

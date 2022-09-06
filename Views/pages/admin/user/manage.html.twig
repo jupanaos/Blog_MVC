@@ -1,0 +1,35 @@
+{% extends "base.html.twig" %}
+
+{% block content %}
+
+<a href={{ "/?p=admin/dashboard" }}><p>&#8617; Retour</p></a>
+<section>
+    <h2 class="dark_title section_title">
+        Gérer l'utilisateur
+    </h2>
+    
+    <div class="section_container">
+        <div class="form">
+            <form method="post" id="manage-form">
+                <label for="last_name">Nom</label><br>
+                <input type="text" value="{{ user.lastname }}" disabled="disabled" id="last_name" name="last_name" placeholder="Nom"><br>
+                <label for="first_name">Prénom</label><br>
+                <input type="text" value="{{ user.firstname }}" disabled="disabled" id="first_name" name="first_name" placeholder="Prénom"><br>
+                <label for="username">Pseudo</label><br>
+                <input type="text" value="{{ user.username }}" disabled="disabled" id="username" name="username" placeholder="Pseudo"><br>
+                <label for="email">Email</label><br>
+                <input type="email" value="{{ user.email }}" disabled="disabled" id="email" name="email" placeholder="Email "><br>
+                <label for="createdAt">Date d'inscription</label><br>
+                <input type="createdAt" value="{{ user.createdAt }}" disabled="disabled" id="createdAt" name="createdAt" placeholder="createdAt "><br>
+                <label for="role">Rôle</label><br>
+                <input type="role" value="{{ user.role }}" name="role" id="" placeholder="Modifier le role">
+                <br>
+                <button class="button-form white-btn" type="submit">Modifier les informations</button>
+            </form>
+        </div>
+    </div>
+
+
+</section>
+
+{% endblock %}

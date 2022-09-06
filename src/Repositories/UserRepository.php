@@ -71,16 +71,12 @@ class UserRepository extends AbstractRepository
         $stmt->closeCursor();
 
         if ($result > 0) {
-            // return true;
-            echo "user ajouté";
+            return true;
+            // SUCCESS FLASH TO DO
         } else {
-            // return false;
-            echo "échec ajout";
+            return false;
+            // FAIL FLASH TO DO
         }
-
-        // if(!preg_match("/^[a-zA-Z0-9]*$/", $data['username'])){
-        //     echo "Pseudo invalide";
-        // }
     }
 
     public function tryLogin()
