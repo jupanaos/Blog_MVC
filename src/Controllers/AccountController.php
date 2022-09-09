@@ -67,18 +67,57 @@ class AccountController extends AbstractController
         echo $this->twig->display('pages/client/register.html.twig');
     }
 
-    public function logout(){
+    public function logout()
+    {
         session_destroy();
         $this->redirectToIndex();
     }
 
-    public function showDashboard($id)
+    public function showDashboard()
     {
-        $userRepository = new userRepository;
-        $user = $userRepository->getUserById($id);
+        // $userRepository = new userRepository;
+        // $user = $userRepository->getUserById($id);
+        echo $this->twig->render('pages/client/dashboard.html.twig');
+    }
 
-        echo $this->twig->render('pages/client/dashboard.html.twig',
-                                ['user' => $user[0]]);
+    public function editUser(string $userId)
+    {
+        // Login: /login
+        // Dashaboard admin : /admin => si logger => dashboard sinon visiteur => redirect to login
+        // Liste : /admin/users
+        // Create: /admin/users/create
+        // Show 1 : /admin/users/14
+        // Edit : /admin/users/14/edit  e=users&id=14&action=edit
+        // Delete : /admin/users/14/delete
+
+
+        // CRUD: LIST, SHOW, CREATE/EDIT, DELETE
+        var_dump($_POST);
+
+        if(!empty($_POST)){
+            if (empty($_POST['password']) || ($_POST['password'] === $_POST['password-confirm']) && !empty($_POST['password'] )) {
+
+                $user = new User($_POST);
+                $user->setId($userId);
+
+                if(!empty($_POST['password'])){
+                    $user->setPasswordHash($_POST['password']);
+                }
+                $user->setDefaultRole();
+                var_dump($user);
+                
+                // $this->userRepository->update($user);
+                // var_dump($user);
+            }
+        }
+    }
+
+    public function deleteUser(string $userId)
+    {
+        // var_dump($user);
+        $this->userRepository->delete($userId);
+        $this->redirectToPrevious();
+        // echo $this->twig->render('pages/admin/admin.html.twig');
     }
 
 }

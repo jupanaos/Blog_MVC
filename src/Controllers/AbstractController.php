@@ -40,5 +40,15 @@ abstract class AbstractController
         header('Location: /');
         exit;
     }
-    
+
+    public function redirectToPrevious() {
+        header('Location: '.$_SERVER['HTTP_REFERER']);
+        exit;
+    }
+
+    public function redirectToLogin() {
+        header('Location: /?p=login');
+        exit;
+    }
+
 }

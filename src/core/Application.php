@@ -6,6 +6,7 @@ use App\Controllers\AccountController;
 use App\Controllers\AdminController;
 use App\Controllers\ContactController;
 use App\Controllers\ArticleController;
+use App\Controllers\AdminArticleController;
 
 class Application
 {
@@ -47,6 +48,7 @@ class Application
         $accountController = new AccountController;
         $adminController = new AdminController;
         $contactController = new ContactController;
+        $adminArticleController = new AdminArticleController;
 
         $params = explode("/", filter_var($_GET['p']), FILTER_SANITIZE_URL);
         
@@ -67,31 +69,41 @@ class Application
                     } elseif($params[1] === "logout") {
                         $accountController->logout();
                     } elseif ($params[1] === "dashboard") {
-                        $accountController->showDashboard($params[2]);
+                        $accountController->showDashboard();
+                        // if ($params[2] === "edit-informations"){
+                        //     $accountController->editUser();
+                        // }
                     }
                     break;
                 case "admin":
-                    // $accountController->logout();
-                    if((empty($params[1])) || $params[1] === "login") {
+                    if($adminController->getAdmin()){
+                        // $accountController->logout();
+                        if (empty($params[1]) || $params[1] === "dashboard") {
+                            $adminController->showAdmin();
+                        } elseif ($params[1] === "articles") {
+                            if ($params[2] === "add") {
+                                $adminArticleController->addArticle();
+                            } elseif ($params[2] === "edit") {
+                                $articleController->editArticle($params[3]);
+                            } elseif ($params[2] === "delete") {
+                                $articleController->deleteArticle();
+                            }
+                        } elseif ($params[1] === "users") {
+                            if ($params[2] === "manage") {
+                                $adminController->manageUser($params[3]);
+                            } elseif ($params[2] === "delete"){
+                                $accountController->deleteUser($params[3]);
+                            }
+                        } elseif ($params[1] === "comments") {
+                            if ($params[2] === "manage") {
+                                $adminController->manageComment();
+                            }
+                        }
+                    } elseif (!$adminController->getAdmin()){
+                        echo "vous n'avez pas le droit d'accéder à cette page";
+                    }else {
+                        // $adminController->redirectToIndex();
                         $accountController->login();
-                    } elseif ($params[1] === "dashboard") {
-                        $adminController->showAdmin();
-                    } elseif ($params[1] === "articles") {
-                        if ($params[2] === "add") {
-                            $articleController->addArticle();
-                        } elseif ($params[2] === "edit") {
-                            $articleController->editArticle($params[3]);
-                        } elseif ($params[2] === "delete") {
-                            $articleController->deleteArticle();
-                        }
-                    } elseif ($params[1] === "users") {
-                        if ($params[2] === "manage") {
-                            $adminController->manageUser($params[3]);
-                        }
-                    } elseif ($params[1] === "comments") {
-                        if ($params[2] === "manage") {
-                            $adminController->manageComment();
-                        }
                     }
                     break;
                 case "contact":

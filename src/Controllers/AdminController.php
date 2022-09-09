@@ -7,7 +7,7 @@ use App\Repositories\ArticleRepository;
 use App\Repositories\UserRepository;
 use App\Repositories\AdminRepository;
 
-class AdminController extends AbstractController
+class AdminController extends AbstractAdminController
 {
     private $adminRepository;
 

@@ -5,7 +5,7 @@
 <a href={{ "/?p=admin/dashboard" }}><p>&#8617; Retour</p></a>
 <section>
     <h2 class="dark_title section_title">
-        Gérer l'utilisateur
+        Gérer {{ user.username }}
     </h2>
     
     <div class="section_container">
@@ -24,7 +24,8 @@
                 <label for="role">Rôle</label><br>
                 <input type="role" value="{{ user.role }}" name="role" id="" placeholder="Modifier le role">
                 <br>
-                <button class="button-form white-btn" type="submit">Modifier les informations</button>
+                
+                <button class="button-form edit" type="submit">Modifier le rôle</button>
             </form>
         </div>
     </div>

@@ -515,11 +515,12 @@ table tr {
     border-radius: 8px;
 }
 
-.table-crud--users tr,
+
 .table-crud--articles tr {
     grid-template-columns: 1fr 1fr 1fr 240px;
 }
 
+.table-crud--users tr,
 .table-crud--comments tr {
     grid-template-columns: 1fr 1fr 1fr 1fr 240px;
 }

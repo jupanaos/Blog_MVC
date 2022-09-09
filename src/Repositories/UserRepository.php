@@ -30,17 +30,17 @@ class UserRepository extends AbstractRepository
 
     public function getUserById($id)
     {
-        $users = [];
+        $user = [];
         $query = $this->prepare('SELECT * FROM user WHERE id =' . '"'.$id.'"');
         $query->execute();
 
         $items = $query->fetchAll();
 
         foreach($items as $item) {
-            $users[] = $this->transform($item);
+            $user[] = $this->transform($item);
         }
 
-        return $users;
+        return $user;
     }
 
     public function findByRole()
@@ -125,7 +125,7 @@ class UserRepository extends AbstractRepository
         $_SESSION['logged'] = TRUE;
     }
 
-    public function edit(User $user)
+    public function update(User $user)
     {
         $lastName = $user->getLastname();
         $firstName = $user->getFirstname();
@@ -161,11 +161,22 @@ class UserRepository extends AbstractRepository
         }
     }
 
-    public function delete(User $user)
+    public function delete(string $userId)
     {
-        $queryString = "DELETE FROM user WHERE id=?";
+        $queryString = "DELETE FROM user WHERE id=:id";
         $stmt = $this->getInstance()->prepare($queryString);
-        $stmt->execute(array($user));
+        $stmt->bindValue(':id', $userId, PDO::PARAM_INT);
+
+        $stmt->execute();
+        $stmt->closeCursor();
+
+        // if ($result > 0) {
+        //     // return true;
+        //     echo "user supprimé";
+        // } else {
+        //     // return false;
+        //     echo "échec suppression";
+        // }
     }
 
     /**
