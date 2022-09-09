@@ -29,6 +29,15 @@ class AdminController extends AbstractAdminController
                                 );
     }
 
+    public function manageArticle($id)
+    {
+        $articleRepository = new ArticleRepository;
+        $article = $articleRepository->getArticleById($id);
+
+        echo $this->twig->render('pages/admin/article/manage.html.twig',
+                                ['article' => $article[0]]);
+    }
+
     public function manageUser($id)
     {
         $userRepository = new UserRepository;

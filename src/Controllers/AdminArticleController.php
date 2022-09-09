@@ -5,7 +5,7 @@ namespace App\Controllers;
 use App\Models\Article;
 use App\Repositories\ArticleRepository;
 
-class AdminArticleController extends AbstractAdminController
+class AdminArticleController extends AdminController
 {
     private $articleRepository;
     
@@ -14,6 +14,11 @@ class AdminArticleController extends AbstractAdminController
         parent::__construct();
         $this->articleRepository = new ArticleRepository();
     }
+
+    // public function getSlug()
+    // {
+    //     $this->articleRepository->getArticleBySlug($slug);
+    // }
 
     public function addArticle()
     {
@@ -31,5 +36,11 @@ class AdminArticleController extends AbstractAdminController
             }
 
         echo $this->twig->render('pages/admin/blog/add.html.twig');
+    }
+
+    public function deleteArticle(string $articleSlug)
+    {
+        $this->articleRepository->delete($articleSlug);
+        $this->redirectToPrevious();
     }
 }

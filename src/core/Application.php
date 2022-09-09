@@ -83,27 +83,27 @@ class Application
                         } elseif ($params[1] === "articles") {
                             if ($params[2] === "add") {
                                 $adminArticleController->addArticle();
-                            } elseif ($params[2] === "edit") {
-                                $articleController->editArticle($params[3]);
-                            } elseif ($params[2] === "delete") {
-                                $articleController->deleteArticle();
+                            } elseif ($params[3] === "edit") {
+                                $articleController->editArticle($params[2]);
+                            } elseif ($params[3] === "delete") {
+                                $adminArticleController->deleteArticle($params[2]);
                             }
                         } elseif ($params[1] === "users") {
-                            if ($params[2] === "manage") {
-                                $adminController->manageUser($params[3]);
-                            } elseif ($params[2] === "delete"){
-                                $accountController->deleteUser($params[3]);
+                            if ($params[3] === "manage") {
+                                $adminController->manageUser($params[2]);
+                            } elseif ($params[3] === "delete"){
+                                $accountController->deleteUser($params[2]);
                             }
                         } elseif ($params[1] === "comments") {
                             if ($params[2] === "manage") {
                                 $adminController->manageComment();
                             }
                         }
-                    } elseif (!$adminController->getAdmin()){
+                    } elseif (key_exists('user', $_SESSION) && !$adminController->getAdmin()){
                         echo "vous n'avez pas le droit d'accéder à cette page";
                     }else {
                         // $adminController->redirectToIndex();
-                        $accountController->login();
+                        $accountController->redirectToLogin();
                     }
                     break;
                 case "contact":

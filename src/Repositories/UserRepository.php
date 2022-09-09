@@ -90,7 +90,6 @@ class UserRepository extends AbstractRepository
         /**
          * Check role and password
          */
-
         if(isset($user)){
             if($userArray['roles'] === 'admin'){
                 $user->setRole("admin");
@@ -169,14 +168,6 @@ class UserRepository extends AbstractRepository
 
         $stmt->execute();
         $stmt->closeCursor();
-
-        // if ($result > 0) {
-        //     // return true;
-        //     echo "user supprimé";
-        // } else {
-        //     // return false;
-        //     echo "échec suppression";
-        // }
     }
 
     /**

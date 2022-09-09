@@ -142,5 +142,15 @@ class ArticleRepository extends AbstractRepository
     //         echo "échec modification";
     //     }
     // }
+
+    public function delete(string $articleSlug)
+    {
+        $queryString = "DELETE FROM article WHERE slug=:slug";
+        $stmt = $this->getInstance()->prepare($queryString);
+        $stmt->bindValue(':slug', $articleSlug, PDO::PARAM_STR);
+
+        $stmt->execute();
+        $stmt->closeCursor();
+    }
     
 }

@@ -117,7 +117,6 @@ class AccountController extends AbstractController
         // var_dump($user);
         $this->userRepository->delete($userId);
         $this->redirectToPrevious();
-        // echo $this->twig->render('pages/admin/admin.html.twig');
     }
 
 }

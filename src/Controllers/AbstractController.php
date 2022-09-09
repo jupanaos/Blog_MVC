@@ -47,7 +47,7 @@ abstract class AbstractController
     }
 
     public function redirectToLogin() {
-        header('Location: /?p=login');
+        header('Location: /?p=account');
         exit;
     }
 
