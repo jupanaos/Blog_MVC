@@ -70,11 +70,15 @@ class ArticleRepository extends AbstractRepository
         return $articles;
     }
 
-    /**
-     * Array to Article Object
+     /**
+     * Array to object
+     *
+     * @param array $articleArray
+     * @return $article
      */
     public function transform(array $articleArray) {
-        return new Article($articleArray);
+        $article = new Article($articleArray);
+        return $article;
     }
 
     public function add(Article $article)
@@ -110,38 +114,40 @@ class ArticleRepository extends AbstractRepository
         }
     }
 
-    // public function edit(Article $article)
-    // {
-    //     $title = $article->getTitle();
-    //     $content = $article->getContent();
-    //     // $picture = $article->getPicture();
-    //     $status = $article->getStatus();
-    //     $userId = $article->getUserId();
+    public function edit(Article $article)
+    {
+        $title = $article->getTitle();
+        $content = $article->getContent();
+        // $picture = $article->getPicture();
+        $slug = $article->getSlug();
+        $status = $article->getStatus();
+        $userId = $article->getUserId();
+        $id = $article->getId();
 
-    //     $queryString = 'UPDATE article SET title = :title,
-    //                                     content = :content,
-    //                                     status = :status,
-    //                                     user_id = :userId,
-    //                                     roles = :role
-    //                     WHERE id = :id';
+        $queryString = 'UPDATE article SET title = :title,
+                                        content = :content,
+                                        slug = :slug,
+                                        status = :status,
+                                        user_id = :userId
+                        WHERE id = :id';
 
-    //     $stmt = $this->getInstance()->prepare($queryString);
-    //     $stmt->bindValue(":title", $title, PDO::PARAM_STR);
-    //     $stmt->bindValue(":content", $content, PDO::PARAM_STR);
-    //     // $stmt->bindValue(":picture", $picture, PDO::PARAM_STR);
-    //     $stmt->bindValue(":status", $status, PDO::PARAM_STR);
-    //     $stmt->bindValue(":userId", $userId, PDO::PARAM_STR);
-    //     $result = $stmt->execute();
-    //     $stmt->closeCursor();
+        $stmt = $this->getInstance()->prepare($queryString);
+        $stmt->bindValue(":title", $title, PDO::PARAM_STR);
+        $stmt->bindValue(":content", $content, PDO::PARAM_STR);
+        $stmt->bindValue(":slug", $slug, PDO::PARAM_STR);
+        // $stmt->bindValue(":picture", $picture, PDO::PARAM_STR);
+        $stmt->bindValue(":status", $status, PDO::PARAM_STR);
+        $stmt->bindValue(":userId", $userId, PDO::PARAM_INT);
+        $stmt->bindValue(":id", $id, PDO::PARAM_INT);
+        $result = $stmt->execute();
+        $stmt->closeCursor();
 
-    //     if ($result > 0) {
-    //         // return true;
-    //         echo "article modifié";
-    //     } else {
-    //         // return false;
-    //         echo "échec modification";
-    //     }
-    // }
+        if ($result > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     public function delete(string $articleSlug)
     {

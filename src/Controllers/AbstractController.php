@@ -51,4 +51,9 @@ abstract class AbstractController
         exit;
     }
 
+    public function redirectToAdmin() {
+        header('Location: /?p=admin');
+        exit;
+    }
+
 }

@@ -92,14 +92,17 @@ class AccountController extends AbstractController
 
 
         // CRUD: LIST, SHOW, CREATE/EDIT, DELETE
-        var_dump($_POST);
 
+    }
+    
+    public function editPassword(string $userId)
+    {
         if(!empty($_POST)){
             if (empty($_POST['password']) || ($_POST['password'] === $_POST['password-confirm']) && !empty($_POST['password'] )) {
-
+    
                 $user = new User($_POST);
                 $user->setId($userId);
-
+    
                 if(!empty($_POST['password'])){
                     $user->setPasswordHash($_POST['password']);
                 }
@@ -110,6 +113,7 @@ class AccountController extends AbstractController
                 // var_dump($user);
             }
         }
+
     }
 
     public function deleteUser(string $userId)

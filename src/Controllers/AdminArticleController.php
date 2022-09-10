@@ -15,11 +15,6 @@ class AdminArticleController extends AdminController
         $this->articleRepository = new ArticleRepository();
     }
 
-    // public function getSlug()
-    // {
-    //     $this->articleRepository->getArticleBySlug($slug);
-    // }
-
     public function addArticle()
     {
         if (!empty($_POST)){
@@ -36,6 +31,29 @@ class AdminArticleController extends AdminController
             }
 
         echo $this->twig->render('pages/admin/blog/add.html.twig');
+    }
+
+    public function editArticle($id)
+    {
+        $articleRepository = new ArticleRepository;
+        $article = $articleRepository->getArticleById($id);
+        
+        if (!empty($_POST)){
+            $article = new Article($_POST);
+
+            $article->setId($id);
+            $article->setSlug($this->articleRepository->slugify($_POST['title']));
+            $article->setDefaultStatus();
+            $article->setUserId($_SESSION['user']->getId());
+
+            $this->articleRepository->edit($article);
+            $this->redirectToAdmin();
+        } else {
+            echo "erreur màj article";
+        }
+
+        echo $this->twig->render('pages/admin/blog/edit.html.twig',
+                                ['article' => $article[0]]);
     }
 
     public function deleteArticle(string $articleSlug)

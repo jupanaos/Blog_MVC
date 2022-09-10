@@ -84,7 +84,7 @@ class Application
                             if ($params[2] === "add") {
                                 $adminArticleController->addArticle();
                             } elseif ($params[3] === "edit") {
-                                $articleController->editArticle($params[2]);
+                                $adminArticleController->editArticle($params[2]);
                             } elseif ($params[3] === "delete") {
                                 $adminArticleController->deleteArticle($params[2]);
                             }
@@ -95,8 +95,8 @@ class Application
                                 $accountController->deleteUser($params[2]);
                             }
                         } elseif ($params[1] === "comments") {
-                            if ($params[2] === "manage") {
-                                $adminController->manageComment();
+                            if ($params[3] === "manage") {
+                                $adminController->manageComment($params[2]);
                             }
                         }
                     } elseif (key_exists('user', $_SESSION) && !$adminController->getAdmin()){
