@@ -15,8 +15,6 @@ abstract class AbstractModel
         if (!empty($data)) {
             $this->hydrate($data);
         }
-        // $this->createdAt = new DateTime();
-        // $this->updatedAt = new DateTime();
     }
 
     public function hydrate(array $data)
@@ -26,7 +24,6 @@ abstract class AbstractModel
             if (is_callable(array($this, $method))) {
                 $this->$method($value);
             }
-            // var_dump($method);
         }
     }
 

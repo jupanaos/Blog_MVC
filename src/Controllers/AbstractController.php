@@ -56,4 +56,9 @@ abstract class AbstractController
         exit;
     }
 
+    public function redirectToDashboard() {
+        header('Location: /?p=account/dashboard');
+        exit;
+    }
+
 }

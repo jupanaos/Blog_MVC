@@ -8,15 +8,16 @@
 
 <section class="crud-page">
     <div class="tab">
-        <button class="tablinks active" onclick="openTab(event, 'articles')">Mes informations</button>
-        <button class="tablinks" onclick="openTab(event, 'users')">Mes derniers commentaires</button>
+        <button class="tablinks active" onclick="openTab(event, 'infos')">Mes informations</button>
+        <button class="tablinks" onclick="openTab(event, 'password')">Mon mot de passe</button>
+        <button class="tablinks" onclick="openTab(event, 'comments')">Mes derniers commentaires</button>
     </div>
     
     <!-- Tab content -->
-    <div id="articles" class="tabcontent">
+    <div id="infos" class="tabcontent">
         <div class="section_container">
             <div class="form register">
-                <form method="post" action="?p=account/dashboard/edit-informations" id="register-form">
+                <form method="post" action="?p=account/{{session.user.id}}/update-informations" id="register-form">
                     <label for="last_name">Nom</label><br>
                     <input type="text" value="{{ session.user.lastname }}" id="last_name" name="last_name" placeholder="Nom"><br>
                     <label for="first_name">Prénom</label><br>
@@ -27,14 +28,31 @@
                     <input type="email" value="{{ session.user.email }}" id="email" name="email" placeholder="Email "><br>
                     <br>
                     <button class="button-form delete" type="submit">Supprimer mon compte</button>
-                    <button class="button-form edit" type="submit">Modifier mes informations</button>
-                    <a href=""><button class="button-form edit" type="submit">Gérer mon mot de passe</button></a>
+                    <a href="?p=account/{{session.user.id}}/update-informations"><button class="button-form edit" type="submit">Modifier mes informations</button></a>
+                    
                 </form>
             </div>
         </div>
     </div>
 
-    <div id="users" class="tabcontent">
+    <div id="password" class="tabcontent">
+        <div class="section_container">
+            <div class="form register">
+                <form method="post" action="?p=account/{{session.user.id}}/password-reset" id="edit-password">
+                    <label for="old-password">Mot de passe actuel</label><br>
+                    <input type="password" name="old-password" id="old-password" placeholder="Mot de passe actuel">
+                    <label for="new-password">Nouveau mot de passe</label><br>
+                    <input type="password" name="new-password" id="new-password" placeholder="Nouveau mot de passe">
+                    <label for="new-password-confirm">Confirmer le nouveau mot de passe</label><br>
+                    <input type="password" name="new-password-confirm" id="new-password-confirm" placeholder="Confirmer le nouveau mot de passe">
+                    <br>
+                    <a href="?p=account/{{session.user.id}}/password-reset"><button class="button-form edit" type="submit">Changer mon mot de passe</button></a>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="comments" class="tabcontent">
         
     </div>
 

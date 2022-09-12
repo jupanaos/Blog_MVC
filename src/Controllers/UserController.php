@@ -3,13 +3,11 @@
 namespace App\Controllers;
 
 use App\Repositories\UserRepository;
-use App\Core\Auth;
 use App\Models\User;
 
-class AccountController extends AbstractController
+class UserController extends AbstractController
 {
     private $userRepository;
-    private $userAuth;
 
     /**
      */
@@ -75,45 +73,59 @@ class AccountController extends AbstractController
 
     public function showDashboard()
     {
-        // $userRepository = new userRepository;
-        // $user = $userRepository->getUserById($id);
         echo $this->twig->render('pages/client/dashboard.html.twig');
     }
 
-    public function editUser(string $userId)
+    public function updateUser($id)
     {
-        // Login: /login
-        // Dashaboard admin : /admin => si logger => dashboard sinon visiteur => redirect to login
-        // Liste : /admin/users
-        // Create: /admin/users/create
-        // Show 1 : /admin/users/14
-        // Edit : /admin/users/14/edit  e=users&id=14&action=edit
-        // Delete : /admin/users/14/delete
+        $userRepository = new UserRepository;
+        $userArray = $userRepository->getUserById($id);
+        $userObject = $userArray[0];
+        
+        if (!empty($_POST)){
+            $user = new User($_POST);
+            
+            $user->setId($id);
+            
+            if($userObject->getRole() === 'admin'){
+                $user->setRole("admin");
+            } else {
+                $user->setDefaultRole();
+            }
 
-
-        // CRUD: LIST, SHOW, CREATE/EDIT, DELETE
+            $this->userRepository->update($user);
+            $this->userRepository->userSession($user);
+            
+        }
+            $this->redirectToDashboard();
 
     }
     
-    public function editPassword(string $userId)
-    {
-        if(!empty($_POST)){
-            if (empty($_POST['password']) || ($_POST['password'] === $_POST['password-confirm']) && !empty($_POST['password'] )) {
-    
-                $user = new User($_POST);
-                $user->setId($userId);
-    
-                if(!empty($_POST['password'])){
-                    $user->setPasswordHash($_POST['password']);
-                }
-                $user->setDefaultRole();
-                var_dump($user);
-                
-                // $this->userRepository->update($user);
-                // var_dump($user);
-            }
-        }
+    public function resetPassword(string $userId)
+    {        
+        $oldPassword = strip_tags($_POST['old-password']);
+        $newPassword = strip_tags($_POST['new-password']);
+        $newPasswordConfirm = strip_tags($_POST['new-password-confirm']);
 
+        $userRepository = new UserRepository;
+        $user = $this->userRepository->getUserById($userId);
+        $sessionPassword = $_SESSION['user']->getPassword();
+
+        if(password_verify($oldPassword, $sessionPassword)){
+
+            if($newPassword === $newPasswordConfirm){
+                $user->setPasswordHash($newPassword);
+                $userRepository->updatePassword($user);
+                $this->logout();
+                echo "veuillez vous reconnecter";
+            } else {
+                echo "les nouveaux mdp ne matchent pas";
+            }
+
+        } else {
+            echo "l'ancien password n'existe pas";
+        }
+        
     }
 
     public function deleteUser(string $userId)

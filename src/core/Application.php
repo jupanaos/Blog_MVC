@@ -2,7 +2,7 @@
 
 namespace App\Core;
 use App\Controllers\MainController;
-use App\Controllers\AccountController;
+use App\Controllers\UserController;
 use App\Controllers\AdminController;
 use App\Controllers\ContactController;
 use App\Controllers\ArticleController;
@@ -45,7 +45,7 @@ class Application
         // }
 
         $articleController = new ArticleController;
-        $accountController = new AccountController;
+        $userController = new UserController;
         $adminController = new AdminController;
         $contactController = new ContactController;
         $adminArticleController = new AdminArticleController;
@@ -63,21 +63,22 @@ class Application
                     break;
                 case "account":
                     if((empty($params[1])) || ($params[1] === "login")){
-                        $accountController->login();
+                        $userController->login();
                     } elseif($params[1] === "register") {
-                        $accountController->register();
+                        $userController->register();
                     } elseif($params[1] === "logout") {
-                        $accountController->logout();
+                        $userController->logout();
                     } elseif ($params[1] === "dashboard") {
-                        $accountController->showDashboard();
-                        // if ($params[2] === "edit-informations"){
-                        //     $accountController->editUser();
-                        // }
+                        $userController->showDashboard();
+                    } elseif ($params[2] === "update-informations"){
+                        $userController->updateUser($params[1]);
+                    } elseif ($params[2] === "password-reset"){
+                        $userController->resetPassword($params[1]);
                     }
                     break;
                 case "admin":
                     if($adminController->getAdmin()){
-                        // $accountController->logout();
+                        // $UserController->logout();
                         if (empty($params[1]) || $params[1] === "dashboard") {
                             $adminController->showAdmin();
                         } elseif ($params[1] === "articles") {
@@ -91,8 +92,10 @@ class Application
                         } elseif ($params[1] === "users") {
                             if ($params[3] === "manage") {
                                 $adminController->manageUser($params[2]);
+                            } elseif ($params[3] === "manage-role"){
+                                $adminController->manageRole($params[2]);
                             } elseif ($params[3] === "delete"){
-                                $accountController->deleteUser($params[2]);
+                                $userController->deleteUser($params[2]);
                             }
                         } elseif ($params[1] === "comments") {
                             if ($params[3] === "manage") {
@@ -103,7 +106,7 @@ class Application
                         echo "vous n'avez pas le droit d'accéder à cette page";
                     }else {
                         // $adminController->redirectToIndex();
-                        $accountController->redirectToLogin();
+                        $userController->redirectToLogin();
                     }
                     break;
                 case "contact":

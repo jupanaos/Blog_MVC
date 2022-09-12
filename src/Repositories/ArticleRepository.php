@@ -70,7 +70,7 @@ class ArticleRepository extends AbstractRepository
         return $articles;
     }
 
-     /**
+    /**
      * Array to object
      *
      * @param array $articleArray

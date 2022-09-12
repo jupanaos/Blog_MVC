@@ -2,7 +2,6 @@
 
 namespace App\Repositories;
 
-use App\Core\Session;
 use App\Models\User;
 use PDO;
 use stdClass;
@@ -40,7 +39,7 @@ class UserRepository extends AbstractRepository
             $user[] = $this->transform($item);
         }
 
-        return $user;
+        return $user[0];
     }
 
     public function findByRole()
@@ -90,18 +89,15 @@ class UserRepository extends AbstractRepository
         /**
          * Check role and password
          */
-        if(isset($user)){
+        if(isset($userArray)){
             if($userArray['roles'] === 'admin'){
                 $user->setRole("admin");
             } else {
                 $user->setRole("user");
-            }
+        }
 
             if(password_verify($password, $user->getPassword())){
                 self::userSession($user);
-                var_dump($user);
-                var_dump($_SESSION);
-
                 echo "le mot de passe correspond";
             } else {
                 echo"le mot de passe ne correspond pas";
@@ -130,15 +126,12 @@ class UserRepository extends AbstractRepository
         $firstName = $user->getFirstname();
         $username = $user->getUsername();
         $email = $user->getEmail();
-        $password = $user->getPassword();
-        $role = $user->getRole();
+        $id = $user->getId();
 
         $queryString = 'UPDATE user SET last_name = :lastname,
                                         first_name = :firstname,
                                         username = :username,
-                                        email = :email,
-                                        password = :password,
-                                        roles = :role
+                                        email = :email
                         WHERE id = :id';
 
         $stmt = $this->getInstance()->prepare($queryString);
@@ -146,18 +139,39 @@ class UserRepository extends AbstractRepository
         $stmt->bindValue(":firstname", $firstName, PDO::PARAM_STR);
         $stmt->bindValue(":username", $username, PDO::PARAM_STR);
         $stmt->bindValue(":email", $email, PDO::PARAM_STR);
-        $stmt->bindValue(":password", $password, PDO::PARAM_STR);
-        $stmt->bindValue(":role", $role, PDO::PARAM_STR);
-        $result = $stmt->execute();
+        $stmt->bindValue(":id", $id, PDO::PARAM_INT);
+        $stmt->execute();
         $stmt->closeCursor();
+    }
 
-        if ($result > 0) {
-            // return true;
-            echo "user modifié";
-        } else {
-            // return false;
-            echo "échec modification";
-        }
+    public function updatePassword(User $user)
+    {
+        $password = $user->getPassword();
+        $id = $user->getId();
+
+        $queryString = 'UPDATE user SET password = :password
+                        WHERE id = :id';
+
+        $stmt = $this->getInstance()->prepare($queryString);
+        $stmt->bindValue(":password", $password, PDO::PARAM_STR);
+        $stmt->bindValue(":id", $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $stmt->closeCursor();
+    }
+
+    public function updateRole(User $user)
+    {
+        $role = $user->getRole();
+        $id = $user->getId();
+
+        $queryString = 'UPDATE user SET roles = :role
+                        WHERE id = :id';
+
+        $stmt = $this->getInstance()->prepare($queryString);
+        $stmt->bindValue(":role", $role, PDO::PARAM_STR);
+        $stmt->bindValue(":id", $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $stmt->closeCursor();
     }
 
     public function delete(string $userId)

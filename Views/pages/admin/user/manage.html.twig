@@ -10,7 +10,7 @@
     
     <div class="section_container">
         <div class="form">
-            <form method="post" id="manage-form">
+            <form method="post" action="?p=admin/users/{{ user.id }}/manage-role" id="manage-role-form">
                 <label for="last_name">Nom</label><br>
                 <input type="text" value="{{ user.lastname }}" disabled="disabled" id="last_name" name="last_name" placeholder="Nom"><br>
                 <label for="first_name">Prénom</label><br>
@@ -20,9 +20,14 @@
                 <label for="email">Email</label><br>
                 <input type="email" value="{{ user.email }}" disabled="disabled" id="email" name="email" placeholder="Email "><br>
                 <label for="createdAt">Date d'inscription</label><br>
-                <input type="createdAt" value="{{ user.createdAt }}" disabled="disabled" id="createdAt" name="createdAt" placeholder="createdAt "><br>
-                <label for="role">Rôle</label><br>
-                <input type="role" value="{{ user.role }}" name="role" id="" placeholder="Modifier le role">
+                <input type="text" value="{{ user.createdAt }}" disabled="disabled" id="createdAt" name="createdAt" placeholder="createdAt "><br>
+                <label for="present-role">Rôle actuel</label><br>
+                <input type="" value="{{ user.role }}" disabled="disabled" name="present-role" id="" placeholder="Rôle actuel">
+                <label for="role">Changer le rôle</label><br>
+                <select name="role" id="role" form="manage-role-form">
+                    <option value="user">Utilisateur</option>
+                    <option value="admin">Administrateur</option>
+                </select>
                 <br>
                 
                 <button class="button-form edit" type="submit">Modifier le rôle</button>

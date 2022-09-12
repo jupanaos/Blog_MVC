@@ -6,6 +6,7 @@ use App\Models\Article;
 use App\Repositories\ArticleRepository;
 use App\Repositories\UserRepository;
 use App\Repositories\AdminRepository;
+use App\Models\User;
 
 class AdminController extends AbstractAdminController
 {
@@ -44,7 +45,20 @@ class AdminController extends AbstractAdminController
         $user = $userRepository->getUserById($id);
 
         echo $this->twig->render('pages/admin/user/manage.html.twig',
-                                ['user' => $user[0]]);
+                                ['user' => $user]);
+    }
+
+    public function manageRole($id)
+    {
+        $userRepository = new UserRepository;
+        $user = $userRepository->getUserById($id);
+
+        if(!empty($_POST)){
+            $user->setRole($_POST["role"]);
+
+            $userRepository->updateRole($user);
+            $this->redirectToAdmin();
+        }
     }
 
     public function manageComment()
