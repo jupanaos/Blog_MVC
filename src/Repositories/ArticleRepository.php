@@ -81,6 +81,7 @@ class ArticleRepository extends AbstractRepository
         return $article;
     }
 
+
     public function add(Article $article)
     {
         $title = $article->getTitle();
@@ -102,8 +103,6 @@ class ArticleRepository extends AbstractRepository
         $stmt->bindValue(":userId", $userId, PDO::PARAM_INT);
         $result = $stmt->execute();
         $stmt->closeCursor();
-
-        var_dump($result);
 
         if ($result > 0) {
             // return true;

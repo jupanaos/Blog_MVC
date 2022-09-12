@@ -63,6 +63,10 @@ class AdminController extends AbstractAdminController
 
     public function manageComment()
     {
-        // TO DO
+        // $commentRepository = new CommentRepository;
+        // $comment = $commentRepository->getCommentById($id);
+
+        // echo $this->twig->render('pages/admin/comment/manage.html.twig',
+        //                         ['comment' => $comment[0]]);
     }
 }

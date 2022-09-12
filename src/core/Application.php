@@ -7,6 +7,7 @@ use App\Controllers\AdminController;
 use App\Controllers\ContactController;
 use App\Controllers\ArticleController;
 use App\Controllers\AdminArticleController;
+use App\Controllers\CommentController;
 
 class Application
 {
@@ -45,6 +46,7 @@ class Application
         // }
 
         $articleController = new ArticleController;
+        $commentController = new CommentController;
         $userController = new UserController;
         $adminController = new AdminController;
         $contactController = new ContactController;
@@ -59,6 +61,9 @@ class Application
                         $articleController->showBlog();
                     } elseif($params[1] === "article") {
                         $articleController->showArticle($params[2]);
+                        if($params[3] === "add-comment"){
+                            $commentController->addComment($params[2]);
+                        }
                     }
                     break;
                 case "account":

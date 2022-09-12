@@ -29,7 +29,7 @@ class ArticleController extends AbstractController
 
         echo $this->twig->render('pages/client/article.html.twig',
             ['article' => $articles[0]],
-            ['comments' => $comments]);
+            ['comment' => $comments]);
     }
 
 }
