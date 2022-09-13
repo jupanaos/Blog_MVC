@@ -54,6 +54,19 @@ class CommentRepository extends AbstractRepository
         return $comments;
     }
 
+    public function getCommentsByArticle($articleId)
+    {
+        $comments = [];
+
+        $items = $this->findBy(['article_id' => $articleId], ['created_at' => 'DESC']);
+
+        foreach($items as $item){
+            $comments[] = $this->transform($item);
+        }
+        
+        return $comments;
+    }
+
     /**
      * Array to Comment Object
      */

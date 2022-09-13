@@ -39,27 +39,21 @@
                     <textarea name="content" id="content" cols="100" rows="10"></textarea><br>
                     <a href="?p=blog/article/{{ article.id }}/add-comment"><button class="button-form" type="submit">Envoyer</button></a>
                 </form>
-
             </div>
         </div>
         {% endif %}
-        <div class="section_container">
-            <table class="table__comments">
-            <p>yo</p>
-                <tbody>
+
+        <div class="comments__container">
                 {% for comment in comments %}
-                    <tr>
-                        <td>
+                    <div class="comments__container-wrapper">
+                        <div class="comments__container-header">
                             Publié le {{ comment.createdAt|date('d/m/Y à H:i') }} par {{ comment.userId }}
-                        </td>
-                        <td>
-                            {{ comment.content }}
-                        </td>
-                    </tr>
+                        </div>
+                        <p>{{ comment.content }}</p>
+                    </div>
                 {% endfor %}
-                </tbody>
-            </table>
         </div>
+        
     </section>
 
 {% endblock content %}
