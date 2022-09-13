@@ -37,6 +37,20 @@ class CommentRepository extends AbstractRepository
             $comments[] = $this->transform($item);
         }
 
+        return $comments[0];
+    }
+
+    public function getCommentsByUser()
+    {
+        $comments = [];
+        $userId = $_SESSION['user']->getId();
+
+        $items = $this->findItemBy(['user_id' => $userId], ['created_at' => 'DESC']);
+
+        foreach($items as $item){
+            $comments[] = $this->transform($item);
+        }
+        
         return $comments;
     }
 
@@ -44,7 +58,8 @@ class CommentRepository extends AbstractRepository
      * Array to Comment Object
      */
     public function transform(array $commentArray) {
-        return new Comment($commentArray);
+        $comment = new Comment($commentArray);
+        return $comment;
     }
 
 
@@ -73,5 +88,21 @@ class CommentRepository extends AbstractRepository
             // return false;
             echo "échec ajout";
         }
+    }
+
+    public function updateStatus(Comment $comment)
+    {
+        $status = $comment->getStatus();
+        $id = $comment->getId();
+
+        $queryString = 'UPDATE comment SET status = :status
+                        WHERE id = :id';
+
+        $stmt = $this->getInstance()->prepare($queryString);
+        $stmt->bindValue(":status", $status, PDO::PARAM_STR);
+        $stmt->bindValue(":id", $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $stmt->closeCursor();
+
     }
 }

@@ -36,8 +36,8 @@
                         <span>{{ article.status }}</span>
                     </td>
                     <td align="right">
-                        <a href="/?p=admin/articles/{{article.slug}}/delete/"><button class="button-form delete">Supprimer</button></a>
-                        <a href="/?p=admin/articles/{{article.id}}/edit/"><button class="button-form edit">Modifier</button></a>
+                        <a href="/?p=admin/articles/{{ article.id }}/delete/"><button class="button-form delete">Supprimer</button></a>
+                        <a href="/?p=admin/articles/{{ article.id }}/edit/"><button class="button-form edit">Modifier</button></a>
                     </td>
                 </tr>
                 {% endfor %}
@@ -70,8 +70,8 @@
                         {{ user.createdAt|date('d/m/Y à H:i') }}
                     </td>
                     <td align="right">
-                        <a href="/?p=admin/users/{{user.id}}/delete/"><button class="button-form delete" type="submit">Supprimer</button></a>
-                        <a href="/?p=admin/users/{{user.id}}/manage/"><button class="button-form edit">Gérer</button></a>
+                        <a href="/?p=admin/users/{{ user.id }}/delete/"><button class="button-form delete" type="submit">Supprimer</button></a>
+                        <a href="/?p=admin/users/{{ user.id }}/manage/"><button class="button-form edit">Gérer</button></a>
                     </td>
                 </tr>
                 {% endfor %}
@@ -95,7 +95,7 @@
                         {{ comment.content }}
                     </td>
                     <td>
-                        {{ comment.article.title }}
+                        {{ comment.articleId }}
                     </td>
                     <td>
                         <span>{{ comment.status }}</span>
@@ -104,7 +104,7 @@
                         <span>{{ comment.createdAt|date('d/m/Y à H:i') }}</span>
                     </td>
                     <td align="right">
-                        <button class="button-form create">Publier</button>
+                        <a href="/?p=admin/comments/{{ comment.id }}/manage"><button class="button-form edit">Gérer</button>
                     </td>
                 </tr>
                 {% endfor %}

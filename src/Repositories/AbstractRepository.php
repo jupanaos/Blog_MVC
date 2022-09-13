@@ -55,7 +55,7 @@ abstract class AbstractRepository extends Database
         $item = $this->findBy($criteria, $orderBy, 1, $offset);
 
         if (!empty($item)) {
-            return $item[0];
+            return $item;
         } else {
             return false;
         }

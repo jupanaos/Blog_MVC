@@ -19,17 +19,22 @@ class CommentController extends AbstractController
 
     public function addComment($articleId)
     {
-        var_dump($_POST);
         if (!empty($_POST)){
+
             $comment = new Comment($_POST);
+
             $articleRepository = new ArticleRepository();
             $article = $articleRepository->getArticleById($articleId);
-
-
-            // $comment->setDefaultStatus();
-            // $comment->setArticleId($article);
             
-
-        }
+            $comment->setArticleId($articleId);
+            $comment->setUserId($_SESSION['user']->getId());
+            $comment->setDefaultStatus();
+            
+            $this->commentRepository->add($comment);
+            $this->redirectToPrevious();
+                echo "le comment est ajouté";
+            } else {
+                echo "Le comment n'est pas ajouté";
+            }
     }
 }

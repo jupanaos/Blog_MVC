@@ -17,11 +17,11 @@ class AdminArticleController extends AdminController
 
     public function addArticle()
     {
-        if (!empty($_POST)){
+        if (!empty($_POST['title']) && !empty($_POST['content']) && !empty($_POST['status'])){
             $article = new Article($_POST);
 
             $article->setSlug($this->articleRepository->slugify($_POST['title']));
-            $article->setDefaultStatus();
+            $article->setStatus($_POST['status']);
             $article->setUserId($_SESSION['user']->getId());
 
             $this->articleRepository->add($article);
@@ -43,7 +43,7 @@ class AdminArticleController extends AdminController
 
             $article->setId($id);
             $article->setSlug($this->articleRepository->slugify($_POST['title']));
-            $article->setDefaultStatus();
+            $article->setStatus($_POST['status']);
             $article->setUserId($_SESSION['user']->getId());
 
             $this->articleRepository->edit($article);
@@ -56,9 +56,9 @@ class AdminArticleController extends AdminController
                                 ['article' => $article[0]]);
     }
 
-    public function deleteArticle(string $articleSlug)
+    public function deleteArticle(string $articleId)
     {
-        $this->articleRepository->delete($articleSlug);
+        $this->articleRepository->delete($articleId);
         $this->redirectToPrevious();
     }
 }

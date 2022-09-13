@@ -148,11 +148,11 @@ class ArticleRepository extends AbstractRepository
         }
     }
 
-    public function delete(string $articleSlug)
+    public function delete(string $articleId)
     {
-        $queryString = "DELETE FROM article WHERE slug=:slug";
+        $queryString = "DELETE FROM article WHERE id=:id";
         $stmt = $this->getInstance()->prepare($queryString);
-        $stmt->bindValue(':slug', $articleSlug, PDO::PARAM_STR);
+        $stmt->bindValue(':id', $articleId, PDO::PARAM_STR);
 
         $stmt->execute();
         $stmt->closeCursor();

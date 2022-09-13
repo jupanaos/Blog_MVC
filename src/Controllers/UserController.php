@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Repositories\UserRepository;
 use App\Models\User;
+use App\Repositories\CommentRepository;
 
 class UserController extends AbstractController
 {
@@ -73,14 +74,18 @@ class UserController extends AbstractController
 
     public function showDashboard()
     {
-        echo $this->twig->render('pages/client/dashboard.html.twig');
+        $commentRepository = new CommentRepository;
+        $comments = $commentRepository->getCommentsByUser();
+        
+        echo $this->twig->render('pages/client/dashboard.html.twig',
+                                ['comments' => $comments]);
     }
 
     public function updateUser($id)
     {
         $userRepository = new UserRepository;
         $userArray = $userRepository->getUserById($id);
-        $userObject = $userArray[0];
+        $userObject = $userArray;
         
         if (!empty($_POST)){
             $user = new User($_POST);

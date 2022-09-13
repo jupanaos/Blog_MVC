@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<main>
+<a href={{ "/?p=blog" }}><p>&#8617; Retour</p></a>
     <section class="light-bg">
         <h2 class="light_title section_title blog">
             Blog
@@ -36,7 +36,7 @@
             <div class="form">
                 <form method="post" action="?p=blog/article/{{ article.id }}/add-comment" id="comment-form">
                     <label for="comment">Laisser un commentaire</label><br>
-                    <textarea name="comment" id="comment" cols="100" rows="10"></textarea><br>
+                    <textarea name="content" id="content" cols="100" rows="10"></textarea><br>
                     <a href="?p=blog/article/{{ article.id }}/add-comment"><button class="button-form" type="submit">Envoyer</button></a>
                 </form>
 
@@ -61,6 +61,5 @@
             </table>
         </div>
     </section>
-</main>
 
 {% endblock content %}

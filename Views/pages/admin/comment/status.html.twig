@@ -1,0 +1,35 @@
+{% extends "base.html.twig" %}
+
+{% block content %}
+
+<a href={{ "/?p=admin/dashboard" }}><p>&#8617; Retour</p></a>
+<section>
+    <h2 class="dark_title section_title">
+        Gérer le commentaire
+    </h2>
+
+    <div class="section_container">
+        <div class="form">
+            <form method="post" action="" id="edit-comment-form">
+                <label for="username">Auteur</label><br>
+                <input type="text" disabled="disabled" value="{{ comment.userId }}" id="title" name="title" placeholder="Titre"><br>
+                <br>
+                <label for="article">Article</label><br>
+                <input type="text" disabled="disabled" value="{{ comment.articleId }}" id="title" name="title" placeholder="Titre"><br>
+                <label for="content">Contenu</label><br>
+                <textarea name="content" disabled="disabled" id="" cols="100" rows="40">{{ comment.content }}</textarea>
+                <br>
+                <label for="status">Publication</label><br>
+                <select name="status" id="status" form="edit-comment-form">
+                <option value="">--Choisir une action--</option>
+                    <option value="Pending">Dépublier</option>
+                    <option value="Published">Publier</option>
+                </select>
+                <a href="{{ "/?p=admin/dashboard" }}"><button class="button-form white-btn" type="submit">Modifier</button></a>
+            </form>
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}

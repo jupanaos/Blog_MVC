@@ -10,13 +10,19 @@
 
     <div class="section_container">
         <div class="form">
-            <form method="post" action="" id="booking-form">
+            <form method="post" action="" id="edit-article-form">
                 <label for="title">Titre</label><br>
                 <input type="text" value="{{ article.title }}" id="title" name="title" placeholder="Titre"><br>
                 <br>
                 <label for="content">Texte</label><br>
                 <textarea name="content" id="" cols="100" rows="40">{{ article.content }}</textarea>
                 <br>
+                <label for="status">Statut</label><br>
+                <select name="status" id="status" form="edit-article-form">
+                <option value="">--Choisir une action--</option>
+                    <option value="Pending">Sauvegarder</option>
+                    <option value="Published">Publier</option>
+                </select>
                 <a href="{{ "/?p=admin/dashboard" }}"><button class="button-form white-btn" type="submit">Modifier</button></a>
             </form>
         </div>

@@ -7,6 +7,7 @@ use App\Repositories\ArticleRepository;
 use App\Repositories\UserRepository;
 use App\Repositories\AdminRepository;
 use App\Models\User;
+use App\Repositories\CommentRepository;
 
 class AdminController extends AbstractAdminController
 {
@@ -21,12 +22,17 @@ class AdminController extends AbstractAdminController
     {
         $articleRepository = new ArticleRepository;
         $articles = $articleRepository->getArticles();
+
         $userRepository = new UserRepository;
         $users = $userRepository->getUsers();
+
+        $commentRepository = new CommentRepository;
+        $comments = $commentRepository->getComments();
         
         echo $this->twig->render('pages/admin/admin.html.twig',
                                 ['articles' => $articles,
-                                'users' => $users]
+                                'users' => $users,
+                                'comments' => $comments]
                                 );
     }
 
@@ -61,12 +67,19 @@ class AdminController extends AbstractAdminController
         }
     }
 
-    public function manageComment()
+    public function manageComment($id)
     {
-        // $commentRepository = new CommentRepository;
-        // $comment = $commentRepository->getCommentById($id);
+        $commentRepository = new CommentRepository;
+        $comment = $commentRepository->getCommentById($id);
 
-        // echo $this->twig->render('pages/admin/comment/manage.html.twig',
-        //                         ['comment' => $comment[0]]);
+        if(!empty($_POST)){
+            $comment->setStatus($_POST["status"]);
+
+            $commentRepository->updateStatus($comment);
+            $this->redirectToAdmin();
+        }
+
+        echo $this->twig->render('pages/admin/comment/status.html.twig',
+                                ['comment' => $comment]);
     }
 }

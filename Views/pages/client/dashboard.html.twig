@@ -53,7 +53,29 @@
     </div>
 
     <div id="comments" class="tabcontent">
-        
+        <table class="table-crud--comments">
+            <tbody>
+                <tr class="table_headers">
+                    <th align="left">Contenu</th>
+                    <th align="left">Article</th>
+                    <th align="left">Date</th>
+                    <th align="left"></th>
+                </tr>
+                {% for comment in comments %}
+                <tr>
+                    <td>
+                        {{ comment.content }}
+                    </td>
+                    <td>
+                        {{ comment.articleId }}
+                    </td>
+                    <td>
+                        <span>{{ comment.createdAt|date('d/m/Y à H:i') }}</span>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
 
 
