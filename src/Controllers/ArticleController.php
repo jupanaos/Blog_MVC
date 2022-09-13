@@ -26,7 +26,7 @@ class ArticleController extends AbstractController
         $articles = $this->articleRepository->getArticleById($id);
         $commentRepository = new CommentRepository;
         $comments = $commentRepository->getComments();
-
+        var_dump($comments);
         echo $this->twig->render('pages/client/article.html.twig',
             ['article' => $articles[0]],
             ['comment' => $comments]);

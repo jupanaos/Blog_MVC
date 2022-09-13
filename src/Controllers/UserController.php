@@ -76,7 +76,6 @@ class UserController extends AbstractController
     {
         $commentRepository = new CommentRepository;
         $comments = $commentRepository->getCommentsByUser();
-        
         echo $this->twig->render('pages/client/dashboard.html.twig',
                                 ['comments' => $comments]);
     }
@@ -135,7 +134,6 @@ class UserController extends AbstractController
 
     public function deleteUser(string $userId)
     {
-        // var_dump($user);
         $this->userRepository->delete($userId);
         $this->redirectToPrevious();
     }

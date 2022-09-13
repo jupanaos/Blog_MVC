@@ -45,7 +45,7 @@ class CommentRepository extends AbstractRepository
         $comments = [];
         $userId = $_SESSION['user']->getId();
 
-        $items = $this->findItemBy(['user_id' => $userId], ['created_at' => 'DESC']);
+        $items = $this->findBy(['user_id' => $userId], ['created_at' => 'DESC']);
 
         foreach($items as $item){
             $comments[] = $this->transform($item);

@@ -84,13 +84,13 @@ class UserRepository extends AbstractRepository
         $username = strip_tags($_POST['username']);
 
         $userArray = $this->findItemBy(['username' => $username]);
-        $user = new User($userArray);
+        $user = new User($userArray[0]);
 
         /**
          * Check role and password
          */
-        if(isset($userArray)){
-            if($userArray['roles'] === 'admin'){
+        if(isset($userArray[0])){
+            if($userArray[0]['roles'] === 'admin'){
                 $user->setRole("admin");
             } else {
                 $user->setRole("user");
