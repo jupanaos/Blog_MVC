@@ -203,4 +203,22 @@ class UserRepository extends AbstractRepository
         return $user;
     }
 
+    public function getUserByArticle($item) 
+    {
+        $userDB = $this->findBy(['id' => $item['user_id']]);
+        $user = new User($userDB[0]);
+        return $user;
+    }
+
+    public function getAuthorByComment($comment)
+    {
+        $usesrDB = $this->findBy(['id' => $comment->getUserId()]);
+        foreach ($usesrDB as $userDB) {
+            $user = new User($userDB);
+        }
+        // echo '<pre>' , var_dump($userDB) , '</pre>';
+        // $author = $_SESSION['user']->getId();
+        return $user;
+    }
+
 }

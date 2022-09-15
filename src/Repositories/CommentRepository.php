@@ -54,17 +54,23 @@ class CommentRepository extends AbstractRepository
         return $comments;
     }
 
-    public function getCommentsByArticle($articleId)
+    public function getCommentsByArticle($item)
     {
         $comments = [];
-
-        $items = $this->findBy(['article_id' => $articleId], ['created_at' => 'DESC']);
-
-        foreach($items as $item){
-            $comments[] = $this->transform($item);
+        $commentsDB = $this->findBy(['article_id' => $item['id']]);
+        foreach ($commentsDB as $commentDB) {
+            $comments[] = new Comment($commentDB);
         }
-        
         return $comments;
+        // $comments = [];
+
+        // $items = $this->findBy(['article_id' => $articleId], ['created_at' => 'DESC']);
+
+        // foreach($items as $item){
+        //     $comments[] = $this->transform($item);
+        // }
+        
+        // return $comments;
     }
 
 
@@ -79,7 +85,8 @@ class CommentRepository extends AbstractRepository
 
     public function add(Comment $comment)
     {
-        $userId = $comment->getUserId();
+        // $userId = $comment->getUserId();
+        $userId = $comment->getAuthor()->getId();
         $articleId = $comment->getArticleId();
         $content = $comment->getContent();
         $status = $comment->getStatus();

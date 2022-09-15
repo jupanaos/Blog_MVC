@@ -48,7 +48,7 @@
                     {% if comment.status == 'Published' %}
                         <div class="comments__container-wrapper">
                             <div class="comments__container-header">
-                                Publié le {{ comment.createdAt|date('d/m/Y à H:i') }} par {{ comment.userId }}
+                                Publié le {{ comment.createdAt|date('d/m/Y à H:i') }} par {{ comment.author.username }}
                             </div>
                             <p>{{ comment.content }}</p>
                         </div>

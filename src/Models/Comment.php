@@ -11,7 +11,7 @@ class Comment extends AbstractModel
     private $articleId;
     private $content;
     private $status;
-    // private User $author = null;
+    private ?User $author = null;
 
     public function getUserId()
     {
@@ -56,6 +56,16 @@ class Comment extends AbstractModel
     public function setStatus($status)
     {
         $this->status = $status;
+    }
+
+    public function getAuthor()
+    {
+        return $this->author;
+    }
+
+    public function setAuthor($author)
+    {
+        $this->author = $author;
     }
 
 }

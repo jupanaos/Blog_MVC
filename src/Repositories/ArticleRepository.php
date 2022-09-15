@@ -90,19 +90,22 @@ class ArticleRepository extends AbstractRepository
         $items = $query->fetchAll();
 
         foreach($items as $item) {
-            $userDB = $userRepository->findBy(['id' => $item['user_id']]);
-            $user = new User($userDB[0]);
-            $item['author'] = $user;
+            $item['author'] = $userRepository->getUserByArticle($item);
+            // $userDB = $userRepository->findBy(['id' => $item['user_id']]);
+            // $user = new User($userDB[0]);
+            // $item['author'] = $user;
+            $item['comments']= $commentRepository->getCommentsByArticle($item);
+            // $commentsDB = $commentRepository->findBy(['article_id' => $item['id']]);
 
-            $commentsDB = $commentRepository->findBy(['article_id' => $item['id']]);
-
-            foreach ($commentsDB as $commentDB) {
-                $item['comments'][] = new Comment($commentDB);
-            }
-
+            // foreach ($commentsDB as $commentDB) {
+            //     $item['comments'][] = new Comment($commentDB);
+            // }
+                foreach ($item['comments'] as $comment) {
+                    $comment->setAuthor($userRepository->getAuthorByComment($comment));
+                }
             $articles[] = $this->transform($item);
         }
-        // echo '<pre>' , var_dump($articles) , '</pre>';
+        echo '<pre>' , var_dump($articles) , '</pre>';
         
         return $articles;
 
