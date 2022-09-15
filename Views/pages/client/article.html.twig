@@ -15,7 +15,7 @@
                 <img class="section_image" src="http://via.placeholder.com/640x360" alt="Lorem ipsum">
             </div>
             <div class="section_content_container blog">
-                <p class="text-centered blog"><i>{{ article.createdAt|date('d/m/Y à H:i') }} par {{ article.author.username }}</i>
+                <p class="text-centered blog"><i>{{ article.createdAt|date('d/m/Y à H:i') }} par <span class="text__highlight"> {{ article.author.username }}</span></i>
                 </p>
                 <p class="text-centered blog">{{ article.content }}
                 </p>
@@ -35,9 +35,9 @@
         <div class="section_container">
             <div class="form">
                 <form method="post" action="?p=blog/article/{{ article.id }}/add-comment" id="comment-form">
-                    <label for="comment">Laisser un commentaire</label><br>
+                    <label for="comment">Laisser un commentaire en tant que <span class="text__highlight-colored"><a href="?p=account/dashboard">{{ session.user.username }}</a></span></label><br>
                     <textarea name="content" id="content" cols="100" rows="10"></textarea><br>
-                    <a href="?p=blog/article/{{ article.id }}/add-comment"><button class="button-form" type="submit">Envoyer</button></a>
+                    <a href="?p=blog/article/{{ article.id }}/add-comment"><button class="button-form" type="submit">Commenter</button></a>
                 </form>
             </div>
         </div>
@@ -48,7 +48,7 @@
                     {% if comment.status == 'Published' %}
                         <div class="comments__container-wrapper">
                             <div class="comments__container-header">
-                                Publié le {{ comment.createdAt|date('d/m/Y à H:i') }} par {{ comment.author.username }}
+                                Publié par <span class="text__highlight">{{ comment.author.username }}</span> le {{ comment.createdAt|date('d/m/Y à H:i') }} 
                             </div>
                             <p>{{ comment.content }}</p>
                         </div>

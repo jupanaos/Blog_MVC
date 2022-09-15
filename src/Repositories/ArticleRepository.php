@@ -105,7 +105,7 @@ class ArticleRepository extends AbstractRepository
                 }
             $articles[] = $this->transform($item);
         }
-        echo '<pre>' , var_dump($articles) , '</pre>';
+        // echo '<pre>' , var_dump($articles) , '</pre>';
         
         return $articles;
 

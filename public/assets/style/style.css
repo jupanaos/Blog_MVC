@@ -153,6 +153,18 @@ p.hero_text_title{
     padding: 10px 15px;
 }
 
+.text__highlight{
+    font-weight: 800;
+    text-transform: capitalize;
+}
+
+
+
+.text__highlight-colored{
+    font-weight: 800;
+    color: var(--violet);
+}
+
 .sm-title{
     font-size: 21px;
 }

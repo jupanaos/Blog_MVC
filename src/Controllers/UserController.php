@@ -102,7 +102,6 @@ class UserController extends AbstractController
             
         }
             $this->redirectToDashboard();
-
     }
     
     public function resetPassword(string $userId)
@@ -129,7 +128,6 @@ class UserController extends AbstractController
         } else {
             echo "l'ancien password n'existe pas";
         }
-        
     }
 
     public function deleteUser(string $userId)
