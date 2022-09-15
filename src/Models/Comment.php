@@ -11,6 +11,7 @@ class Comment extends AbstractModel
     private $articleId;
     private $content;
     private $status;
+    private User $author = null;
 
     public function getUserId()
     {

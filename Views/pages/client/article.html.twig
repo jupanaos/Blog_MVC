@@ -15,7 +15,7 @@
                 <img class="section_image" src="http://via.placeholder.com/640x360" alt="Lorem ipsum">
             </div>
             <div class="section_content_container blog">
-                <p class="text-centered blog"><i>{{ article.createdAt|date('d/m/Y à H:i') }}</i>
+                <p class="text-centered blog"><i>{{ article.createdAt|date('d/m/Y à H:i') }} par {{ article.author.username }}</i>
                 </p>
                 <p class="text-centered blog">{{ article.content }}
                 </p>
@@ -45,15 +45,17 @@
 
         <div class="comments__container">
                 {% for comment in comments %}
-                    <div class="comments__container-wrapper">
-                        <div class="comments__container-header">
-                            Publié le {{ comment.createdAt|date('d/m/Y à H:i') }} par {{ comment.userId }}
+                    {% if comment.status == 'Published' %}
+                        <div class="comments__container-wrapper">
+                            <div class="comments__container-header">
+                                Publié le {{ comment.createdAt|date('d/m/Y à H:i') }} par {{ comment.userId }}
+                            </div>
+                            <p>{{ comment.content }}</p>
                         </div>
-                        <p>{{ comment.content }}</p>
-                    </div>
+                    {% endif %}
                 {% endfor %}
         </div>
-        
+
     </section>
 
 {% endblock content %}

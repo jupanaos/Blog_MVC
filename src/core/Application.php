@@ -107,9 +107,9 @@ class Application
                                 $adminController->manageComment($params[2]);
                             }
                         }
-                    } elseif (key_exists('user', $_SESSION) && !$adminController->getAdmin()){
+                    } elseif (key_exists('user', $_SESSION)) {
                         echo "vous n'avez pas le droit d'accéder à cette page";
-                    }else {
+                    } else {
                         // $adminController->redirectToIndex();
                         $userController->redirectToLogin();
                     }

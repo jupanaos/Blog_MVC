@@ -17,6 +17,7 @@ class User extends AbstractModel
     private $email;
     private $password;
     private $role;
+    // private array $comments = [];
 
     public function isAdmin()
     {

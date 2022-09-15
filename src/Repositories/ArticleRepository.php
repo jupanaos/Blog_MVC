@@ -3,6 +3,7 @@
 namespace App\Repositories;
 use App\Models\Article;
 use PDO;
+use App\Models\User;
 
 class ArticleRepository extends AbstractRepository
 {
@@ -70,6 +71,32 @@ class ArticleRepository extends AbstractRepository
         return $articles;
     }
 
+    public function pushUser() 
+    {
+
+    }
+
+    public function getArticleWithComments($id)
+    {
+
+        $articles = [];
+        $userRepository = new UserRepository;
+
+        $query = $this->prepare('SELECT * FROM article WHERE id =' . '"'.$id.'"');
+        $query->execute();
+
+        $items = $query->fetchAll();
+
+        foreach($items as $item) {
+            $userDB = $userRepository->findBy(['id' => $item['user_id']]);
+            $user = new User($userDB[0]);
+            $item['author'] = $user;
+            $articles[] = $this->transform($item);
+        }
+        return $articles;
+
+    }
+
     /**
      * Array to object
      *
@@ -90,6 +117,7 @@ class ArticleRepository extends AbstractRepository
         // $picture = $article->getPicture();
         $status = $article->getStatus();
         $userId = $article->getUserId();
+        // $userId = $article->getAuthor()->getId();
 
         $queryString = 'INSERT INTO article (title, slug, content, status, user_id)
                         VALUES (:title, :slug, :content, :status, :userId)';

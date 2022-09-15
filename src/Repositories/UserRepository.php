@@ -21,6 +21,8 @@ class UserRepository extends AbstractRepository
         $items = $this->findAll();
 
         foreach($items as $item) {
+            // $item['comments'] = $commentRepository->findBy(['idUser' => $item['id']])
+            // $user->getComments()
             $users[] = $this->transform($item);
         }
 

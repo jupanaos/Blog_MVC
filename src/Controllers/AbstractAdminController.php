@@ -23,11 +23,13 @@ abstract class AbstractAdminController extends AbstractController
          // Check role
 
          //  
-        if(key_exists('user', $_SESSION) && !empty($_SESSION['user']) && $_SESSION['user']->isAdmin()){
-            return true;
-        } else {
-            return false;
-        }
+        // if(key_exists('user', $_SESSION) && !empty($_SESSION['user']) && $_SESSION['user']->isAdmin()){
+        //    return true;
+        //} else {
+        //    return false;
+        //}
+
+        return key_exists('user', $_SESSION) && !empty($_SESSION['user']) && $_SESSION['user']->isAdmin();
     }
 
     /**

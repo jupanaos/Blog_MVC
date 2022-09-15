@@ -22,14 +22,18 @@ class ArticleController extends AbstractController
         echo $this->twig->render('pages/client/blog.html.twig', ['articles' => $articles]);
     }
 
-    public function showArticle($id){
-        $articles = $this->articleRepository->getArticleById($id);
-        $commentRepository = new CommentRepository;
-        $comments = $commentRepository->getCommentsByArticle($id);
+    public function showArticle($id)
+    {
+        // $articles = $this->articleRepository->getArticleById($id);
+        $articles = $this->articleRepository->getArticleWithComments($id);
+
+        // var_dump($articles);
+
+        // $commentRepository = new CommentRepository;
+        // $comments = $commentRepository->getCommentsByArticle($id);
 
         echo $this->twig->render('pages/client/article.html.twig',
-            ['article' => $articles[0],
-            'comments' => $comments]);
+            ['article' => $articles[0]]);
     }
 
 }

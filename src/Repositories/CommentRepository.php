@@ -67,6 +67,7 @@ class CommentRepository extends AbstractRepository
         return $comments;
     }
 
+
     /**
      * Array to Comment Object
      */
