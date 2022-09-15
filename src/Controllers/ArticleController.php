@@ -26,14 +26,16 @@ class ArticleController extends AbstractController
     {
         // $articles = $this->articleRepository->getArticleById($id);
         $articles = $this->articleRepository->getArticleWithComments($id);
+        // $comments = $this->articleRepository->getArticleWithComments($id);
 
         // var_dump($articles);
+        // echo '<pre>' , var_dump($comments) , '</pre>';
 
         // $commentRepository = new CommentRepository;
         // $comments = $commentRepository->getCommentsByArticle($id);
 
         echo $this->twig->render('pages/client/article.html.twig',
-            ['article' => $articles[0]]);
+                                ['article' => $articles[0]]);
     }
 
 }

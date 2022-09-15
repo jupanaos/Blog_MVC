@@ -4,6 +4,7 @@ namespace App\Repositories;
 use App\Models\Article;
 use PDO;
 use App\Models\User;
+use App\Models\Comment;
 
 class ArticleRepository extends AbstractRepository
 {
@@ -81,6 +82,7 @@ class ArticleRepository extends AbstractRepository
 
         $articles = [];
         $userRepository = new UserRepository;
+        $commentRepository = new CommentRepository;
 
         $query = $this->prepare('SELECT * FROM article WHERE id =' . '"'.$id.'"');
         $query->execute();
@@ -91,8 +93,17 @@ class ArticleRepository extends AbstractRepository
             $userDB = $userRepository->findBy(['id' => $item['user_id']]);
             $user = new User($userDB[0]);
             $item['author'] = $user;
+
+            $commentsDB = $commentRepository->findBy(['article_id' => $item['id']]);
+
+            foreach ($commentsDB as $commentDB) {
+                $item['comments'][] = new Comment($commentDB);
+            }
+
             $articles[] = $this->transform($item);
         }
+        // echo '<pre>' , var_dump($articles) , '</pre>';
+        
         return $articles;
 
     }
@@ -116,8 +127,8 @@ class ArticleRepository extends AbstractRepository
         $content = $article->getContent();
         // $picture = $article->getPicture();
         $status = $article->getStatus();
-        $userId = $article->getUserId();
-        // $userId = $article->getAuthor()->getId();
+        // $userId = $article->getUserId();
+        $userId = $article->getAuthor()->getId();
 
         $queryString = 'INSERT INTO article (title, slug, content, status, user_id)
                         VALUES (:title, :slug, :content, :status, :userId)';
@@ -148,7 +159,8 @@ class ArticleRepository extends AbstractRepository
         // $picture = $article->getPicture();
         $slug = $article->getSlug();
         $status = $article->getStatus();
-        $userId = $article->getUserId();
+        // $userId = $article->getUserId();
+        $userId = $article->getAuthor()->getId();
         $id = $article->getId();
 
         $queryString = 'UPDATE article SET title = :title,

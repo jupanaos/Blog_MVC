@@ -22,7 +22,8 @@ class AdminArticleController extends AdminController
 
             $article->setSlug($this->articleRepository->slugify($_POST['title']));
             $article->setStatus($_POST['status']);
-            $article->setUserId($_SESSION['user']->getId());
+            $article->setAuthor($_SESSION['user']->getId());
+            // $article->setUserId($_SESSION['user']->getId());
 
             $this->articleRepository->add($article);
                 echo "l'article est ajouté";
@@ -44,7 +45,8 @@ class AdminArticleController extends AdminController
             $article->setId($id);
             $article->setSlug($this->articleRepository->slugify($_POST['title']));
             $article->setStatus($_POST['status']);
-            $article->setUserId($_SESSION['user']->getId());
+            $article->setAuthor($_SESSION['user']->getId());
+            // $article->setUserId($_SESSION['user']->getId());
 
             $this->articleRepository->edit($article);
             $this->redirectToAdmin();

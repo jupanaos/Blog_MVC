@@ -44,7 +44,7 @@
         {% endif %}
 
         <div class="comments__container">
-                {% for comment in comments %}
+                {% for comment in article.comments %}
                     {% if comment.status == 'Published' %}
                         <div class="comments__container-wrapper">
                             <div class="comments__container-header">

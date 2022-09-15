@@ -12,10 +12,10 @@ class Article extends AbstractModel
     private $content;
     // private $picture;
     private $status;
-    private $userId;
+    // private $userId;
 
     private ?User $author = null;
-    // private array $comments = [];
+    private array $comments = [];
 
     public function getTitle()
     {
@@ -73,15 +73,15 @@ class Article extends AbstractModel
     //     $this->setStatus(self::STATUS_UNPUBLISHED);
     // }
 
-    public function getUserId()
-    {
-        return $this->userId;
-    }
+    // public function getUserId()
+    // {
+    //     return $this->userId;
+    // }
 
-    public function setUserId($userId)
-    {
-        $this->userId = $userId;
-    }
+    // public function setUserId($userId)
+    // {
+    //     $this->userId = $userId;
+    // }
 
     public function getAuthor()
     {
@@ -91,6 +91,16 @@ class Article extends AbstractModel
     public function setAuthor(User $author)
     {
         $this->author = $author;
+    }
+
+    public function getComments()
+    {
+        return $this->comments;
+    }
+
+    public function setComments($comments)
+    {
+        $this->comments = $comments;
     }
 
 }
