@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Helpers;
+
 use App\Repositories\AdminRepository;
 
 class TwigGlobals
