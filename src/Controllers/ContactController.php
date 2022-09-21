@@ -17,16 +17,24 @@ class ContactController extends AbstractController
 
         $mailer = new Mailer;
 
-        if(!empty($mailData['email'])){
-            $mailer->sendMail($mailData);
-        } else {
-            echo "Merci de remplir tous les champs.";
+        if(!empty($_POST)){
+
+            if(!empty($mailData['names']) && !empty($mailData['email']) && !empty($mailData['subject']) && !empty($mailData['message'])){
+                if ($mailer->sendMail($mailData)){
+                    $this->addFlashMessage('success', 'Message envoyé !');
+                } else {
+                    $this->addFlashMessage('error', 'Erreur d\'envoi');
+                }
+            } elseif(empty($mailData['email'])) {
+                $this->addFlashMessage('error', 'Merci de remplir votre mail.');
+            } else {
+                $this->addFlashMessage('error', 'Merci de remplir tous les champs.');
+            }
+
         }
-
-
-
-
-        echo $this->twig->display('pages/client/contact.html.twig');
+        
+        $messageFlash = $this->getFlashMessage();
+        echo $this->twig->display('pages/client/contact.html.twig', ['messages' => $messageFlash]);
     }
 
 }

@@ -19,46 +19,69 @@ abstract class AbstractController
     public function __construct()
     {
         $this->loader = new FilesystemLoader(VIEWS_DIR);
-        $this->twig = new Environment($this->loader);
+        $this->twig = new Environment($this->loader, [
+            'debug' => true,
+        ]);
+        $this->twig->addExtension(new \Twig\Extension\DebugExtension());
         self::addTwigGlobals($this->twig);
-
-        // $this->twig->addGlobal('session', $_SESSION);
-
-        // $sessionGlobals = new Session();
-        // $this->twig->addGlobal('session', $sessionGlobals->getSession());
     }
 
-    public function addTwigGlobals($twig) {
+    public function addTwigGlobals($twig)
+    {
         $twigGlobals = new TwigGlobals();
         $twig->addGlobal('session', $twigGlobals->getSession());
-        // $twig->addGlobal('admin', $twigGlobals->getAdmin());
         $twig->addGlobal('_post', $_POST);
         $twig->addGlobal('_get', $_GET);
+        $this->resetFlashMessage();
     }
 
-    public function redirectToIndex() {
+    public function redirectToIndex()
+    {
         header('Location: /');
         exit;
     }
 
-    public function redirectToPrevious() {
+    public function redirectToPrevious()
+    {
         header('Location: '.$_SERVER['HTTP_REFERER']);
         exit;
     }
 
-    public function redirectToLogin() {
+    public function redirectToLogin()
+    {
         header('Location: /?p=account');
         exit;
     }
 
-    public function redirectToAdmin() {
+    public function redirectToAdmin()
+    {
         header('Location: /?p=admin');
         exit;
     }
 
-    public function redirectToDashboard() {
+    public function redirectToDashboard()
+    {
         header('Location: /?p=account/dashboard');
         exit;
     }
 
+    public function addFlashMessage(string $type, string $message)
+    {
+        $messageFlash[] = [
+            'type' => $type,
+            'message' => $message,
+        ];
+
+        $_SESSION['messagesFlash'] = $messageFlash;
+    }
+
+    public function getFlashMessage()
+    {
+        $messagesFlash = $_SESSION['messagesFlash'];
+        return $messagesFlash;
+    }
+
+    public function resetFlashMessage() {
+        unset($_SESSION['messagesFlash']);
+    }
 }
