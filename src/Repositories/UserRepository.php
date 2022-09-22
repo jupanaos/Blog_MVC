@@ -22,8 +22,6 @@ class UserRepository extends AbstractRepository
         $items = $this->findAll();
 
         foreach($items as $item) {
-            // $item['comments'] = $commentRepository->findBy(['idUser' => $item['id']])
-            // $user->getComments()
             $users[] = $this->transform($item);
         }
 
@@ -86,10 +84,8 @@ class UserRepository extends AbstractRepository
 
         if ($result > 0) {
             return true;
-            // SUCCESS FLASH TO DO
         } else {
             return false;
-            // FAIL FLASH TO DO
         }
     }
 
@@ -122,9 +118,6 @@ class UserRepository extends AbstractRepository
         } else {
             return "Ce compte n'existe pas, veuillez en créer un.";   
         }
-
-        
-        
     }
 
     /**
@@ -190,8 +183,14 @@ class UserRepository extends AbstractRepository
         $stmt = $this->getInstance()->prepare($queryString);
         $stmt->bindValue(":role", $role, PDO::PARAM_STR);
         $stmt->bindValue(":id", $id, PDO::PARAM_INT);
-        $stmt->execute();
+        $result = $stmt->execute();
         $stmt->closeCursor();
+
+        if ($result > 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public function delete(string $userId)
@@ -221,7 +220,7 @@ class UserRepository extends AbstractRepository
         return $user;
     }
 
-    public function getUserByArticle($item) 
+    public function getUserByItem($item) 
     {
         $userDB = $this->findBy(['id' => $item['user_id']]);
         $user = new User($userDB[0]);
@@ -230,12 +229,10 @@ class UserRepository extends AbstractRepository
 
     public function getAuthorByComment($comment)
     {
-        $usesrDB = $this->findBy(['id' => $comment->getUserId()]);
-        foreach ($usesrDB as $userDB) {
+        $usersDB = $this->findBy(['id' => $comment->getAuthor()]);
+        foreach ($usersDB as $userDB) {
             $user = new User($userDB);
         }
-        // echo '<pre>' , var_dump($userDB) , '</pre>';
-        // $author = $_SESSION['user']->getId();
         return $user;
     }
 

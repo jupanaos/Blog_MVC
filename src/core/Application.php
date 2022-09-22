@@ -83,7 +83,6 @@ class Application
                     break;
                 case "admin":
                     if($adminController->getAdmin()){
-                        // $UserController->logout();
                         if (empty($params[1]) || $params[1] === "dashboard") {
                             $adminController->showAdmin();
                         } elseif ($params[1] === "articles") {
@@ -97,8 +96,8 @@ class Application
                         } elseif ($params[1] === "users") {
                             if ($params[3] === "manage") {
                                 $adminController->manageUser($params[2]);
-                            } elseif ($params[3] === "manage-role"){
-                                $adminController->manageRole($params[2]);
+                            // } elseif ($params[3] === "manage-role"){
+                            //     $adminController->manageRole($params[2]);
                             } elseif ($params[3] === "delete"){
                                 $userController->deleteUser($params[2]);
                             }

@@ -32,17 +32,9 @@ class AdminController extends AbstractAdminController
         echo $this->twig->render('pages/admin/admin.html.twig',
                                 ['articles' => $articles,
                                 'users' => $users,
-                                'comments' => $comments]
+                                'comments' => $comments
+                                ]
                                 );
-    }
-
-    public function manageArticle($id)
-    {
-        $articleRepository = new ArticleRepository;
-        $article = $articleRepository->getArticleById($id);
-
-        echo $this->twig->render('pages/admin/article/manage.html.twig',
-                                ['article' => $article[0]]);
     }
 
     public function manageUser($id)
@@ -50,21 +42,20 @@ class AdminController extends AbstractAdminController
         $userRepository = new UserRepository;
         $user = $userRepository->getUserById($id);
 
-        echo $this->twig->render('pages/admin/user/manage.html.twig',
-                                ['user' => $user]);
-    }
-
-    public function manageRole($id)
-    {
-        $userRepository = new UserRepository;
-        $user = $userRepository->getUserById($id);
-
         if(!empty($_POST)){
             $user->setRole($_POST["role"]);
 
-            $userRepository->updateRole($user);
-            $this->redirectToAdmin();
+            if($userRepository->updateRole($user)) {
+                $this->addFlashMessage('success', 'Le rôle de cet utilisateur a bien été modifié.');
+            } else {
+                $this->addFlashMessage('error', 'Le rôle de cet utilisateur n\'a pas pu être modifié, veuillez réessayer.');
+            }
         }
+
+        $messageFlash = $this->getFlashMessage();
+        echo $this->twig->render('pages/admin/user/manage.html.twig',
+                                ['user' => $user,
+                                'messages' => $messageFlash]);
     }
 
     public function manageComment($id)
@@ -75,11 +66,16 @@ class AdminController extends AbstractAdminController
         if(!empty($_POST)){
             $comment->setStatus($_POST["status"]);
 
-            $commentRepository->updateStatus($comment);
-            $this->redirectToAdmin();
+            if ($commentRepository->updateStatus($comment)) {
+                $this->addFlashMessage('success', 'Le statut de ce commentaire a bien été mis à jour.');
+            } else {
+                $this->addFlashMessage('error', 'Le statut de ce commentaire n\'a pas pu être modifié, veuillez réessayer.');
+            }
         }
 
+        $messageFlash = $this->getFlashMessage();
         echo $this->twig->render('pages/admin/comment/status.html.twig',
-                                ['comment' => $comment]);
+                                ['comment' => $comment,
+                                'messages' => $messageFlash]);
     }
 }

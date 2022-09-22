@@ -28,12 +28,16 @@ class CommentRepository extends AbstractRepository
     public function getCommentById($id)
     {
         $comments = [];
+        $userRepository = new UserRepository;
+
         $query = $this->prepare('SELECT * FROM comment WHERE id =' . '"'.$id.'"');
         $query->execute();
 
         $items = $query->fetchAll();
 
         foreach($items as $item) {
+            $item['author'] = $userRepository->getUserByItem($item);
+
             $comments[] = $this->transform($item);
         }
 
@@ -62,15 +66,6 @@ class CommentRepository extends AbstractRepository
             $comments[] = new Comment($commentDB);
         }
         return $comments;
-        // $comments = [];
-
-        // $items = $this->findBy(['article_id' => $articleId], ['created_at' => 'DESC']);
-
-        // foreach($items as $item){
-        //     $comments[] = $this->transform($item);
-        // }
-        
-        // return $comments;
     }
 
 
@@ -85,7 +80,6 @@ class CommentRepository extends AbstractRepository
 
     public function add(Comment $comment)
     {
-        // $userId = $comment->getUserId();
         $userId = $comment->getAuthor()->getId();
         $articleId = $comment->getArticleId();
         $content = $comment->getContent();
@@ -103,11 +97,9 @@ class CommentRepository extends AbstractRepository
         $stmt->closeCursor();
 
         if ($result > 0) {
-            // return true;
-            echo "comment ajouté";
+            return true;
         } else {
-            // return false;
-            echo "échec ajout";
+            return false;
         }
     }
 
@@ -122,8 +114,14 @@ class CommentRepository extends AbstractRepository
         $stmt = $this->getInstance()->prepare($queryString);
         $stmt->bindValue(":status", $status, PDO::PARAM_STR);
         $stmt->bindValue(":id", $id, PDO::PARAM_INT);
-        $stmt->execute();
+        $result = $stmt->execute();
         $stmt->closeCursor();
+
+        if ($result > 0) {
+            return true;
+        } else {
+            return false;
+        }
 
     }
 }

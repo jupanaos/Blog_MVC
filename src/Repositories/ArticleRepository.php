@@ -3,8 +3,6 @@
 namespace App\Repositories;
 use App\Models\Article;
 use PDO;
-use App\Models\User;
-use App\Models\Comment;
 
 class ArticleRepository extends AbstractRepository
 {
@@ -47,8 +45,6 @@ class ArticleRepository extends AbstractRepository
         $query->execute();
 
         $items = $query->fetchAll();
-        
-        //$items = $this->findBy(['slug' => $slug]);
 
         foreach($items as $item) {
             $articles[] = $this->transform($item);
@@ -72,11 +68,6 @@ class ArticleRepository extends AbstractRepository
         return $articles;
     }
 
-    public function pushUser() 
-    {
-
-    }
-
     public function getArticleWithComments($id)
     {
 
@@ -90,25 +81,17 @@ class ArticleRepository extends AbstractRepository
         $items = $query->fetchAll();
 
         foreach($items as $item) {
-            $item['author'] = $userRepository->getUserByArticle($item);
-            // $userDB = $userRepository->findBy(['id' => $item['user_id']]);
-            // $user = new User($userDB[0]);
-            // $item['author'] = $user;
+            $item['author'] = $userRepository->getUserByItem($item);
             $item['comments']= $commentRepository->getCommentsByArticle($item);
-            // $commentsDB = $commentRepository->findBy(['article_id' => $item['id']]);
 
-            // foreach ($commentsDB as $commentDB) {
-            //     $item['comments'][] = new Comment($commentDB);
-            // }
-                foreach ($item['comments'] as $comment) {
-                    $comment->setAuthor($userRepository->getAuthorByComment($comment));
-                }
+            foreach ($item['comments'] as $comment) {
+                $comment->setAuthor($userRepository->getAuthorByComment($comment));
+            }
+
             $articles[] = $this->transform($item);
         }
-        // echo '<pre>' , var_dump($articles) , '</pre>';
         
         return $articles;
-
     }
 
     /**
@@ -130,7 +113,6 @@ class ArticleRepository extends AbstractRepository
         $content = $article->getContent();
         // $picture = $article->getPicture();
         $status = $article->getStatus();
-        // $userId = $article->getUserId();
         $userId = $article->getAuthor()->getId();
 
         $queryString = 'INSERT INTO article (title, slug, content, status, user_id)
@@ -147,11 +129,9 @@ class ArticleRepository extends AbstractRepository
         $stmt->closeCursor();
 
         if ($result > 0) {
-            // return true;
-            echo "article ajouté";
+            return true;
         } else {
-            // return false;
-            echo "échec ajout";
+            return false;
         }
     }
 
@@ -162,7 +142,6 @@ class ArticleRepository extends AbstractRepository
         // $picture = $article->getPicture();
         $slug = $article->getSlug();
         $status = $article->getStatus();
-        // $userId = $article->getUserId();
         $userId = $article->getAuthor()->getId();
         $id = $article->getId();
 

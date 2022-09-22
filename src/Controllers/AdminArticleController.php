@@ -17,27 +17,34 @@ class AdminArticleController extends AdminController
 
     public function addArticle()
     {
-        if (!empty($_POST['title']) && !empty($_POST['content']) && !empty($_POST['status'])){
-            $article = new Article($_POST);
+        if(!empty($_POST)){
 
-            $article->setSlug($this->articleRepository->slugify($_POST['title']));
-            $article->setStatus($_POST['status']);
-            $article->setAuthor($_SESSION['user']->getId());
-            // $article->setUserId($_SESSION['user']->getId());
+            if (!empty($_POST['title']) && !empty($_POST['content']) && !empty($_POST['status'])) {
+                $article = new Article($_POST);
 
-            $this->articleRepository->add($article);
-                echo "l'article est ajouté";
+                $article->setSlug($this->articleRepository->slugify($_POST['title']));
+                $article->setStatus($_POST['status']);
+                $article->setAuthor($_SESSION['user']);
+
+                if ($this->articleRepository->add($article)) {
+                    $this->addFlashMessage('success', 'L\'article a bien été ajouté !');
+                } else {
+                    $this->addFlashMessage('error', 'L\'article n\'a pas pu être ajouté.');
+                }
+
             } else {
-                echo "L'article n'est pas ajouté";
+                $this->addFlashMessage('error', 'Veuillez remplir tous les champs.');
             }
+        }
 
-        echo $this->twig->render('pages/admin/blog/add.html.twig');
+        $messageFlash = $this->getFlashMessage();
+        echo $this->twig->render('pages/admin/blog/add.html.twig',
+                                ['messages' => $messageFlash]);
     }
 
     public function editArticle($id)
     {
-        $articleRepository = new ArticleRepository;
-        $article = $articleRepository->getArticleById($id);
+        $articles = $this->articleRepository->getArticleById($id);
         
         if (!empty($_POST)){
             $article = new Article($_POST);
@@ -45,22 +52,28 @@ class AdminArticleController extends AdminController
             $article->setId($id);
             $article->setSlug($this->articleRepository->slugify($_POST['title']));
             $article->setStatus($_POST['status']);
-            $article->setAuthor($_SESSION['user']->getId());
-            // $article->setUserId($_SESSION['user']->getId());
+            $article->setAuthor($_SESSION['user']);
 
-            $this->articleRepository->edit($article);
-            $this->redirectToAdmin();
-        } else {
-            echo "erreur màj article";
+            if ($this->articleRepository->edit($article)) {
+                $this->addFlashMessage('success', 'L\'article a bien été modifié !');
+            } else {
+                $this->addFlashMessage('error', 'L\'article n\'a pas pu être modifié, veuillez réessayer.');
+            }
         }
 
+        $messageFlash = $this->getFlashMessage();
         echo $this->twig->render('pages/admin/blog/edit.html.twig',
-                                ['article' => $article[0]]);
+                                ['article' => $articles[0],
+                                'messages' => $messageFlash]);
     }
 
     public function deleteArticle(string $articleId)
     {
-        $this->articleRepository->delete($articleId);
+        if ($this->articleRepository->delete($articleId)) {
+            $this->addFlashMessage('success', 'L\'article a bien été supprimé');
+        } else {
+            $this->addFlashMessage('error', 'L\'article n\'a pas pu être supprimé, veuillez réessayer.');
+        }
         $this->redirectToPrevious();
     }
 }

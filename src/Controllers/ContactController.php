@@ -21,14 +21,14 @@ class ContactController extends AbstractController
 
             if(!empty($mailData['names']) && !empty($mailData['email']) && !empty($mailData['subject']) && !empty($mailData['message'])){
                 if ($mailer->sendMail($mailData)){
-                    $this->addFlashMessage('success', 'Message envoyé !');
+                    $this->addFlashMessage('success', 'Message envoyé ! Nous vous répondrons dans les plus brefs délais.');
                 } else {
-                    $this->addFlashMessage('error', 'Erreur d\'envoi');
+                    $this->addFlashMessage('error', 'Erreur d\'envoi.');
                 }
             } elseif(empty($mailData['email'])) {
                 $this->addFlashMessage('error', 'Merci de remplir votre email.');
             } else {
-                $this->addFlashMessage('error', 'Merci de remplir tous les champs.');
+                $this->addFlashMessage('error', 'Veuillez remplir tous les champs.');
             }
 
         }

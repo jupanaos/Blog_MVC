@@ -21,20 +21,24 @@ class CommentController extends AbstractController
     {
         if (!empty($_POST)){
 
+            
             $comment = new Comment($_POST);
-
+            
             $articleRepository = new ArticleRepository();
             $article = $articleRepository->getArticleById($articleId);
             
             $comment->setArticleId($articleId);
-            $comment->setUserId($_SESSION['user']->getId());
+            $comment->setAuthor($_SESSION['user']);
             $comment->setDefaultStatus();
             
-            $this->commentRepository->add($comment);
-            $this->redirectToPrevious();
-                echo "le comment est ajouté";
+            if ($this->commentRepository->add($comment)) {
+                $this->addFlashMessage('success', 'Votre commentaire a bien été envoyé, il sera publié après validation.');
             } else {
-                echo "Le comment n'est pas ajouté";
+                echo 'une erreur est survenue, veuillez réessayer';
             }
+        } else {
+            $this->addFlashMessage('error', 'Votre commentaire n\'a pas pu être envoyé. Veuillez réessayer.');
+        }
+        // $this->redirectToPrevious();
     }
 }

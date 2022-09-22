@@ -12,10 +12,10 @@
         <div class="form">
             <form method="post" action="" id="edit-comment-form">
                 <label for="username">Auteur</label><br>
-                <input type="text" disabled="disabled" value="{{ comment.userId }}" id="title" name="title" placeholder="Titre"><br>
+                <input type="text" disabled="disabled" value="{{ comment.author.username }}" id="comment-author" name="comment-author" placeholder="Auteur"><br>
                 <br>
                 <label for="article">Article</label><br>
-                <input type="text" disabled="disabled" value="{{ comment.articleId }}" id="title" name="title" placeholder="Titre"><br>
+                <input type="text" disabled="disabled" value="{{ comment.articleId }}" id="comment-article" name="comment-article" placeholder="Titre de l'article"><br>
                 <label for="content">Contenu</label><br>
                 <textarea name="content" disabled="disabled" id="" cols="100" rows="40">{{ comment.content }}</textarea>
                 <br>

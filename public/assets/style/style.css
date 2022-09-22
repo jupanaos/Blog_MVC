@@ -132,10 +132,6 @@ h3.hero_text_title::after{
     left: 50%;
 }
 
-/* h3.dark_text{
-    color: var(--white);
-} */
-
 p{
     color: var(--white);
     font-family: 'Source Sans Pro', sans-serif;
@@ -158,8 +154,6 @@ p.hero_text_title{
     text-transform: capitalize;
 }
 
-
-
 .text__highlight-colored{
     font-weight: 800;
     color: var(--violet);
@@ -169,6 +163,33 @@ p.hero_text_title{
     font-size: 21px;
 }
 
+/* flash messages */
+
+.message-flash {
+    padding: 0.5em 1em;
+    width: 33%;
+    border-radius: 4px;
+    max-width: 33%;
+    margin: 0 auto;
+}
+
+.message-flash.success {
+    background-color: #b5ddb1;
+    color : var(--green-success);
+    border: 1px solid var(--green-success);
+}
+
+.message-flash.error {
+    background-color: #cf9493;
+    color : var(--red-alert);
+    border: 1px solid var(--red-alert);
+}
+
+.message-flash.notice {
+    background-color: #b0cde4;
+    color : var(--blue-edit);
+    border: 1px solid var(--blue-edit);
+}
 
 /*wrap content*/
 .main__content {

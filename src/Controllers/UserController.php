@@ -25,8 +25,8 @@ class UserController extends AbstractController
             $tryLogin = $this->userRepository->tryLogin();
             
             if (is_object($tryLogin)){
-                $this->addFlashMessage('success', 'Vous êtes bien connecté. b');
-                $this->redirectToIndex();
+                $this->addFlashMessage('success', 'Vous êtes bien connecté.');
+                // $this->redirectToIndex();
             } else {
                 $this->addFlashMessage('error', $tryLogin);
             }
@@ -84,8 +84,6 @@ class UserController extends AbstractController
                     $this->addFlashMessage('error', 'Pseudo déjà pris ou invalide. Seuls les lettres et les chiffres sont acceptés.');
                 }
             }
-
-            
         }
 
         $messageFlash = $this->getFlashMessage();
@@ -103,8 +101,11 @@ class UserController extends AbstractController
     {
         $commentRepository = new CommentRepository;
         $comments = $commentRepository->getCommentsByUser();
+        $messageFlash = $this->getFlashMessage();
+
         echo $this->twig->render('pages/client/dashboard.html.twig',
-                                ['comments' => $comments]);
+                                ['comments' => $comments,
+                                'messages' => $messageFlash]);
     }
 
     public function updateUser($id)
@@ -126,16 +127,21 @@ class UserController extends AbstractController
 
             $this->userRepository->update($user);
             $this->userRepository->userSession($user);
-            
+
+            $this->addFlashMessage('success', 'Vos informations ont bien été mises à jour.');
         }
-            $this->redirectToDashboard();
+
+        $commentRepository = new CommentRepository;
+        $comments = $commentRepository->getCommentsByUser();
+        $messageFlash = $this->getFlashMessage();
+
+        echo $this->twig->render('pages/client/dashboard.html.twig',
+                                ['comments' => $comments,
+                                'messages' => $messageFlash]);
     }
     
     public function resetPassword(string $userId)
     {        
-        $registerData = [];
-        $registerData['last_name'] = Security::secureHTML($_POST['last_name']);
-
         $oldPassword = strip_tags($_POST['old-password']);
         $newPassword = strip_tags($_POST['new-password']);
         $newPasswordConfirm = strip_tags($_POST['new-password-confirm']);
@@ -150,14 +156,22 @@ class UserController extends AbstractController
                 $user->setPasswordHash($newPassword);
                 $userRepository->updatePassword($user);
                 $this->logout();
-                echo "veuillez vous reconnecter";
+                $this->addFlashMessage('notice', 'Votre mot de passe a été mis à jour. Veuillez vous reconnecter.');
             } else {
-                echo "les nouveaux mdp ne matchent pas";
+                $this->addFlashMessage('error', 'Les nouveaux mots de passe ne sont pas les mêmes.');
             }
 
         } else {
-            echo "l'ancien password n'existe pas";
+            $this->addFlashMessage('error', 'L\'ancien mot de passe ne correspond pas à ce compte.');
         }
+
+        $commentRepository = new CommentRepository;
+        $comments = $commentRepository->getCommentsByUser();
+        $messageFlash = $this->getFlashMessage();
+
+        echo $this->twig->render('pages/client/dashboard.html.twig',
+                                ['comments' => $comments,
+                                'messages' => $messageFlash]);
     }
 
     public function deleteUser(string $userId)

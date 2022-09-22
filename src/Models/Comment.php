@@ -7,21 +7,10 @@ class Comment extends AbstractModel
     public const PUBLISHED = 'Published';
     public const UNPUBLISHED = 'Pending';
 
-    private $userId;
     private $articleId;
     private $content;
     private $status;
     private ?User $author = null;
-
-    public function getUserId()
-    {
-        return $this->userId;
-    }
-
-    public function setUserId($userId)
-    {
-        $this->userId = $userId;
-    }
 
     public function getArticleId()
     {
