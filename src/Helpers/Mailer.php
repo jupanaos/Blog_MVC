@@ -29,15 +29,12 @@ class Mailer extends PHPMailer {
             $this->setFrom('no-reply@julie-pariona.com', 'no-reply');
             $this->addAddress('jutest@test.com', 'Julie Pariona');
             $this->addReplyTo($mailData['email'], $mailData['names']);
-            // $this->AddBCC($this->config['contact-to']['mail'], $this->config['contact-to']['name']);
             $this->isHTML(true);
             $this->Subject = $mailData['subject'];
             $this->Body = $mailData['message'];
             $this->send();
-            // echo 'Message has been sent';
             return true;
         } catch (Exception $e) {
-            // echo "Message could not be sent. Mailer Error: {$e}";
             return false;
         }
     }

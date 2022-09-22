@@ -26,7 +26,7 @@ class ContactController extends AbstractController
                     $this->addFlashMessage('error', 'Erreur d\'envoi');
                 }
             } elseif(empty($mailData['email'])) {
-                $this->addFlashMessage('error', 'Merci de remplir votre mail.');
+                $this->addFlashMessage('error', 'Merci de remplir votre email.');
             } else {
                 $this->addFlashMessage('error', 'Merci de remplir tous les champs.');
             }
@@ -34,7 +34,8 @@ class ContactController extends AbstractController
         }
         
         $messageFlash = $this->getFlashMessage();
-        echo $this->twig->display('pages/client/contact.html.twig', ['messages' => $messageFlash]);
+        echo $this->twig->display('pages/client/contact.html.twig',
+                                ['messages' => $messageFlash]);
     }
 
 }

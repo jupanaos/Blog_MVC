@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Models\User;
 use PDO;
 use stdClass;
+use App\Helpers\Security;
 
 class UserRepository extends AbstractRepository
 {
@@ -44,9 +45,21 @@ class UserRepository extends AbstractRepository
         return $user[0];
     }
 
-    public function findByRole()
+    public function usernameExists()
     {
-        // TO DO
+        $username = $_POST['username'];
+
+        $query = $this->prepare('SELECT * FROM user WHERE username=?');
+        $query->execute([$username]);
+
+        $user = $query->fetchAll();
+
+        if($user){
+            //username exist
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public function add(User $user)
@@ -82,31 +95,36 @@ class UserRepository extends AbstractRepository
 
     public function tryLogin()
     {
-        $password = strip_tags($_POST['password']);
-        $username = strip_tags($_POST['username']);
-
+        $password = Security::secureHTML($_POST['password']);
+        $username = Security::secureHTML($_POST['username']);
+        
         $userArray = $this->findItemBy(['username' => $username]);
-        $user = new User($userArray[0]);
 
-        /**
-         * Check role and password
-         */
-        if(isset($userArray[0])){
+        if(isset($userArray[0])) {
+            $user = new User($userArray[0]);
+
+            /**
+            * Check role and password
+            */ 
             if($userArray[0]['roles'] === 'admin'){
                 $user->setRole("admin");
             } else {
                 $user->setRole("user");
-        }
+            }
 
             if(password_verify($password, $user->getPassword())){
                 self::userSession($user);
-                echo "le mot de passe correspond";
+                return $user;
             } else {
-                echo"le mot de passe ne correspond pas";
+                return "Le mot de passe ne correspond pas à ce compte.";
             }
+
         } else {
-            echo "le compte n'existe pas";
+            return "Ce compte n'existe pas, veuillez en créer un.";   
         }
+
+        
+        
     }
 
     /**
