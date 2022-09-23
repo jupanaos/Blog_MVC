@@ -111,18 +111,18 @@ class ArticleRepository extends AbstractRepository
         $title = $article->getTitle();
         $slug = $article->getSlug();
         $content = $article->getContent();
-        // $picture = $article->getPicture();
+        $picture = $article->getPicture();
         $status = $article->getStatus();
         $userId = $article->getAuthor()->getId();
 
-        $queryString = 'INSERT INTO article (title, slug, content, status, user_id)
-                        VALUES (:title, :slug, :content, :status, :userId)';
+        $queryString = 'INSERT INTO article (title, slug, content, picture, status, user_id)
+                        VALUES (:title, :slug, :content, :picture, :status, :userId)';
 
         $stmt = $this->getInstance()->prepare($queryString);
         $stmt->bindValue(":title", $title, PDO::PARAM_STR);
         $stmt->bindValue(":slug", $slug, PDO::PARAM_STR);
         $stmt->bindValue(":content", $content, PDO::PARAM_STR);
-        // $stmt->bindValue(":picture", $picture, PDO::PARAM_STR);
+        $stmt->bindValue(":picture", $picture, PDO::PARAM_STR);
         $stmt->bindValue(":status", $status, PDO::PARAM_STR);
         $stmt->bindValue(":userId", $userId, PDO::PARAM_INT);
         $result = $stmt->execute();

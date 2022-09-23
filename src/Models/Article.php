@@ -10,10 +10,8 @@ class Article extends AbstractModel
     private $title;
     private $slug;
     private $content;
-    // private $picture;
+    private $picture;
     private $status;
-    // private $userId;
-
     private ?User $author = null;
     private array $comments = [];
 
@@ -47,16 +45,15 @@ class Article extends AbstractModel
         $this->content = $content;
     }
 
-    // public function getPicture()
-    // {
-    //     return $this->picture;
-    // }
+    public function getPicture()
+    {
+        return $this->picture;
+    }
 
-    // public function setPicture($picture)
-    // {
-    //     $this->picture = $picture;
-    // }
-
+    public function setPicture($picture)
+    {
+        $this->picture = $picture;
+    }
 
     public function getStatus()
     {

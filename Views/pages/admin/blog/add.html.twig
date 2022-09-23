@@ -10,12 +10,15 @@
 
     <div class="section_container">
         <div class="form">
-            <form method="post" action="" id="add-article-form">
+            <form method="post" action="" id="add-article-form" enctype="multipart/form-data">
                 <label for="title">Titre</label><br>
                 <input type="text" id="title" name="title" placeholder="Titre"><br>
                 <br>
                 <label for="content">Texte</label><br>
                 <textarea name="content" id="" cols="100" rows="10"></textarea>
+                <br>
+                <label for="picture">Image</label><br>
+                <input type="file" name="picture" accept="image/*" required />
                 <br>
                 <label for="status">Statut</label><br>
                 <select name="status" id="status" form="add-article-form">

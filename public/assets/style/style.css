@@ -629,6 +629,7 @@ footer{
 
 img.section_image{
     width: 100%;
+    object-fit: contain;
 }
 
 .section_content_container{
@@ -786,12 +787,14 @@ label{
 
 
     .section_image_container{
-        max-width:400px;
         width: 100%;
+        
     }
 
     .section_image_container.blog{
-        max-width:1200px;
+        width:900px;
+        max-height: 400px;
+        overflow: hidden;
     }
 
     .section_content_container{

@@ -1,9 +1,10 @@
 <?php
 
-
 namespace App\Controllers;
+
 use App\Models\Article;
 use App\Repositories\ArticleRepository;
+use Bulletproof;
 
 class AdminArticleController extends AdminController
 {
@@ -21,10 +22,22 @@ class AdminArticleController extends AdminController
 
             if (!empty($_POST['title']) && !empty($_POST['content']) && !empty($_POST['status'])) {
                 $article = new Article($_POST);
+                $image = new Bulletproof\Image($_FILES);
 
                 $article->setSlug($this->articleRepository->slugify($_POST['title']));
                 $article->setStatus($_POST['status']);
                 $article->setAuthor($_SESSION['user']);
+
+                $image->setLocation('uploads')
+                        ->setMime(['jpeg']);
+
+                if ($image["picture"]) {
+                    if ($image->upload()) {
+                        $article->setPicture($image->getName());
+                    } else {
+                        $this->addFlashMessage('error', $image->getError());
+                    }
+                }
 
                 if ($this->articleRepository->add($article)) {
                     $this->addFlashMessage('success', 'L\'article a bien été ajouté !');
