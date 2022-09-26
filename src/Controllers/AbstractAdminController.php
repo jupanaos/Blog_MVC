@@ -19,8 +19,7 @@ abstract class AbstractAdminController extends AbstractController
      */
     private function checkAdmin()
     {
-        $user = $_SESSION['user'];
-        return key_exists('user', $_SESSION) && !empty($user) && $user->isAdmin();
+        return key_exists('user', $_SESSION) && !empty($_SESSION['user']) && $_SESSION['user']->isAdmin();
     }
 
     /**

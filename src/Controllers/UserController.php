@@ -26,7 +26,8 @@ class UserController extends AbstractController
             
             if (is_object($tryLogin)){
                 $this->addFlashMessage('success', 'Vous êtes bien connecté.');
-                $this->redirectToIndex();
+                // $this->refreshPage();
+                $this->redirectToDashboard();
             } else {
                 $this->addFlashMessage('error', $tryLogin);
             }
@@ -57,7 +58,7 @@ class UserController extends AbstractController
         $registerData['password'] = Security::secureHTML($_POST['password']);
         $registerData['password-confirm'] = Security::secureHTML($_POST['password-confirm']);
 
-        if(!empty($_POST)){
+        if(!empty($registerData['last_name'])){
 
             if (empty($registerData['last_name']) || empty($registerData['first_name']) || empty($registerData['username']) || empty($registerData['email']) || empty($registerData['password'])) {
                 $this->addFlashMessage('error', 'Merci de remplir tous les champs d\'inscription.');

@@ -25,6 +25,7 @@ class Application
             header('Location: '.$uri);
         }
 
+        $controller = new MainController;
         $articleController = new ArticleController;
         $commentController = new CommentController;
         $userController = new UserController;
@@ -98,7 +99,6 @@ class Application
                 $errorController->showNotFound();
             }
         } else {
-            $controller = new MainController;
             $controller->index();
         }
     }

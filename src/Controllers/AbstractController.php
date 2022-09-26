@@ -4,9 +4,7 @@ namespace App\Controllers;
 
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
-use App\Core\Session;
 use App\Helpers\TwigGlobals;
-
 
 abstract class AbstractController
 {
@@ -34,8 +32,6 @@ abstract class AbstractController
     {
         $twigGlobals = new TwigGlobals();
         $twig->addGlobal('session', $twigGlobals->getSession());
-        $twig->addGlobal('_post', $_POST);
-        $twig->addGlobal('_get', $_GET);
         $this->resetFlashMessage();
     }
 
@@ -49,6 +45,13 @@ abstract class AbstractController
     {
         header('Location: '.$_SERVER['HTTP_REFERER']);
         exit;
+    }
+
+    public function refreshPage()
+    {
+        $page = $_SERVER['HTTP_REFERER'];
+        $sec = "2";
+        header("Refresh: $sec; url = $page");
     }
 
     public function redirectToLogin()

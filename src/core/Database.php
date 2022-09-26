@@ -26,8 +26,7 @@ class Database extends PDO
             $this->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         }catch(PDOException $e){
-            $error_db = 'Erreur base de données : ';
-            $error_db .= $e->getMessage();
+            $e->getMessage();
             exit();
         }
     }

@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Repositories\CommentRepository;
 use App\Models\Comment;
 use App\Repositories\ArticleRepository;
+use App\Helpers\Security;
 
 class CommentController extends AbstractController
 {
@@ -19,9 +20,11 @@ class CommentController extends AbstractController
 
     public function addComment($articleId)
     {
-        if (!empty($_POST)){
+        $commentData['content'] = Security::secureHTML($_POST['content']);
+        
+        if (!empty($commentData['content'])){
 
-            $comment = new Comment($_POST);
+            $comment = new Comment($commentData);
             
             $articleRepository = new ArticleRepository();
             $articleRepository->getArticleById($articleId);
@@ -33,7 +36,7 @@ class CommentController extends AbstractController
             if ($this->commentRepository->add($comment)) {
                 $this->addFlashMessage('success', 'Votre commentaire a bien été envoyé, il sera publié après validation.');
             } else {
-                echo 'Une erreur est survenue, veuillez réessayer';
+                $this->addFlashMessage('error', 'Une erreur est survenue, veuillez réessayer.');
             }
         } else {
             $this->addFlashMessage('error', 'Votre commentaire n\'a pas pu être envoyé. Veuillez réessayer.');
