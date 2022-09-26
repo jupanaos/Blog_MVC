@@ -8,6 +8,7 @@ use App\Controllers\ContactController;
 use App\Controllers\ArticleController;
 use App\Controllers\AdminArticleController;
 use App\Controllers\CommentController;
+use App\Controllers\ErrorController;
 
 class Application
 {
@@ -51,6 +52,7 @@ class Application
         $adminController = new AdminController;
         $contactController = new ContactController;
         $adminArticleController = new AdminArticleController;
+        $errorController = new ErrorController;
 
         $params = explode("/", filter_var($_GET['p']), FILTER_SANITIZE_URL);
         
@@ -105,14 +107,16 @@ class Application
                             }
                         }
                     } elseif (key_exists('user', $_SESSION)) {
-                        echo "vous n'avez pas le droit d'accéder à cette page";
+                        $errorController->showError();
                     } else {
-                        // $adminController->redirectToIndex();
                         $userController->redirectToLogin();
                     }
                     break;
                 case "contact":
                     $contactController->contact();
+                    break;
+                default:
+                $errorController->showNotFound();
 
             }
             
@@ -121,6 +125,7 @@ class Application
             // No param so we call default controller (MainController)
             $controller = new MainController;
             $controller->index();
+            
         }
 
     }
