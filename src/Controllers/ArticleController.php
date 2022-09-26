@@ -19,7 +19,7 @@ class ArticleController extends AbstractController
     {
         $articles = $this->articleRepository->getArticles();
 
-        echo $this->twig->render('pages/client/blog.html.twig', ['articles' => $articles]);
+        $this->showTwig('pages/client/blog.html.twig', ['articles' => $articles]);
     }
 
     public function showArticle($id)
@@ -27,7 +27,7 @@ class ArticleController extends AbstractController
         $articles = $this->articleRepository->getArticleWithComments($id);
 
         $messageFlash = $this->getFlashMessage();
-        echo $this->twig->render('pages/client/article.html.twig',
+        $this->showTwig('pages/client/article.html.twig',
                                 ['article' => $articles[0],
                                 'messages' => $messageFlash]);
     }

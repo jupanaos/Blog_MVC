@@ -13,17 +13,21 @@ abstract class AbstractController
     private $loader;
     protected $twig;
 
-    /**
-     * Renders a view
-     */
     public function __construct()
     {
         $this->loader = new FilesystemLoader(VIEWS_DIR);
         $this->twig = new Environment($this->loader, [
-            'debug' => true,
+            'debug' => false,
         ]);
         $this->twig->addExtension(new \Twig\Extension\DebugExtension());
         self::addTwigGlobals($this->twig);
+    }
+    
+    /**
+     * Renders a view
+     */
+    public function showTwig($template, $array) {
+        echo $this->twig->render($template, $array);
     }
 
     public function addTwigGlobals($twig)

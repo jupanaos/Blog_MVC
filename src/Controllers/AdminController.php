@@ -29,7 +29,7 @@ class AdminController extends AbstractAdminController
         $commentRepository = new CommentRepository;
         $comments = $commentRepository->getComments();
         
-        echo $this->twig->render('pages/admin/admin.html.twig',
+        $this->showTwig('pages/admin/admin.html.twig',
                                 ['articles' => $articles,
                                 'users' => $users,
                                 'comments' => $comments
@@ -53,7 +53,7 @@ class AdminController extends AbstractAdminController
         }
 
         $messageFlash = $this->getFlashMessage();
-        echo $this->twig->render('pages/admin/user/manage.html.twig',
+        $this->showTwig('pages/admin/user/manage.html.twig',
                                 ['user' => $user,
                                 'messages' => $messageFlash]);
     }
@@ -74,7 +74,7 @@ class AdminController extends AbstractAdminController
         }
 
         $messageFlash = $this->getFlashMessage();
-        echo $this->twig->render('pages/admin/comment/status.html.twig',
+        $this->showTwig('pages/admin/comment/status.html.twig',
                                 ['comment' => $comment,
                                 'messages' => $messageFlash]);
     }

@@ -51,8 +51,8 @@ class AdminArticleController extends AdminController
         }
 
         $messageFlash = $this->getFlashMessage();
-        echo $this->twig->render('pages/admin/blog/add.html.twig',
-                                ['messages' => $messageFlash]);
+        $this->showTwig('pages/admin/blog/add.html.twig',
+                        ['messages' => $messageFlash]);
     }
 
     public function editArticle($id)
@@ -75,9 +75,9 @@ class AdminArticleController extends AdminController
         }
 
         $messageFlash = $this->getFlashMessage();
-        echo $this->twig->render('pages/admin/blog/edit.html.twig',
-                                ['article' => $articles[0],
-                                'messages' => $messageFlash]);
+        $this->showTwig('pages/admin/blog/edit.html.twig',
+                        ['article' => $articles[0],
+                        'messages' => $messageFlash]);
     }
 
     public function deleteArticle(string $articleId)

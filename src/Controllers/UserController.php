@@ -33,7 +33,7 @@ class UserController extends AbstractController
         }
 
         $messageFlash = $this->getFlashMessage();
-        echo $this->twig->display('pages/client/login.html.twig',
+        $this->showTwig('pages/client/login.html.twig',
         ['messages' => $messageFlash]);
     }
 
@@ -87,8 +87,8 @@ class UserController extends AbstractController
         }
 
         $messageFlash = $this->getFlashMessage();
-        echo $this->twig->display('pages/client/register.html.twig',
-                                ['messages' => $messageFlash]);
+        $this->showTwig('pages/client/register.html.twig',
+                        ['messages' => $messageFlash]);
     }
 
     public function logout()
@@ -103,9 +103,9 @@ class UserController extends AbstractController
         $comments = $commentRepository->getCommentsByUser();
         $messageFlash = $this->getFlashMessage();
 
-        echo $this->twig->render('pages/client/dashboard.html.twig',
-                                ['comments' => $comments,
-                                'messages' => $messageFlash]);
+        $this->showTwig('pages/client/dashboard.html.twig',
+                        ['comments' => $comments,
+                        'messages' => $messageFlash]);
     }
 
     public function updateUser($id)
@@ -135,9 +135,9 @@ class UserController extends AbstractController
         $comments = $commentRepository->getCommentsByUser();
         $messageFlash = $this->getFlashMessage();
 
-        echo $this->twig->render('pages/client/dashboard.html.twig',
-                                ['comments' => $comments,
-                                'messages' => $messageFlash]);
+        $this->showTwig('pages/client/dashboard.html.twig',
+                        ['comments' => $comments,
+                        'messages' => $messageFlash]);
     }
     
     public function resetPassword(string $userId)
@@ -169,9 +169,9 @@ class UserController extends AbstractController
         $comments = $commentRepository->getCommentsByUser();
         $messageFlash = $this->getFlashMessage();
 
-        echo $this->twig->render('pages/client/dashboard.html.twig',
-                                ['comments' => $comments,
-                                'messages' => $messageFlash]);
+        $this->showTwig('pages/client/dashboard.html.twig',
+                        ['comments' => $comments,
+                        'messages' => $messageFlash]);
     }
 
     public function deleteUser(string $userId)

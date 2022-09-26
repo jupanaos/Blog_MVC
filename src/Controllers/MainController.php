@@ -10,6 +10,6 @@ class MainController extends AbstractController
         $articleRepository = new ArticleRepository;
         $articles = $articleRepository->lastArticles();
         
-        echo $this->twig->render('pages/client/home.html.twig', ['articles' => $articles]);
+        $this->showTwig('pages/client/home.html.twig', ['articles' => $articles]);
     }
 }

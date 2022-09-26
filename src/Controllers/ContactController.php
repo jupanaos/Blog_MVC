@@ -32,7 +32,7 @@ class ContactController extends AbstractController
         }
         
         $messageFlash = $this->getFlashMessage();
-        echo $this->twig->display('pages/client/contact.html.twig',
+        $this->showTwig('pages/client/contact.html.twig',
                                 ['messages' => $messageFlash]);
     }
 
