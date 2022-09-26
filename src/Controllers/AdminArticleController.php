@@ -46,7 +46,7 @@ class AdminArticleController extends AdminController
                 }
 
             } else {
-                $this->addFlashMessage('error', 'Veuillez remplir tous les champs.');
+                $this->addFlashMessage('error', 'Veuillez remplir tous les champs de l\'article.');
             }
         }
 

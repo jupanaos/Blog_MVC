@@ -70,7 +70,6 @@ class ArticleRepository extends AbstractRepository
 
     public function getArticleWithComments($id)
     {
-
         $articles = [];
         $userRepository = new UserRepository;
         $commentRepository = new CommentRepository;
@@ -83,10 +82,6 @@ class ArticleRepository extends AbstractRepository
         foreach($items as $item) {
             $item['author'] = $userRepository->getUserByItem($item);
             $item['comments']= $commentRepository->getCommentsByArticle($item);
-
-            foreach ($item['comments'] as $comment) {
-                $comment->setAuthor($userRepository->getAuthorByComment($comment));
-            }
 
             $articles[] = $this->transform($item);
         }

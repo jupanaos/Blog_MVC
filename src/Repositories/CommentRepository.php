@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Repositories;
+use App\Repositories\UserRepository;
 use App\Models\Comment;
 use PDO;
 
@@ -61,10 +62,16 @@ class CommentRepository extends AbstractRepository
     public function getCommentsByArticle($item)
     {
         $comments = [];
+        $userRepository = new UserRepository;
         $commentsDB = $this->findBy(['article_id' => $item['id']]);
+
         foreach ($commentsDB as $commentDB) {
-            $comments[] = new Comment($commentDB);
+            $user = $userRepository->getAuthorByComment($commentDB);
+            $comment = new Comment($commentDB);
+            $comment->setAuthor($user);
+            $comments[] = $comment;
         }
+
         return $comments;
     }
 

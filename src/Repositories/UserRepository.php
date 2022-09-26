@@ -229,7 +229,8 @@ class UserRepository extends AbstractRepository
 
     public function getAuthorByComment($comment)
     {
-        $usersDB = $this->findBy(['id' => $comment->getAuthor()]);
+        $usersDB = $this->findBy(['id' => $comment['user_id']]);
+        
         foreach ($usersDB as $userDB) {
             $user = new User($userDB);
         }

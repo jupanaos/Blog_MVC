@@ -26,7 +26,7 @@ class ContactController extends AbstractController
                     $this->addFlashMessage('error', 'Erreur d\'envoi.');
                 }
             } else {
-                $this->addFlashMessage('error', 'Veuillez remplir tous les champs.');
+                $this->addFlashMessage('error', 'Veuillez remplir tous les champs de contact.');
             }
 
         }

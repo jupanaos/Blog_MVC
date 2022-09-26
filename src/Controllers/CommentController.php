@@ -21,7 +21,6 @@ class CommentController extends AbstractController
     {
         if (!empty($_POST)){
 
-            
             $comment = new Comment($_POST);
             
             $articleRepository = new ArticleRepository();
@@ -34,7 +33,7 @@ class CommentController extends AbstractController
             if ($this->commentRepository->add($comment)) {
                 $this->addFlashMessage('success', 'Votre commentaire a bien été envoyé, il sera publié après validation.');
             } else {
-                echo 'une erreur est survenue, veuillez réessayer';
+                echo 'Une erreur est survenue, veuillez réessayer';
             }
         } else {
             $this->addFlashMessage('error', 'Votre commentaire n\'a pas pu être envoyé. Veuillez réessayer.');

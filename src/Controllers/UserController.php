@@ -60,7 +60,7 @@ class UserController extends AbstractController
         if(!empty($_POST)){
 
             if (empty($registerData['last_name']) || empty($registerData['first_name']) || empty($registerData['username']) || empty($registerData['email']) || empty($registerData['password'])) {
-                $this->addFlashMessage('error', 'Merci de remplir tous les champs.');
+                $this->addFlashMessage('error', 'Merci de remplir tous les champs d\'inscription.');
             } else {
                 if (!empty($registerData['username'] ) && !$this->userRepository->usernameExists()){
                 
