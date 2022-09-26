@@ -14,10 +14,7 @@ class Application
 {
     public function run()
     {
-        // Delete trailing slash
-        // Get URL
         $uri = $_SERVER['REQUEST_URI'];
-        // var_dump($uri);
         
         // Check if URI is not empty and ends with a /
         if(!empty($uri) && $uri != '/' && $uri[-1] === "/"){
@@ -27,24 +24,6 @@ class Application
             http_response_code(301);
             header('Location: '.$uri);
         }
-
-        // // Manage URL params in array
-        // $params = explode('/', $_GET['']);
-        // $params = [];
-        // if(isset($_GET['p'])){
-        //      $params = explode('/', $_GET['p']);
-        //     //  var_dump($_GET);
-        //  }
-
-        // if($params[0] != ''){
-        //     // We have at least one param
-        //     // Get the controller name to instantiate
-        // //$controller = '\\App\\Controllers\\'.ucfirst(array_shift($params)).'Controller';
-        // $controller = "blabla";
-        // var_dump($controller);
-        // die;
-            
-        // }
 
         $articleController = new ArticleController;
         $commentController = new CommentController;
@@ -117,16 +96,10 @@ class Application
                     break;
                 default:
                 $errorController->showNotFound();
-
             }
-            
-        
         } else {
-            // No param so we call default controller (MainController)
             $controller = new MainController;
             $controller->index();
-            
         }
-
     }
 }

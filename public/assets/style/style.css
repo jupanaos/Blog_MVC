@@ -1,19 +1,18 @@
-/*Theme*/
+/* Theme */
 @import url('https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap');
-/* import font */
 
 /* variables*/
 :root {
-    --white: #FEF6F2;
+    --white: #fef6f2;
     --black: #212121;
-    --gray: #85888C;
-    --orange: #FF925E;
-    --dark-orange: #AE6339;
-    --violet: #7C86FF;
+    --gray: #85888c;
+    --orange: #ff925e;
+    --dark-orange: #ae6339;
+    --violet: #7c86ff;
     --accent-orange: #632100;
-    --red-alert: #BE0A06;
-    --blue-edit: #3590D5;
-    --green-success: #35902D;
+    --red-alert: #be0a06;
+    --blue-edit: #3590d5;
+    --green-success: #35902d;
 }
 
 /* Reset */
@@ -40,7 +39,7 @@ ul {
     list-style: none;
 }
 
-/*Background*/
+/* Background */
 .noise-background {
     position: fixed;
     top: -50%;
@@ -58,52 +57,52 @@ ul {
 
 @keyframes bg-animation {
     0% {
-        transform: translate(0, 0)
+        transform: translate(0, 0);
     }
 
     10% {
-        transform: translate(-5%, -5%)
+        transform: translate(-5%, -5%);
     }
 
     20% {
-        transform: translate(-10%, 5%)
+        transform: translate(-10%, 5%);
     }
 
     30% {
-        transform: translate(5%, -10%)
+        transform: translate(5%, -10%);
     }
 
     40% {
-        transform: translate(-5%, 15%)
+        transform: translate(-5%, 15%);
     }
 
     50% {
-        transform: translate(-10%, 5%)
+        transform: translate(-10%, 5%);
     }
 
     60% {
-        transform: translate(15%, 0)
+        transform: translate(15%, 0);
     }
 
     70% {
-        transform: translate(0, 10%)
+        transform: translate(0, 10%);
     }
 
     80% {
-        transform: translate(-15%, 0)
+        transform: translate(-15%, 0);
     }
 
     90% {
-        transform: translate(10%, 5%)
+        transform: translate(10%, 5%);
     }
 
     100% {
-        transform: translate(5%, 0)
+        transform: translate(5%, 0);
     }
 }
 
 
-/*Fonts*/
+/* Fonts */
 
 h1 {
     font-family: 'Alegreya', serif;
@@ -224,7 +223,7 @@ p.hero_text_title {
     border: 1px solid var(--blue-edit);
 }
 
-/*wrap content*/
+/* wrap content */
 .main__content {
     position: relative;
     top: 0;
@@ -268,7 +267,6 @@ p.hero_text_title {
     width: 100%;
     height: 100%;
     position: fixed;
-    /* background-color: var(--black); */
     overflow: hidden;
     top: 82px;
     max-height: 0;
@@ -354,9 +352,7 @@ p.hero_text_title {
 }
 
 
-
-
-/*Button*/
+/* Button */
 
 button {
     background-color: var(--orange);
@@ -407,7 +403,6 @@ html {
 
 /* Hero */
 .hero_image {
-    /* background-image: linear-gradient(rgba(8, 6, 5, 0.7), rgba(8, 6, 5, 0.7)), url("../assets/CG/colonnade-503218_1280.jpg"); */
     height: 60%;
     background-position: center;
     background-repeat: no-repeat;
@@ -434,13 +429,6 @@ footer {
     align-items: center;
 }
 
-/* .dark-bg{
-    background-color: var(--dark-orange);
-} */
-
-
-
-
 /*articles content*/
 .articles__wrapper {
     display: grid;
@@ -452,11 +440,6 @@ footer {
 .article {
     padding: 20px;
 }
-
-/* .article a {
-    color: var(--white);
-    text-decoration: none;
-} */
 
 .card-container {
     display: flex;
@@ -492,13 +475,10 @@ footer {
     font-size: 18px;
     text-transform: uppercase;
     font-weight: 700;
-    /* padding: 10px 15px 5px 0px; */
 }
 
 .card_title.sm {
-
     padding: 2px 15px 2px 15px;
-
 }
 
 .card_subtitle {
@@ -512,18 +492,11 @@ footer {
     padding: 2px 15px 5px 15px;
 }
 
-
-
-/*card blog*/
+/* card blog */
 .card-blog {
     width: 370px;
     margin: 25px 0;
     box-shadow: 0px 5px 20px var(--black);
-}
-
-.card-blog a {
-    color: var(--white);
-    text-decoration: none;
 }
 
 .card-blog_image img {
@@ -640,7 +613,7 @@ footer {
     padding: 10px 20px;
 }
 
-/*RS*/
+/* RS */
 .social-icon {
     padding: 20px 5px;
     width: 50px;
@@ -655,7 +628,7 @@ footer {
     opacity: 0.7;
 }
 
-/*section*/
+/* section */
 .section_container {
     display: flex;
     flex-direction: column;
@@ -680,7 +653,7 @@ img.section_image {
     align-items: center;
 }
 
-/*comments*/
+/* comments */
 
 .comments__container {
     width: 100%;
@@ -697,7 +670,7 @@ img.section_image {
     background-color: #2f3031;
 }
 
-/*form*/
+/* form */
 input,
 select,
 textarea {
@@ -711,7 +684,7 @@ textarea {
 }
 
 label {
-    font-family: "lato";
+    font-family: 'Source Sans Pro', sans-serif;
     text-transform: uppercase;
     font-size: 11px;
     color: var(--white);
@@ -729,7 +702,7 @@ label {
 
 /* Responsive */
 
-/*desktop*/
+/* desktop */
 @media (min-width:1024px) {
     .articles__wrapper {
         grid-template-columns: 3fr 2fr;
@@ -805,13 +778,6 @@ label {
         line-height: 66px;
     }
 
-
-    /* .card-container{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    } */
-
     .main-blog {
         max-width: 1360px;
         margin: 0 auto;
@@ -840,7 +806,6 @@ label {
     }
 
     .section_content_container {
-        /* align-items:flex-start; */
         padding: 0px 0px 0px 50px;
         width: 50%;
     }
