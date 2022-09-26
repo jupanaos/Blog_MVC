@@ -96,8 +96,6 @@ class Application
                         } elseif ($params[1] === "users") {
                             if ($params[3] === "manage") {
                                 $adminController->manageUser($params[2]);
-                            // } elseif ($params[3] === "manage-role"){
-                            //     $adminController->manageRole($params[2]);
                             } elseif ($params[3] === "delete"){
                                 $userController->deleteUser($params[2]);
                             }

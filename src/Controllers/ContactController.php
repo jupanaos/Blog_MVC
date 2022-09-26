@@ -9,24 +9,22 @@ class ContactController extends AbstractController
     public function contact()
     {
         $mailData = [];
-
         $mailData['names'] = Security::secureHTML($_POST['names']);
-        $mailData['email'] = Security::validateEmail($_POST['email']);
-        $mailData['subject'] = Security::secureHTML($_POST['subject']);
-        $mailData['message'] = Security::secureHTML($_POST['message']);
-
+        $mailData['contact-email'] = Security::validateEmail($_POST['contact-email']);
+        $mailData['contact-subject'] = Security::secureHTML($_POST['contact-subject']);
+        $mailData['contact-message'] = Security::secureHTML(nl2br($_POST['contact-message']));
+        
         $mailer = new Mailer;
 
         if(!empty($_POST)){
 
-            if(!empty($mailData['names']) && !empty($mailData['email']) && !empty($mailData['subject']) && !empty($mailData['message'])){
+
+            if(!empty($mailData['names']) && !empty($mailData['contact-email']) && !empty($mailData['contact-subject']) && !empty($mailData['contact-message'])){
                 if ($mailer->sendMail($mailData)){
                     $this->addFlashMessage('success', 'Message envoyé ! Nous vous répondrons dans les plus brefs délais.');
                 } else {
                     $this->addFlashMessage('error', 'Erreur d\'envoi.');
                 }
-            } elseif(empty($mailData['email'])) {
-                $this->addFlashMessage('error', 'Merci de remplir votre email.');
             } else {
                 $this->addFlashMessage('error', 'Veuillez remplir tous les champs.');
             }

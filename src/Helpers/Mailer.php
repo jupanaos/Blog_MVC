@@ -28,10 +28,10 @@ class Mailer extends PHPMailer {
         try {
             $this->setFrom('no-reply@julie-pariona.com', 'no-reply');
             $this->addAddress('jutest@test.com', 'Julie Pariona');
-            $this->addReplyTo($mailData['email'], $mailData['names']);
+            $this->addReplyTo($mailData['contact-email'], $mailData['names']);
             $this->isHTML(true);
-            $this->Subject = $mailData['subject'];
-            $this->Body = $mailData['message'];
+            $this->Subject = $mailData['contact-subject'];
+            $this->Body = $mailData['contact-message'];
             $this->send();
             return true;
         } catch (Exception $e) {
