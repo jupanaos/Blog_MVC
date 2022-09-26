@@ -15,7 +15,8 @@ class Validation
 
         if(!$uppercase || !$lowercase || !$number || !$specialChars || strlen($password) < 8) {
             return false;
-        } else {
+        }
+        else {
             return true;
         }
     }

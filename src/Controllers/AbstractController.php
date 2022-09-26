@@ -86,6 +86,7 @@ abstract class AbstractController
     }
 
     public function resetFlashMessage() {
-        unset($_SESSION['messagesFlash']);
+        $messagesFlash = $_SESSION['messagesFlash'];
+        unset($messagesFlash);
     }
 }
