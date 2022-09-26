@@ -25,7 +25,7 @@ class CommentController extends AbstractController
             $comment = new Comment($_POST);
             
             $articleRepository = new ArticleRepository();
-            $article = $articleRepository->getArticleById($articleId);
+            $articleRepository->getArticleById($articleId);
             
             $comment->setArticleId($articleId);
             $comment->setAuthor($_SESSION['user']);
@@ -39,6 +39,5 @@ class CommentController extends AbstractController
         } else {
             $this->addFlashMessage('error', 'Votre commentaire n\'a pas pu être envoyé. Veuillez réessayer.');
         }
-        // $this->redirectToPrevious();
     }
 }

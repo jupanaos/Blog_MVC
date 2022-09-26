@@ -25,12 +25,9 @@ class Database extends PDO
             $this->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
             $this->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            echo '<script>console.log("Connexion établie")</script>';
         }catch(PDOException $e){
             $error_db = 'Erreur base de données : ';
             $error_db .= $e->getMessage();
-
-            echo '<script>console.log("erreur db")</script>';
             exit();
         }
     }

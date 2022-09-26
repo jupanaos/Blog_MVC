@@ -26,7 +26,7 @@ class UserController extends AbstractController
             
             if (is_object($tryLogin)){
                 $this->addFlashMessage('success', 'Vous êtes bien connecté.');
-                // $this->redirectToIndex();
+                $this->redirectToIndex();
             } else {
                 $this->addFlashMessage('error', $tryLogin);
             }
@@ -67,7 +67,7 @@ class UserController extends AbstractController
                     if(Validation::checkPassword($registerData['password'])){
     
                         if($registerData['password'] === $registerData['password-confirm']){
-                            $user = new User($_POST);
+                            $user = new User($registerData);
                             $user->setPasswordHash($user->getPassword());
                             $user->setDefaultRole();
     
