@@ -50,7 +50,7 @@ abstract class AbstractController
     public function refreshPage()
     {
         $page = $_SERVER['HTTP_REFERER'];
-        $sec = "2";
+        $sec = "1.5";
         header("Refresh: $sec; url = $page");
     }
 

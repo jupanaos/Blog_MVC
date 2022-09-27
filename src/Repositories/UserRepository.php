@@ -109,6 +109,7 @@ class UserRepository extends AbstractRepository
             }
 
             if(password_verify($password, $user->getPassword())){
+                
                 self::userSession($user);
                 return $user;
             } else {

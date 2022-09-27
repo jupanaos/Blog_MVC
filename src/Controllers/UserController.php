@@ -26,7 +26,6 @@ class UserController extends AbstractController
             
             if (is_object($tryLogin)){
                 $this->addFlashMessage('success', 'Vous êtes bien connecté.');
-                // $this->refreshPage();
                 $this->redirectToDashboard();
             } else {
                 $this->addFlashMessage('error', $tryLogin);
@@ -130,6 +129,7 @@ class UserController extends AbstractController
             $this->userRepository->userSession($user);
 
             $this->addFlashMessage('success', 'Vos informations ont bien été mises à jour.');
+            $this->refreshPage();
         }
 
         $commentRepository = new CommentRepository;
@@ -149,6 +149,7 @@ class UserController extends AbstractController
 
         $userRepository = new UserRepository;
         $user = $this->userRepository->getUserById($userId);
+
         $sessionPassword = $_SESSION['user']->getPassword();
 
         if(password_verify($oldPassword, $sessionPassword)){
@@ -156,8 +157,8 @@ class UserController extends AbstractController
             if($newPassword === $newPasswordConfirm){
                 $user->setPasswordHash($newPassword);
                 $userRepository->updatePassword($user);
-                $this->logout();
                 $this->addFlashMessage('notice', 'Votre mot de passe a été mis à jour. Veuillez vous reconnecter.');
+                $this->logout();
             } else {
                 $this->addFlashMessage('error', 'Les nouveaux mots de passe ne sont pas les mêmes.');
             }
