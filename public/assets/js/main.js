@@ -16,3 +16,7 @@ function openTab(evt, dataType) {
     document.getElementById(dataType).style.display = "block";
     evt.currentTarget.className += " active";
 }
+
+setTimeout(() => {
+    document.getElementById("defaultOpen").click();
+    }, "300")

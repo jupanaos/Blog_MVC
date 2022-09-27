@@ -15,7 +15,8 @@
                 <img class="section_image" src="uploads/{{ article.picture }}.jpeg" alt="{{ article.title }} illustration">
             </div>
             <div class="section_content_container blog">
-                <p class="text-centered blog"><i>{{ article.createdAt|date('d/m/Y à H:i') }} par <span class="text__highlight"> {{ article.author.username }}</span></i>
+                <p class="text-centered blog">Par <span class="text__highlight"> {{ article.author.username }}</span></i>, le <i>{{ article.createdAt|date('d/m/Y à H:i') }}</i> <br>
+                (dernière modification le <i>{{ article.updatedAt|date('d/m/Y à H:i') }}</i>)
                 </p>
                 <p class="text-centered blog">{{ article.content }}
                 </p>
