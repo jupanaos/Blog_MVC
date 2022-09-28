@@ -9,7 +9,7 @@ class ArticleRepository extends AbstractRepository
     protected $table = 'article';
 
     /**
-     * Get and return all articles in article table
+     * Get and return all articles
      *
      * @return $articles
      */

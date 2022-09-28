@@ -72,6 +72,7 @@ h3 {
 h4 {
     font-family: 'Source Sans Pro', sans-serif;
     font-weight: 400;
+    color: var(--white);
 }
 
 h3.chapo {
@@ -325,6 +326,21 @@ button.edit:hover {
 button.delete:hover {
     background-color: var(--red-alert);
     color: var(--white);
+    cursor: pointer;
+}
+
+button.back {
+    background-color: transparent;
+    color: var(--white);
+    border: 1px solid var(--white);
+    display: flex;
+    margin: 20px auto;
+}
+
+button.back:hover {
+    background-color: var(--gray);
+    color: var(--black);
+    border: 1px solid var(--white);
     cursor: pointer;
 }
 
@@ -654,6 +670,10 @@ label {
 
     .hamb {
         display: none;
+    }
+
+    button.back {
+        margin: 20px 100px;
     }
     
     .articles__wrapper {

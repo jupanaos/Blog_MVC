@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<a href={{ "/?p=blog" }}><p>&#8617; Retour</p></a>
+<a href={{ "/?p=blog" }}><button class="back">&#8617; Retour</button></a>
     <section class="light-bg">
         <h2 class="light_title section_title blog">
             Blog
@@ -15,8 +15,7 @@
                 <img class="section_image" src="{{ article.picture }}" alt="{{ article.title }} illustration">
             </div>
             <div class="section_content_container blog">
-                <p class="text-centered blog">Par <span class="text__highlight"> {{ article.author.username }}</span></i>, le <i>{{ article.createdAt|date('d/m/Y à H:i') }}</i> <br>
-                (dernière modification le <i>{{ article.updatedAt|date('d/m/Y à H:i') }}</i>)
+                <p class="text-centered blog">Par <span class="text__highlight"> {{ article.author.username }}</span></i>, le <i>{{ article.createdAt|date('d/m/Y à H:i') }}</i>
                 </p>
                 <p class="text-centered blog">{{ article.content }}
                 </p>
