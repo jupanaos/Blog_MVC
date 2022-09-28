@@ -26,7 +26,7 @@ class ArticleController extends AbstractController
     {
         $articles = $this->articleRepository->getArticleWithComments($id);
 
-        $messageFlash = $this->getFlashMessage();
+        $messageFlash = $this->flashMessage->getFlashMessage();
         $this->showTwig('pages/client/article.html.twig',
                                 ['article' => $articles[0],
                                 'messages' => $messageFlash]);

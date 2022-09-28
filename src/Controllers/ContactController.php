@@ -21,17 +21,17 @@ class ContactController extends AbstractController
 
             if(!empty($mailData['names']) && !empty($mailData['contact-email']) && !empty($mailData['contact-subject']) && !empty($mailData['contact-message'])){
                 if ($mailer->sendMail($mailData)){
-                    $this->addFlashMessage('success', 'Message envoyé ! Nous vous répondrons dans les plus brefs délais.');
+                    $this->flashMessage->addFlashMessage('success', 'Message envoyé ! Nous vous répondrons dans les plus brefs délais.');
                 } else {
-                    $this->addFlashMessage('error', 'Erreur d\'envoi.');
+                    $this->flashMessage->addFlashMessage('error', 'Erreur d\'envoi.');
                 }
             } else {
-                $this->addFlashMessage('error', 'Veuillez remplir tous les champs de contact.');
+                $this->flashMessage->addFlashMessage('error', 'Veuillez remplir tous les champs de contact.');
             }
 
         }
         
-        $messageFlash = $this->getFlashMessage();
+        $messageFlash = $this->flashMessage->getFlashMessage();
         $this->showTwig('pages/client/contact.html.twig',
                                 ['messages' => $messageFlash]);
     }

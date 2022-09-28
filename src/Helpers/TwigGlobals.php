@@ -11,12 +11,6 @@ class TwigGlobals
         return "admin";
     }
 
-    // public function getAdmin()
-    // {
-    //     $adminRepository = new AdminRepository();
-    //     return $adminRepository->findAdmin($this->getAdminRole());
-    // }
-
     public function getSession()
     {
         return $_SESSION;

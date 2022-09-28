@@ -34,12 +34,12 @@ class CommentController extends AbstractController
             $comment->setDefaultStatus();
             
             if ($this->commentRepository->add($comment)) {
-                $this->addFlashMessage('success', 'Votre commentaire a bien été envoyé, il sera publié après validation.');
+                $this->flashMessage->addFlashMessage('success', 'Votre commentaire a bien été envoyé, il sera publié après validation.');
             } else {
-                $this->addFlashMessage('error', 'Une erreur est survenue, veuillez réessayer.');
+                $this->flashMessage->addFlashMessage('error', 'Une erreur est survenue, veuillez réessayer.');
             }
         } else {
-            $this->addFlashMessage('error', 'Votre commentaire n\'a pas pu être envoyé. Veuillez réessayer.');
+            $this->flashMessage->addFlashMessage('error', 'Votre commentaire n\'a pas pu être envoyé. Veuillez réessayer.');
         }
     }
 }

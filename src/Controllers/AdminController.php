@@ -46,13 +46,13 @@ class AdminController extends AbstractAdminController
             $user->setRole($_POST["role"]);
 
             if($userRepository->updateRole($user)) {
-                $this->addFlashMessage('success', 'Le rôle de cet utilisateur a bien été modifié.');
+                $this->flashMessage->addFlashMessage('success', 'Le rôle de cet utilisateur a bien été modifié.');
             } else {
-                $this->addFlashMessage('error', 'Le rôle de cet utilisateur n\'a pas pu être modifié, veuillez réessayer.');
+                $this->flashMessage->addFlashMessage('error', 'Le rôle de cet utilisateur n\'a pas pu être modifié, veuillez réessayer.');
             }
         }
 
-        $messageFlash = $this->getFlashMessage();
+        $messageFlash = $this->flashMessage->getFlashMessage();
         $this->showTwig('pages/admin/user/manage.html.twig',
                                 ['user' => $user,
                                 'messages' => $messageFlash]);
@@ -67,13 +67,13 @@ class AdminController extends AbstractAdminController
             $comment->setStatus($_POST["status"]);
 
             if ($commentRepository->updateStatus($comment)) {
-                $this->addFlashMessage('success', 'Le statut de ce commentaire a bien été mis à jour.');
+                $this->flashMessage->addFlashMessage('success', 'Le statut de ce commentaire a bien été mis à jour.');
             } else {
-                $this->addFlashMessage('error', 'Le statut de ce commentaire n\'a pas pu être modifié, veuillez réessayer.');
+                $this->flashMessage->addFlashMessage('error', 'Le statut de ce commentaire n\'a pas pu être modifié, veuillez réessayer.');
             }
         }
 
-        $messageFlash = $this->getFlashMessage();
+        $messageFlash = $this->flashMessage->getFlashMessage();
         $this->showTwig('pages/admin/comment/status.html.twig',
                                 ['comment' => $comment,
                                 'messages' => $messageFlash]);

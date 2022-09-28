@@ -25,14 +25,14 @@ class UserController extends AbstractController
             $tryLogin = $this->userRepository->tryLogin();
             
             if (is_object($tryLogin)){
-                $this->addFlashMessage('success', 'Vous êtes bien connecté.');
-                $this->redirectToDashboard();
+                $this->flashMessage->addFlashMessage('success', 'Vous êtes bien connecté.');
+                $this->redirect->redirectToDashboard();
             } else {
-                $this->addFlashMessage('error', $tryLogin);
+                $this->flashMessage->addFlashMessage('error', $tryLogin);
             }
         }
 
-        $messageFlash = $this->getFlashMessage();
+        $messageFlash = $this->flashMessage->getFlashMessage();
         $this->showTwig('pages/client/login.html.twig',
         ['messages' => $messageFlash]);
     }
@@ -60,7 +60,7 @@ class UserController extends AbstractController
         if(!empty($registerData['last_name'])){
 
             if (empty($registerData['last_name']) || empty($registerData['first_name']) || empty($registerData['username']) || empty($registerData['email']) || empty($registerData['password'])) {
-                $this->addFlashMessage('error', 'Merci de remplir tous les champs d\'inscription.');
+                $this->flashMessage->addFlashMessage('error', 'Merci de remplir tous les champs d\'inscription.');
             } else {
                 if (!empty($registerData['username'] ) && !$this->userRepository->usernameExists()){
                 
@@ -72,21 +72,21 @@ class UserController extends AbstractController
                             $user->setDefaultRole();
     
                             $this->userRepository->add($user);
-                            $this->addFlashMessage('success', 'Votre compte a bien été créé. Veuillez vous connecter.');
+                            $this->flashMessage->addFlashMessage('success', 'Votre compte a bien été créé. Veuillez vous connecter.');
                         } else {
-                            $this->addFlashMessage('error', 'Les mots de passe sont différents.');
+                            $this->flashMessage->addFlashMessage('error', 'Les mots de passe sont différents.');
                         }
                     } else {
-                        $this->addFlashMessage('error', 'Votre mot de passe doit contenir au moins 8 caractères dont une majuscule, un chiffre et un caractère spécial.');
+                        $this->flashMessage->addFlashMessage('error', 'Votre mot de passe doit contenir au moins 8 caractères dont une majuscule, un chiffre et un caractère spécial.');
                     }
     
                 }  elseif (Validation::checkUsername($registerData['username']) || $this->userRepository->usernameExists()){
-                    $this->addFlashMessage('error', 'Pseudo déjà pris ou invalide. Seuls les lettres et les chiffres sont acceptés.');
+                    $this->flashMessage->addFlashMessage('error', 'Pseudo déjà pris ou invalide. Seuls les lettres et les chiffres sont acceptés.');
                 }
             }
         }
 
-        $messageFlash = $this->getFlashMessage();
+        $messageFlash = $this->flashMessage->getFlashMessage();
         $this->showTwig('pages/client/register.html.twig',
                         ['messages' => $messageFlash]);
     }
@@ -94,14 +94,14 @@ class UserController extends AbstractController
     public function logout()
     {
         session_destroy();
-        $this->redirectToIndex();
+        $this->redirect->redirectToIndex();
     }
 
     public function showDashboard()
     {
         $commentRepository = new CommentRepository;
         $comments = $commentRepository->getCommentsByUser();
-        $messageFlash = $this->getFlashMessage();
+        $messageFlash = $this->flashMessage->getFlashMessage();
 
         $this->showTwig('pages/client/dashboard.html.twig',
                         ['comments' => $comments,
@@ -128,13 +128,13 @@ class UserController extends AbstractController
             $this->userRepository->update($user);
             $this->userRepository->userSession($user);
 
-            $this->addFlashMessage('success', 'Vos informations ont bien été mises à jour.');
-            $this->refreshPage();
+            $this->flashMessage->addFlashMessage('success', 'Vos informations ont bien été mises à jour.');
+            $this->redirect->refreshPage();
         }
 
         $commentRepository = new CommentRepository;
         $comments = $commentRepository->getCommentsByUser();
-        $messageFlash = $this->getFlashMessage();
+        $messageFlash = $this->flashMessage->getFlashMessage();
 
         $this->showTwig('pages/client/dashboard.html.twig',
                         ['comments' => $comments,
@@ -157,19 +157,19 @@ class UserController extends AbstractController
             if($newPassword === $newPasswordConfirm){
                 $user->setPasswordHash($newPassword);
                 $userRepository->updatePassword($user);
-                $this->addFlashMessage('notice', 'Votre mot de passe a été mis à jour. Veuillez vous reconnecter.');
+                $this->flashMessage->addFlashMessage('notice', 'Votre mot de passe a été mis à jour. Veuillez vous reconnecter.');
                 $this->logout();
             } else {
-                $this->addFlashMessage('error', 'Les nouveaux mots de passe ne sont pas les mêmes.');
+                $this->flashMessage->addFlashMessage('error', 'Les nouveaux mots de passe ne sont pas les mêmes.');
             }
 
         } else {
-            $this->addFlashMessage('error', 'L\'ancien mot de passe ne correspond pas à ce compte.');
+            $this->flashMessage->addFlashMessage('error', 'L\'ancien mot de passe ne correspond pas à ce compte.');
         }
 
         $commentRepository = new CommentRepository;
         $comments = $commentRepository->getCommentsByUser();
-        $messageFlash = $this->getFlashMessage();
+        $messageFlash = $this->flashMessage->getFlashMessage();
 
         $this->showTwig('pages/client/dashboard.html.twig',
                         ['comments' => $comments,
@@ -179,7 +179,7 @@ class UserController extends AbstractController
     public function deleteUser(string $userId)
     {
         $this->userRepository->delete($userId);
-        $this->redirectToPrevious();
+        $this->redirect->redirectToPrevious();
     }
 
 }

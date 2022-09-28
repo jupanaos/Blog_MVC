@@ -36,22 +36,22 @@ class AdminArticleController extends AdminController
                     if ($image->upload()) {
                         $article->setPicture($image->getFullPath());
                     } else {
-                        $this->addFlashMessage('error', $image->getError());
+                        $this->flashMessage->addFlashMessage('error', $image->getError());
                     }
                 }
 
                 if ($this->articleRepository->add($article)) {
-                    $this->addFlashMessage('success', 'L\'article a bien été ajouté !');
+                    $this->flashMessage->addFlashMessage('success', 'L\'article a bien été ajouté !');
                 } else {
-                    $this->addFlashMessage('error', 'L\'article n\'a pas pu être ajouté.');
+                    $this->flashMessage->addFlashMessage('error', 'L\'article n\'a pas pu être ajouté.');
                 }
 
             } else {
-                $this->addFlashMessage('error', 'Veuillez remplir tous les champs de l\'article.');
+                $this->flashMessage->addFlashMessage('error', 'Veuillez remplir tous les champs de l\'article.');
             }
         }
 
-        $messageFlash = $this->getFlashMessage();
+        $messageFlash = $this->flashMessage->getFlashMessage();
         $this->showTwig('pages/admin/blog/add.html.twig',
                         ['messages' => $messageFlash]);
     }
@@ -69,13 +69,13 @@ class AdminArticleController extends AdminController
             $article->setAuthor($_SESSION['user']);
 
             if ($this->articleRepository->edit($article)) {
-                $this->addFlashMessage('success', 'L\'article a bien été modifié !');
+                $this->flashMessage->addFlashMessage('success', 'L\'article a bien été modifié !');
             } else {
-                $this->addFlashMessage('error', 'L\'article n\'a pas pu être modifié, veuillez réessayer.');
+                $this->flashMessage->addFlashMessage('error', 'L\'article n\'a pas pu être modifié, veuillez réessayer.');
             }
         }
 
-        $messageFlash = $this->getFlashMessage();
+        $messageFlash = $this->flashMessage->getFlashMessage();
         $this->showTwig('pages/admin/blog/edit.html.twig',
                         ['article' => $articles[0],
                         'messages' => $messageFlash]);
@@ -84,10 +84,10 @@ class AdminArticleController extends AdminController
     public function deleteArticle(string $articleId)
     {
         if ($this->articleRepository->delete($articleId)) {
-            $this->addFlashMessage('success', 'L\'article a bien été supprimé');
+            $this->flashMessage->addFlashMessage('success', 'L\'article a bien été supprimé');
         } else {
-            $this->addFlashMessage('error', 'L\'article n\'a pas pu être supprimé, veuillez réessayer.');
+            $this->flashMessage->addFlashMessage('error', 'L\'article n\'a pas pu être supprimé, veuillez réessayer.');
         }
-        $this->redirectToPrevious();
+        $this->redirect->redirectToPrevious();
     }
 }
