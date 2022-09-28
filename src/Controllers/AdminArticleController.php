@@ -29,11 +29,12 @@ class AdminArticleController extends AdminController
                 $article->setAuthor($_SESSION['user']);
 
                 $image->setLocation('uploads')
-                        ->setMime(['jpeg']);
+                        ->setMime(['jpeg', 'png'])
+                        ->setSize(100, 2000000);
 
                 if ($image["picture"]) {
                     if ($image->upload()) {
-                        $article->setPicture($image->getName());
+                        $article->setPicture($image->getFullPath());
                     } else {
                         $this->addFlashMessage('error', $image->getError());
                     }

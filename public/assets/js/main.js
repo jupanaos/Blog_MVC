@@ -2,13 +2,13 @@ function openTab(evt, dataType) {
 
     // Get all elements with class="tabcontent" and hide them
     let tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
+    for (let i = 0; i < tabcontent.length; i++) {
         tabcontent[i].style.display = "none";
     }
 
     // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
+    let tablinks = document.getElementsByClassName("tablinks");
+    for (let i = 0; i < tablinks.length; i++) {
         tablinks[i].className = tablinks[i].className.replace(" active", "");
     }
 
@@ -19,4 +19,4 @@ function openTab(evt, dataType) {
 
 setTimeout(() => {
     document.getElementById("defaultOpen").click();
-    }, "300")
+}, "300")

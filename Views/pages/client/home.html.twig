@@ -27,7 +27,7 @@
                     <a href="{{ "/?p=blog/article/"~article.id }}">
                         <article class="article{{ loop.first ? ' article--main' : '' }}">
                             <div class="article__image">
-                                <img src="uploads/{{ article.picture }}.jpeg" alt="{{ article.title }} illustration">
+                                <img src="{{ article.picture }}" alt="{{ article.title }} illustration">
                             </div>
                             <div class="article__content">
                                 <div class="article__date">{{ article.createdAt|date('d/m/Y à H:i') }}</div>
