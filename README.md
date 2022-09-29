@@ -26,5 +26,9 @@ You can import the database structure named `database-structure.sql` from the ma
 ## 🔧 Configuration
 Create your own `.env` in the main folder `/`. You can follow the `.env.example` file for this.
 
+## 🔑 First login
+◻️ Username : `user`<br>
+◻️ Password : `user`
+
 ## ✉️ Contact
 Julie Pariona - https://github.com/jupanaos/
