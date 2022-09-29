@@ -228,6 +228,12 @@ class UserRepository extends AbstractRepository
         return $user;
     }
 
+    /**
+     * Get author (User) associated with their comments
+     *
+     * @param [array] $comment
+     * @return $user
+     */
     public function getAuthorByComment($comment)
     {
         $usersDB = $this->findBy(['id' => $comment['user_id']]);

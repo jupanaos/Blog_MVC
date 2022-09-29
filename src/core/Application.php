@@ -89,7 +89,7 @@ class Application
                     } elseif (key_exists('user', $_SESSION)) {
                         $errorController->showError();
                     } else {
-                        $userController->redirectToLogin();
+                        $userController->redirect->redirectToLogin();
                     }
                     break;
                 case "contact":
