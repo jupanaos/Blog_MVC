@@ -21,7 +21,7 @@ First things first here is a list of the packages used in this project :<br>
 
 ## ⚙️ Database
 Create your database. Be careful to name it in **UTF-8**.<br>
-You can import the database structure named `database.sql` from the main folder `/` and insert your own data.
+You can import the database structure named `database-structure.sql` from the main folder `/` and insert your own data.
 
 ## 🔧 Configuration
 Create your own `.env` in the main folder `/`. You can follow the `.env.example` file for this.
