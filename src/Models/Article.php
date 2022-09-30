@@ -65,21 +65,6 @@ class Article extends AbstractModel
         $this->status = $status;
     }
 
-    // public function setDefaultStatus()
-    // {
-    //     $this->setStatus(self::STATUS_UNPUBLISHED);
-    // }
-
-    // public function getUserId()
-    // {
-    //     return $this->userId;
-    // }
-
-    // public function setUserId($userId)
-    // {
-    //     $this->userId = $userId;
-    // }
-
     public function getAuthor()
     {
         return $this->author;

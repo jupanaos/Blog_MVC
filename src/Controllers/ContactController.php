@@ -17,8 +17,6 @@ class ContactController extends AbstractController
         $mailer = new Mailer;
 
         if(!empty($_POST)){
-
-
             if(!empty($mailData['names']) && !empty($mailData['contact-email']) && !empty($mailData['contact-subject']) && !empty($mailData['contact-message'])){
                 if ($mailer->sendMail($mailData)){
                     $this->flashMessage->addFlashMessage('success', 'Message envoyé ! Nous vous répondrons dans les plus brefs délais.');
@@ -28,7 +26,6 @@ class ContactController extends AbstractController
             } else {
                 $this->flashMessage->addFlashMessage('error', 'Veuillez remplir tous les champs de contact.');
             }
-
         }
         
         $messageFlash = $this->flashMessage->getFlashMessage();

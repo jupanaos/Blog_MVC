@@ -20,5 +20,4 @@ class TwigGlobals
     {
         return $_SESSION['id'];
     }
-
 }

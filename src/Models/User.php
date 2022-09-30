@@ -9,15 +9,12 @@ class User extends AbstractModel
     public const ROLE_ADMIN = 'admin';
     public const ROLE_USER = 'user';
 
-    // $user->getRoles() === User::ROLE_ADMIN
-
     private $lastName;
     private $firstName;
     private $username;
     private $email;
     private $password;
     private $role;
-    // private array $comments = [];
 
     public function isAdmin()
     {
@@ -92,7 +89,6 @@ class User extends AbstractModel
     public function setPassword($password)
     {
         $this->password = $password;
-        // $this->setPasswordHash($this->getPassword());
     }
 
     
