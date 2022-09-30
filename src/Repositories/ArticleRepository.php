@@ -134,7 +134,6 @@ class ArticleRepository extends AbstractRepository
     {
         $title = $article->getTitle();
         $content = $article->getContent();
-        // $picture = $article->getPicture();
         $slug = $article->getSlug();
         $status = $article->getStatus();
         $userId = $article->getAuthor()->getId();
@@ -151,7 +150,6 @@ class ArticleRepository extends AbstractRepository
         $stmt->bindValue(":title", $title, PDO::PARAM_STR);
         $stmt->bindValue(":content", $content, PDO::PARAM_STR);
         $stmt->bindValue(":slug", $slug, PDO::PARAM_STR);
-        // $stmt->bindValue(":picture", $picture, PDO::PARAM_STR);
         $stmt->bindValue(":status", $status, PDO::PARAM_STR);
         $stmt->bindValue(":userId", $userId, PDO::PARAM_INT);
         $stmt->bindValue(":id", $id, PDO::PARAM_INT);

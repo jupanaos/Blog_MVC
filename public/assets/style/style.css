@@ -519,7 +519,12 @@ tr button {
     border: none;
 }
 
-/*FOOTER*/
+/* IMAGE CRUD */
+.image_edit {
+    max-width: 400px;
+}
+
+/* FOOTER */
 
 footer {
     text-align: center;
