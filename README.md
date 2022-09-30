@@ -1,4 +1,4 @@
-# 🟣 My first personal blog
+# 🟣 Personal blog
 ## A simple Vanilla PHP project using a MVC pattern
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/caca11f4d9e64367a4974ca210ac092b)](https://www.codacy.com/gh/jupanaos/Blog_MVC/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=jupanaos/Blog_MVC&amp;utm_campaign=Badge_Grade)
 
