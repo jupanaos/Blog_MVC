@@ -59,6 +59,7 @@ h2 {
 
 .section_title {
     text-align: center;
+    padding-bottom: 20px;
 }
 
 h3 {
@@ -204,7 +205,7 @@ p.hero_text_title {
     overflow: hidden;
     top: 82px;
     max-height: 0;
-    transition: max-height .5s ease-out;
+    transition: max-height 0.5s ease-out;
 }
 
 .menu a {
@@ -246,7 +247,7 @@ p.hero_text_title {
     display: block;
     height: 100%;
     position: absolute;
-    transition: all .2s ease-out;
+    transition: all 0.2s ease-out;
     width: 100%;
 }
 
@@ -263,8 +264,6 @@ p.hero_text_title {
 }
 
 /* Hide checkbox */
-
-
 /* Toggle menu icon */
 .side-menu:checked~nav {
     max-height: 100%;
@@ -283,7 +282,6 @@ p.hero_text_title {
     transform: rotate(45deg);
     top: 0;
 }
-
 
 /* Button */
 
@@ -348,7 +346,6 @@ html {
     scroll-behavior: smooth;
 }
 
-
 /* Hero */
 .hero_image {
     height: 60%;
@@ -366,11 +363,10 @@ html {
     color: var(--white);
 }
 
-
 /* Section */
 section,
 footer {
-    padding: 30px 0px 30px 0px;
+    padding: 30px 0 30px 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -442,7 +438,7 @@ footer {
 .card-blog {
     width: 370px;
     margin: 25px 0;
-    box-shadow: 0px 5px 20px var(--black);
+    box-shadow: 0 5px 20px var(--black);
 }
 
 .card-blog_image img {
@@ -451,9 +447,7 @@ footer {
     height: 200px;
 }
 
-
 /* CRUD ADMIN */
-
 .crud-page {
     max-width: 1340px;
     margin: 0 auto;
@@ -508,7 +502,6 @@ table tr {
     border-radius: 8px;
 }
 
-
 .table-crud--articles tr {
     grid-template-columns: 1fr 1fr 1fr 240px;
 }
@@ -518,7 +511,6 @@ table tr {
     grid-template-columns: 1fr 1fr 1fr 1fr 240px;
 }
 
-
 tr button {
     margin: 0;
 }
@@ -526,8 +518,6 @@ tr button {
 .table_headers {
     border: none;
 }
-
-
 
 /*FOOTER*/
 
@@ -645,7 +635,6 @@ label {
     width: 100%;
 }
 
-
 /* Responsive */
 
 /* desktop */
@@ -709,7 +698,6 @@ label {
     }
 }
 
-
 @media (min-width: 768px) {
     /* Background */
 .noise-background {
@@ -722,8 +710,8 @@ label {
     height: 200vh;
     background: transparent url('http://assets.iceable.com/img/noise-transparent.png') repeat 0 0;
     background-repeat: repeat;
-    animation: bg-animation .2s infinite;
-    opacity: .9;
+    animation: bg-animation 0.2s infinite;
+    opacity: 0.9;
     visibility: visible;
 }
 
@@ -773,13 +761,9 @@ label {
     }
 }
 
-    
-
     h1 {
         font-size: 66px;
     }
-
-
 
     .hero_image {
         min-height: 85vh;
@@ -805,7 +789,6 @@ label {
         width: 400px;
     }
 
-
     .section_image_container {
         width: 100%;
 
@@ -818,13 +801,13 @@ label {
     }
 
     .section_content_container {
-        padding: 0px 0px 0px 50px;
+        padding: 0 0 0 50px;
         width: 50%;
     }
 
     .section_content_container.blog {
         align-items: flex-start;
-        padding: 40px 0px 0px 0px;
+        padding: 40px 0 0 0;
     }
 
     .section_content_container.contact {
@@ -834,7 +817,7 @@ label {
 
     .text-centered {
         text-align: left;
-        padding: 0px 0px 15px 20px;
+        padding: 0 0 15px 20px;
     }
 
     .text-centered.blog {

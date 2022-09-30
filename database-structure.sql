@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 -- Structure de la table `article`
 --
 
-CREATE TABLE article (
+CREATE TABLE `article` (
     `id` int(11) NOT NULL,
     `title` varchar(100) NOT NULL,
     `slug` varchar(150) NOT NULL,
@@ -46,7 +46,7 @@ CREATE TABLE article (
 -- Structure de la table `comment`
 --
 
-CREATE TABLE comment (
+CREATE TABLE `comment` (
     `id` int(11) NOT NULL,
     `user_id` int(11) NOT NULL,
     `article_id` int(11) NOT NULL,
@@ -62,7 +62,7 @@ CREATE TABLE comment (
 -- Structure de la table `user`
 --
 
-CREATE TABLE user (
+CREATE TABLE `user` (
     `id` int(11) NOT NULL,
     `last_name` varchar(100) NOT NULL,
     `first_name` varchar(100) NOT NULL,
@@ -81,14 +81,14 @@ CREATE TABLE user (
 --
 -- Index pour la table `article`
 --
-ALTER TABLE article
+ALTER TABLE `article`
     ADD PRIMARY KEY (`id`),
     ADD KEY `FK_userid_02` (`user_id`);
 
 --
 -- Index pour la table `comment`
 --
-ALTER TABLE comment
+ALTER TABLE `comment`
     ADD PRIMARY KEY (`id`),
     ADD KEY `FK_userid_01` (`user_id`),
     ADD KEY `FK_articleid_01` (`article_id`);
@@ -96,7 +96,7 @@ ALTER TABLE comment
 --
 -- Index pour la table `user`
 --
-ALTER TABLE user
+ALTER TABLE `user`
     ADD PRIMARY KEY (`id`),
     ADD UNIQUE KEY `email` (`email`),
     ADD UNIQUE KEY `username` (`username`) USING BTREE;
@@ -108,19 +108,19 @@ ALTER TABLE user
 --
 -- AUTO_INCREMENT pour la table `article`
 --
-ALTER TABLE article
+ALTER TABLE `article`
     MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `comment`
 --
-ALTER TABLE comment
+ALTER TABLE `comment`
     MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `user`
 --
-ALTER TABLE user
+ALTER TABLE `user`
     MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -130,13 +130,13 @@ ALTER TABLE user
 --
 -- Contraintes pour la table `article`
 --
-ALTER TABLE article
+ALTER TABLE `article`
     ADD CONSTRAINT `FK_userid_02` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 
 --
 -- Contraintes pour la table `comment`
 --
-ALTER TABLE comment
+ALTER TABLE `comment`
     ADD CONSTRAINT `FK_userid_01` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 COMMIT;
 
