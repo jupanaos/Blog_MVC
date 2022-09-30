@@ -9,6 +9,8 @@ use App\Controllers\ArticleController;
 use App\Controllers\AdminArticleController;
 use App\Controllers\CommentController;
 use App\Controllers\ErrorController;
+use App\Controllers\AdminCommentController;
+use App\Controllers\AdminUserController;
 
 class Application
 {
@@ -32,6 +34,8 @@ class Application
         $adminController = new AdminController;
         $contactController = new ContactController;
         $adminArticleController = new AdminArticleController;
+        $adminCommentController = new AdminCommentController;
+        $adminUserController = new AdminUserController;
         $errorController = new ErrorController;
 
         $params = explode("/", filter_var($_GET['p']), FILTER_SANITIZE_URL);
@@ -77,13 +81,13 @@ class Application
                             }
                         } elseif ($params[1] === "users") {
                             if ($params[3] === "manage") {
-                                $adminController->manageUser($params[2]);
+                                $adminUserController->manageUser($params[2]);
                             } elseif ($params[3] === "delete"){
                                 $userController->deleteUser($params[2]);
                             }
                         } elseif ($params[1] === "comments") {
                             if ($params[3] === "manage") {
-                                $adminController->manageComment($params[2]);
+                                $adminCommentController->manageComment($params[2]);
                             }
                         }
                     } elseif (key_exists('user', $_SESSION)) {
