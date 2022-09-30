@@ -554,6 +554,10 @@ footer {
     padding: 10px 20px;
 }
 
+.footer_column-image {
+    max-width: 110px;
+}
+
 /* RS */
 .social-icon {
     padding: 20px 5px;
