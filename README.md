@@ -4,7 +4,13 @@
 
 ## 🧰 Getting started
 ### Prerequisites
-First things first here is a list of the packages used in this project :<br>
+First things first, for this project you will need at least : <br>
+- [ ] PHP 7.4
+- [ ] MySQL 5.7
+- [ ] Apache 2.2
+> **NOTE** : using free MAMP is an easy solution.
+
+And here is a list of the packages used in this project :<br>
 🔸 Twig<br>
 🔸 PHPMailer<br>
 🔸 Bulletproof<br>
@@ -14,7 +20,7 @@ First things first here is a list of the packages used in this project :<br>
    ```sh
    git clone https://github.com/jupanaos/Blog_MVC.git
    ```
-2. Install composer packages
+2. Install packages with composer
    ```sh
    composer install
    ```
