@@ -9,17 +9,26 @@ class Database extends PDO
     //unique class instance
     private static $instance;
 
-    private const DB_HOST = 'localhost';
-    private const DB_NAME = 'juliepar_blog';
-    private const DB_USER = 'root';
-    private const DB_PASSWORD = 'root';
+    protected $dotenv;
+    private $DB_HOST;
+    private $DB_NAME;
+    private $DB_USER ;
+    private $DB_PASSWORD;
 
     public function __construct()
-    {
-        $_dsn = 'mysql:dbname='. self::DB_NAME. ';host='. self::DB_HOST;
+    { 
+        $dotenv = \Dotenv\Dotenv::createImmutable(ROOT);
+        $dotenv->load();
+
+        $this->DB_HOST = $_ENV['DB_HOST'];
+        $this->DB_NAME = $_ENV['DB_NAME'];
+        $this->DB_USER = $_ENV['DB_USER'];
+        $this->DB_PASSWORD = $_ENV['DB_PASSWORD'];
+
+        $_dsn = 'mysql:dbname='. $this->DB_NAME. ';host='. $this->DB_HOST;
 
         try{
-            parent::__construct($_dsn, self::DB_USER, self::DB_PASSWORD);
+            parent::__construct($_dsn, $this->DB_USER, $this->DB_PASSWORD);
             
             $this->setAttribute(PDO::MYSQL_ATTR_INIT_COMMAND, 'SET NAMES utf8');
             $this->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
