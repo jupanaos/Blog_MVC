@@ -107,7 +107,8 @@ p {
     color: var(--white);
     font-family: 'Source Sans Pro', sans-serif;
     font-weight: 300;
-    font-size: 15px;
+    font-size: 16px;
+    line-height: 25px;
 }
 
 p.hero_text_title {
@@ -532,12 +533,14 @@ footer {
 }
 
 .footer_column {
-    padding: 10px;
+    padding: 10px 0 40px 0;
+    width: 400px;
 }
 
 .footer-column_RS {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
+    padding: 10px 20px;
 }
 
 .footer-column_logo {
@@ -705,6 +708,11 @@ label {
         width: 200px;
 
     }
+
+    .footer-container {
+        display: flex;
+        flex-direction: row;
+    }
 }
 
 @media (min-width: 768px) {
@@ -848,11 +856,9 @@ label {
     }
 
     .footer {
-        flex-direction: row;
         justify-content: space-around;
         margin: auto;
         padding: 30px 20%;
-        align-items: baseline;
     }
 
     .footer_column:first-child {

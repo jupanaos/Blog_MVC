@@ -8,21 +8,19 @@
         <h1 class="hero_text_title">JULIE PARIONA OSCO</h1>
         <h3 class="hero_text_title">Développeuse web junior</h3>
         <p class="hero_text_title">Paris, France</p>
-        <a href="uploads/CV-JPARIONA-DEV-2022.pdf"><button>Mon CV</button></a>
+        <a href="assets/img/CV-JPARIONA-DEV-2022.pdf"><button>Mon CV</button></a>
         </div>
     </div> 
 
         <!-- Main content -->
     <main>
         <section class="articles">
-            <h2>Le blog</h2>
+            <h2>Derniers articles</h2>
             <div class="articles__wrapper">
                 {% for article in articles %}
                     {% if loop.first or loop.index == 2 %}
                         <div class="{{ loop.first ? ' articles__wrapper--main' : 'articles__wrapper--secondary' }}">
                     {% endif %}
-
-                    {# {% include 'pages/article.html.twig' with {article: article, is_main: loop.first} %} #}
 
                     <a href="{{ "/?p=blog/article/"~article.id }}">
                         <article class="article{{ loop.first ? ' article--main' : '' }}">
