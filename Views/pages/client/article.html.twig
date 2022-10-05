@@ -12,7 +12,7 @@
         </h3>
         <div class="section_container blog">
             <div class="section_image_container blog">
-                <img class="section_image" src="{{ article.picture }}" alt="{{ article.title }} illustration">
+                <img class="section_image" src="/{{ article.picture }}" alt="{{ article.title }} illustration">
             </div>
             <div class="section_content_container blog">
                 <p class="text-centered blog">Par <span class="text__highlight"> {{ article.author.username }}</span></i>, le <i>{{ article.createdAt|date('d/m/Y à H:i') }}</i>
