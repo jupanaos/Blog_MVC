@@ -27,7 +27,7 @@ class Application
             header('Location: '.$uri);
         }
 
-        $controller = new MainController;
+        $controller = new MainController();
         $articleController = new ArticleController;
         $commentController = new CommentController;
         $userController = new UserController;
@@ -40,7 +40,7 @@ class Application
 
         $params = explode("/", filter_var($_GET['p']), FILTER_SANITIZE_URL);
         
-        if(isset($_GET['p'])){
+        if(!empty($_GET['p'])){
             switch($params[0]){
                 case "blog":
                     if(empty($params[1])){

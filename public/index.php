@@ -1,5 +1,5 @@
 <?php
-use App\core\Application;
+use App\Core\Application;
 
 define('ROOT', dirname(__DIR__));
 define('VIEWS_DIR', realpath(dirname(__DIR__)) . '/Views');

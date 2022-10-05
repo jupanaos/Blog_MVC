@@ -71,8 +71,8 @@ class ArticleRepository extends AbstractRepository
     public function getArticleWithComments($id)
     {
         $articles = [];
-        $userRepository = new UserRepository;
-        $commentRepository = new CommentRepository;
+        $userRepository = new UserRepository();
+        $commentRepository = new CommentRepository();
 
         $query = $this->prepare('SELECT * FROM article WHERE id =' . '"'.$id.'"');
         $query->execute();

@@ -7,7 +7,7 @@ class MainController extends AbstractController
 {
     public function index()
     {
-        $articleRepository = new ArticleRepository;
+        $articleRepository = new ArticleRepository();
         $articles = $articleRepository->lastArticles();
         
         $this->showTwig('pages/client/home.html.twig', ['articles' => $articles]);
