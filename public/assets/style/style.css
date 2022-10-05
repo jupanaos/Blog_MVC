@@ -328,12 +328,16 @@ button.delete:hover {
     cursor: pointer;
 }
 
+.back-button {
+    margin: 20px auto;
+    width: fit-content;
+}
+
 button.back {
     background-color: transparent;
     color: var(--white);
     border: 1px solid var(--white);
     display: flex;
-    margin: 20px auto;
 }
 
 button.back:hover {
@@ -674,7 +678,7 @@ label {
         display: none;
     }
 
-    button.back {
+    .back-button {
         margin: 20px 100px;
     }
     
