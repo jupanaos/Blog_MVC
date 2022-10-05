@@ -18,7 +18,7 @@
     <div id="infos" class="tabcontent">
         <div class="section_container">
             <div class="form register">
-                <form method="post" action="?p=account/{{session.user.id}}/update-informations" id="register-form">
+                <form method="post" action="/account/{{session.user.id}}/update-informations" id="register-form">
                     <label for="last_name">Nom</label><br>
                     <input type="text" value="{{ session.user.lastname }}" id="last_name" name="last_name" placeholder="Nom"><br>
                     <label for="first_name">Prénom</label><br>
@@ -28,7 +28,7 @@
                     <label for="email">Email</label><br>
                     <input type="email" value="{{ session.user.email }}" id="email" name="email" placeholder="Email "><br>
                     <br>
-                    <a href="?p=account/{{session.user.id}}/update-informations"><button class="button-form edit" type="submit">Modifier mes informations</button></a>
+                    <a href="/account/{{session.user.id}}/update-informations"><button class="button-form edit" type="submit">Modifier mes informations</button></a>
                     
                 </form>
             </div>
@@ -38,7 +38,7 @@
     <div id="password" class="tabcontent">
         <div class="section_container">
             <div class="form register">
-                <form method="post" action="?p=account/{{session.user.id}}/password-reset" id="edit-password">
+                <form method="post" action="/account/{{session.user.id}}/password-reset" id="edit-password">
                     <label for="old-password">Mot de passe actuel</label><br>
                     <input type="password" name="old-password" id="old-password" placeholder="Mot de passe actuel">
                     <label for="new-password">Nouveau mot de passe</label><br>
@@ -46,7 +46,7 @@
                     <label for="new-password-confirm">Confirmer le nouveau mot de passe</label><br>
                     <input type="password" name="new-password-confirm" id="new-password-confirm" placeholder="Confirmer le nouveau mot de passe">
                     <br>
-                    <a href="?p=account/{{session.user.id}}/password-reset"><button class="button-form edit" type="submit">Changer mon mot de passe</button></a>
+                    <a href="/account/{{session.user.id}}/password-reset"><button class="button-form edit" type="submit">Changer mon mot de passe</button></a>
                 </form>
             </div>
         </div>

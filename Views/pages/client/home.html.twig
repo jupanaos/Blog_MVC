@@ -8,7 +8,7 @@
         <h1 class="hero_text_title">JULIE PARIONA OSCO</h1>
         <h3 class="hero_text_title">Développeuse web junior</h3>
         <p class="hero_text_title">Paris, France</p>
-        <a href="assets/img/CV-JPARIONA-DEV-2022.pdf"><button>Mon CV</button></a>
+        <a href="/assets/img/CV-JPARIONA-DEV-2022.pdf"><button>Mon CV</button></a>
         </div>
     </div> 
 
@@ -22,7 +22,7 @@
                         <div class="{{ loop.first ? ' articles__wrapper--main' : 'articles__wrapper--secondary' }}">
                     {% endif %}
 
-                    <a href="{{ "/?p=blog/article/"~article.id }}">
+                    <a href="{{ "/blog/article/"~article.id }}">
                         <article class="article{{ loop.first ? ' article--main' : '' }}">
                             <div class="article__image">
                                 <img src="{{ article.picture }}" alt="{{ article.title }} illustration">
@@ -39,7 +39,7 @@
                     {% endif %}
                 {% endfor %}
             </div>
-            <a href="{{ "/?p=blog" }}">
+            <a href="{{ "/blog" }}">
             <button type="button">Tout le blog</button>
             </a>
         </section>

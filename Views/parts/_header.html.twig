@@ -1,7 +1,7 @@
 <header class="header">
     <!--LOGO-->
     <div class='logo-container'>
-        <a href="https://github.com/jupanaos"><img class="header_logo" src="assets/img/logo.png" alt="logo"></a>
+        <a href="https://github.com/jupanaos"><img class="header_logo" src="/assets/img/logo.png" alt="logo"></a>
     </div>
 
     <!--HAMBURGER ICON-->
@@ -12,17 +12,16 @@
     <nav class="nav">
         <ul class="menu">
             <li><a href="/">Accueil</a></li>
-            <li><a href="{{ "/?p=blog" }}">Le blog</a></li>
-            <li><a href="{{ "/?p=contact" }}">Contact</a></li>
+            <li><a href="{{ "/blog" }}">Le blog</a></li>
+            <li><a href="{{ "/contact" }}">Contact</a></li>
             {% if session.logged == false %}
-                <li><a href="{{ "/?p=account" }}">Connexion</a></li>
-                    {# <li><a href="{{ "/?p=admin/dashboard" }}">Administration</a></li> #}
+                <li><a href="{{ "/account" }}">Connexion</a></li>
             {% else %}
-            <li><a href="{{ "/?p=account/logout" }}">Déconnexion</a></li>
-            <li><a href="{{ "/?p=account/dashboard" }}">{{ session.user.username }}</a></li>
+            <li><a href="{{ "/account/logout" }}">Déconnexion</a></li>
+            <li><a href="{{ "/account/dashboard" }}">{{ session.user.username }}</a></li>
             {% endif %}
             {% if session.user.role == 'admin' %}
-            <li><a href="{{ "/?p=admin/dashboard" }}">Administration</a></li>
+            <li><a href="{{ "/admin/dashboard" }}">Administration</a></li>
             {% endif %}
         </ul>
     </nav>

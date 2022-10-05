@@ -25,19 +25,19 @@ class Redirect
 
     public function redirectToLogin()
     {
-        header('Location: /?p=account');
+        header('Location: /account');
         exit;
     }
 
     public function redirectToAdmin()
     {
-        header('Location: /?p=admin');
+        header('Location: /admin');
         exit;
     }
 
     public function redirectToDashboard()
     {
-        header('Location: /?p=account/dashboard');
+        header('Location: /account/dashboard');
         exit;
     }
 }

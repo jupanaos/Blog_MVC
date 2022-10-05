@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<a href={{ "/?p=blog" }}><button class="back">&#8617; Retour</button></a>
+<a href={{ "/blog" }}><button class="back">&#8617; Retour</button></a>
     <section class="light-bg">
         <h2 class="light_title section_title blog">
             Blog
@@ -29,15 +29,15 @@
         </h2>
         {% if session.logged == false %}
         <div class="section_container">
-            <p>Vous devez vous <a href="/?p=account/login">connecter</a> ou <a href="/?p=account/register">créer un compte</a> pour laisser un commentaire !</p>
+            <p>Vous devez vous <a href="/account/login">connecter</a> ou <a href="/account/register">créer un compte</a> pour laisser un commentaire !</p>
         </div>
         {% else %}
         <div class="section_container">
             <div class="form">
-                <form method="post" action="?p=blog/article/{{ article.id }}/add-comment" id="comment-form">
-                    <label for="comment">Laisser un commentaire en tant que <span class="text__highlight-colored"><a href="?p=account/dashboard">{{ session.user.username }}</a></span></label><br>
+                <form method="post" action="/blog/article/{{ article.id }}/add-comment" id="comment-form">
+                    <label for="comment">Laisser un commentaire en tant que <span class="text__highlight-colored"><a href="/account/dashboard">{{ session.user.username }}</a></span></label><br>
                     <textarea name="content" id="content" cols="100" rows="10"></textarea><br>
-                    <a href="?p=blog/article/{{ article.id }}/add-comment"><button class="button-form" type="submit">Commenter</button></a>
+                    <a href="/blog/article/{{ article.id }}/add-comment"><button class="button-form" type="submit">Commenter</button></a>
                 </form>
             </div>
         </div>

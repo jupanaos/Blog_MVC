@@ -18,7 +18,7 @@
     <div id="articles" class="tabcontent">
         <table class="table-crud--articles">
             <tbody>
-            <a href="{{ "/?p=admin/articles/add" }}"><button class="create">+ Ajouter</button></a>
+            <a href="{{ "/admin/articles/add" }}"><button class="create">+ Ajouter</button></a>
                 <tr class="table_headers">
                     <th align="left">Article</th>
                     <th align="left">Date</th>
@@ -37,8 +37,8 @@
                         <span>{{ article.status }}</span>
                     </td>
                     <td align="right">
-                        <a href="/?p=admin/articles/{{ article.id }}/delete/"><button class="button-form delete">Supprimer</button></a>
-                        <a href="/?p=admin/articles/{{ article.id }}/edit/"><button class="button-form edit">Modifier</button></a>
+                        <a href="/admin/articles/{{ article.id }}/delete/"><button class="button-form delete">Supprimer</button></a>
+                        <a href="/admin/articles/{{ article.id }}/edit/"><button class="button-form edit">Modifier</button></a>
                     </td>
                 </tr>
                 {% endfor %}
@@ -71,8 +71,8 @@
                         {{ user.createdAt|date('d/m/Y à H:i') }}
                     </td>
                     <td align="right">
-                        <a href="/?p=admin/users/{{ user.id }}/delete/"><button class="button-form delete" type="submit">Supprimer</button></a>
-                        <a href="/?p=admin/users/{{ user.id }}/manage/"><button class="button-form edit">Gérer</button></a>
+                        <a href="/admin/users/{{ user.id }}/delete/"><button class="button-form delete" type="submit">Supprimer</button></a>
+                        <a href="/admin/users/{{ user.id }}/manage/"><button class="button-form edit">Gérer</button></a>
                     </td>
                 </tr>
                 {% endfor %}
@@ -105,7 +105,7 @@
                         <span>{{ comment.createdAt|date('d/m/Y à H:i') }}</span>
                     </td>
                     <td align="right">
-                        <a href="/?p=admin/comments/{{ comment.id }}/manage"><button class="button-form edit">Gérer</button>
+                        <a href="/admin/comments/{{ comment.id }}/manage"><button class="button-form edit">Gérer</button>
                     </td>
                 </tr>
                 {% endfor %}

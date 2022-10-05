@@ -13,13 +13,13 @@
         {% for article in articles %}
             {% if article.status == 'Published' %}
                 <div class="article__card">
-                    <a href="{{ "/?p=blog/article/"~article.id }}">
+                    <a href="{{ "/blog/article/"~article.id }}">
                         <div class="card-blog_image"><img src="{{ article.picture }}" alt="{{ article.title }} illustration" /></div>
                         <div class="article__content">
                             <div class="article__date">{{ article.createdAt|date('d/m/Y à H:i') }}</div>
                             <h3 class="article__title">{{ article.title }}</h3>
                             <p>{{ article.content|length > 100 ? article.content|slice(0, 100) ~ '...' : article.content }}</p>
-                            <a href="{{ "/?p=blog/article/"~article.id }}">Lire la suite</a>
+                            <a href="{{ "/blog/article/"~article.id }}">Lire la suite</a>
                         </div>
                     </a>
                 </div>
