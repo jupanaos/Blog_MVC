@@ -39,4 +39,3 @@ Create your own `.env` in the main folder `/`. You can follow the `.env.example`
 
 ## ✉️ Contact & links
 Julie Pariona - https://github.com/jupanaos/
-Project : https://jupanaos-blog.julie-pariona.fr/
