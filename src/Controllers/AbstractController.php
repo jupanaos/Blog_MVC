@@ -13,7 +13,7 @@ abstract class AbstractController
     private $loader;
     protected $twig;
     protected $flashMessage;
-    protected $redirect;
+    public $redirect;
 
     public function __construct()
     {
