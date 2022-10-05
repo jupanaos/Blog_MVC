@@ -13,6 +13,7 @@ First things first, for this project you will need at least : <br>
 And here is a list of the packages used in this project :<br>
 🔸 Twig<br>
 🔸 PHPMailer<br>
+🔸 Dotenv<br>
 🔸 Bulletproof<br>
 
 ### Installation
@@ -36,5 +37,6 @@ Create your own `.env` in the main folder `/`. You can follow the `.env.example`
 ◻️ Username : `user`<br>
 ◻️ Password : `user`
 
-## ✉️ Contact
+## ✉️ Contact & links
 Julie Pariona - https://github.com/jupanaos/
+Project : https://jupanaos-blog.julie-pariona.fr/
