@@ -1,19 +1,43 @@
 DirectoryIndex index.php
 
 <IfModule mod_rewrite.c>
-    # Rewrite engine
-    RewriteEngine On
+   # Rewrite engine
+   RewriteEngine On
 
-    # Redirect /foobar/ https://example.com
+   # Rewrite URL
+   #RewriteRule ^([a-zA-Z0-9\-\_\/]*)$ index.php?p=$1 [L]
+   RewriteCond %{SCRIPT_FILENAME} !-d
+   RewriteCond %{SCRIPT_FILENAME} !-f
+   RewriteRule ^(.*)$ ?p=$1 [QSA]
+</IfModule>
 
+Options -Indexes
 
-    # RewriteRule ^foobar/$ https://example.com/ [R]
+<IfModule mod_headers.c>
 
-    # Rewrite URL
-    #RewriteRule ^([a-zA-Z0-9\-\_\/]*)$ index.php?p=$1 [L]
-    RewriteCond %{SCRIPT_FILENAME} !-d
-    RewriteCond %{SCRIPT_FILENAME} !-f
-    RewriteRule ^(.*)$ ?p=$1 [QSA]
+   # Prevent mime based attacks
+   Header always set X-Content-Type-Options "nosniff"
+
+   # X-XSS-Protection
+   Header set X-XSS-Protection "1; mode=block"
+
+   # Don't allow any pages to be framed - Defends against CSRF
+   Header set X-Frame-Options "SAMEORIGIN"
+
+   # Define approved sources for content that the browser is permitted to load
+   Header set Content-Security-Policy "upgrade-insecure-requests"
+
+   # Disable or enable certain web platform features
+   Header set Permissions-Policy "geolocation=self"
+
+   # Enforce the use of encrypted HTTPS connections
+   Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+
+   php_value session.cookie_httponly 1
+   php_value session.cookie_secure 1
+
+   ServerSignature Off 
+
 </IfModule>
 
 # php -- BEGIN cPanel-generated handler, do not edit
