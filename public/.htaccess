@@ -30,6 +30,9 @@ Options -Indexes
    # Disable or enable certain web platform features
    Header set Permissions-Policy "geolocation=self"
 
+   # Set the referrer header for request from the current domain
+   Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
    # Set httpOnly flag on session
    php_value session.cookie_httponly 1
    php_value session.cookie_secure 1
