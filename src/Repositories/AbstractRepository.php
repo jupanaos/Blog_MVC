@@ -44,7 +44,7 @@ abstract class AbstractRepository extends Database
             $queryString = sprintf('%s OFFSET %s', $queryString, $offset);
         }
 
-        $query = $this->prepare($queryString);
+        $query = $this->getInstance()->prepare($queryString);
         $query->execute();
 
         return $query->fetchAll();
