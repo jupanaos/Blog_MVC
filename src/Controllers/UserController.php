@@ -21,7 +21,7 @@ class UserController extends AbstractController
 
     public function login()
     {
-        if (!empty($_POST['username'])){
+        if (!empty(Security::secureHTML($_POST['username']))){
             $tryLogin = $this->userRepository->tryLogin();
             
             if (is_object($tryLogin)){
