@@ -45,7 +45,7 @@ class UserRepository extends AbstractRepository
 
     public function usernameExists()
     {
-        $username = $_POST['username'];
+        $username = Security::secureHTML($_POST['username']);
 
         $query = $this->prepare('SELECT * FROM user WHERE username=?');
         $query->execute([$username]);
@@ -91,10 +91,18 @@ class UserRepository extends AbstractRepository
 
     public function tryLogin()
     {
-        $password = Security::secureHTML($_POST['password']);
         $username = Security::secureHTML($_POST['username']);
+        $password = Security::secureHTML($_POST['password']);
         
-        $userArray = $this->findItemBy(['username' => $username]);
+        $queryString = 'SELECT * FROM user 
+                        WHERE username = :username';
+
+        $stmt = $this->getInstance()->prepare($queryString);
+        $stmt->bindValue(":username", $username, PDO::PARAM_STR);
+        
+        $stmt->execute();
+
+        $userArray = $stmt->fetchAll();
 
         if(isset($userArray[0])) {
             $user = new User($userArray[0]);
